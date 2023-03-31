@@ -6,13 +6,55 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <Button
+        android:onClick="Visibility"
+        android:text="Visibility"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/AM_BTN_UpdateVisibility"/>
+
+    <Button
+        android:onClick="AddProduct"
+        android:text="AddProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/AM_BTN_AddProduct"/>
+
+    <Button
+        android:onClick="Remove"
+        android:text="Remove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/AM_BTN_Remove"/>
+
+    <Button
+        android:onClick="UpdateProduct"
+        android:text="UpdateProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/AM_BTN_UpdateProduct"/>
+
+    <Button
+        android:onClick="FetchProduct"
+        android:text="FetchProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/AM_BTN_FetchProduct"/>
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
