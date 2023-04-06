@@ -43,4 +43,5 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.github.yalantis:ucrop:2.2.6'
     implementation 'io.github.shashank02051997:FancyToast:2.0.2'
+
 }

@@ -1,45 +1,65 @@
-package com.example.yaencasa.Network
+package com.example.yaencasa.Data.Network
 
 import com.example.yaencasa.Data.ModelProduct
 import retrofit2.Call
 import retrofit2.http.*
+import java.util.ArrayList
 
 interface IRetrofitProducts {
 
+
+
     @FormUrlEncoded
-    @POST("UpdateVisibilityProduct.php")
+    @POST("UpdateVisibility.php")
     fun updateVisibilityProduct(
         @Field("token") token: String,
         @Field("idProduct") idProduct: Long,
         @Field("state") stateProduct: Int
-    ) : String
+    ) : Call<String>
+
+
 
     @FormUrlEncoded
     @POST("UpdateProduct.php")
     fun updateProduct(
         @Field("token") token: String,
-        @Body product: ModelProduct
-    ) : String
+        @Field("file") file: String,
+        @Field("idProduct") id: Long,
+        @Field("name") name: String,
+        @Field("price") price: Double,
+        @Field("desc") desc: String,
+    ) : Call<String>
+
+
 
     @FormUrlEncoded
     @POST("RemoveProduct.php")
     fun removeProduct(
         @Field("token") token: String,
         @Field("idProduct") idProduct: Long
-    ) : String
+    ) : Call<String>
+
+
 
     @FormUrlEncoded
     @POST("AddProduct.php")
     fun addProduct(
         @Field("token") token: String,
-        @Body product: ModelProduct
-    ) : String
+        @Field("file") file: String,
+        @Field("idCategory")idCategory: Int,
+        @Field("idProduct") id: Long,
+        @Field("name") name: String,
+        @Field("price") price: Double,
+        @Field("desc") desc: String
+    ) : Call<String>
+
+
 
     @GET("FetchProducts.php")
     fun fetchProducts(
         @Field("token") token: String,
         @Query("idCategory") idCategory: Int
-    ):ArrayList<ModelProduct>
+    ):Call<ArrayList<ModelProduct>>
 
 
 }

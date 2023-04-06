@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">YaEnCasa</string>
+    <string name="find_product">Buscar producto</string>
+    <string name="products">Productos</string>
+    <string name="edit_products">Editar Productos</string>
+    <string name="category">Categorías</string>
+    <string name="shopping_cart">Carrito</string>
+    <string name="menu">Menú</string>
+    <string name="imagen_de_la_empresa">Imagen de la empresa</string>
+    <string name="contact">Contacto</string>
+    <string name="correo">Correo</string>
+    <string name="numero_de_telefono">Numero de telefono</string>
+    <string name="phone_number_client">53720001</string>
+    <string name="about_us">Sobre nosotros</string>
+    <string name="t_rmino_de_uso">Término de uso</string>
+    <string name="about_developer">Sobre los desarrolladores</string>
+    <string name="open">Abierto</string>
+    <string name="close">Cerrado</string>
+    <string name="little_description">Descripción del producto....</string>
+    <string name="name_product">Nombre del producto</string>
+    <string name="price_default">0.00</string>
 </resources>

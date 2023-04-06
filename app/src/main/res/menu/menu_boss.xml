@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt">
+    <item android:icon="@drawable/info" android:id="@+id/navprod_about_us" android:title="@string/about_us"/>
+    <item android:icon="@drawable/book" android:id="@+id/navprod_terms" android:title="@string/t_rmino_de_uso"/>
+    <item android:icon="@drawable/developer_mode" android:id="@+id/navprod_about_developers" android:title="@string/about_developer"/>
+    <item
+        android:id="@+id/page_edit_products"
+        android:enabled="true"
+        android:icon="@drawable/foundation"
+        android:title="@string/edit_products"/>
+</menu>

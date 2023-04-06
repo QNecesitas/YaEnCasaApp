@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/barbottom_buscar"
+        android:contentDescription="@string/category"
+        android:icon="?android:attr/actionModeWebSearchDrawable"
+        android:title="@string/category"
+        app:showAsAction="ifRoom" />
+
+
+</menu>
