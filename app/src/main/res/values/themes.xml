@@ -25,4 +25,17 @@
 
 
 
+    <style name="Button_redonded_filled" parent="Widget.MaterialComponents.Button">
+        <item name="shapeAppearance">@style/Shape_redonded</item>
+        <item name="strokeColor">@color/white</item>
+        <item name="strokeWidth">1sp</item>\
+        <item name="android:textSize">@dimen/x_short</item>
+    </style>
+
+    <style name="Shape_redonded" parent="">
+        <item name="cornerSize">12sp</item>
+    </style>
+
+
+
 </resources>

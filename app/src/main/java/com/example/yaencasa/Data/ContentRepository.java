@@ -23,7 +23,7 @@ public class ContentRepository {
     //Data
     private ArrayList<IModel_Content> al_content;
     private ArrayList<ModelProduct> al_products;
-    private ArrayList<Model_Ad> al_ads;
+    private ArrayList<ModelAd> al_ads;
 
 
 
@@ -44,7 +44,7 @@ public class ContentRepository {
         this.listener = listener;
     }
 
-    interface ContentReadyListener{
+    public interface ContentReadyListener{
         void onReady(ArrayList<IModel_Content> arrayList);
         void onFailure();
     }
@@ -75,16 +75,16 @@ public class ContentRepository {
 
     private void fetchAds(){
 
-        Call<ArrayList<Model_Ad>> callAd = retrofitAds.fetchAds();
+        Call<ArrayList<ModelAd>> callAd = retrofitAds.fetchAds();
 
-        callAd.enqueue(new Callback<ArrayList<Model_Ad>>() {
+        callAd.enqueue(new Callback<ArrayList<ModelAd>>() {
             @Override
-            public void onResponse(Call<ArrayList<Model_Ad>> call, Response<ArrayList<Model_Ad>> response) {
+            public void onResponse(Call<ArrayList<ModelAd>> call, Response<ArrayList<ModelAd>> response) {
                     makeContent();
             }
 
             @Override
-            public void onFailure(Call<ArrayList<Model_Ad>> call, Throwable t) {
+            public void onFailure(Call<ArrayList<ModelAd>> call, Throwable t) {
                 if(listener!=null)listener.onFailure();
             }
         });
@@ -94,7 +94,7 @@ public class ContentRepository {
     private void makeContent(){
         al_content.clear();
         al_content.addAll(al_products);
-        Stack<Model_Ad> stack_ads_aux = new Stack<>();
+        Stack<ModelAd> stack_ads_aux = new Stack<>();
         stack_ads_aux.addAll(al_ads);
 
         for (int f=0; f<al_content.size();f++){

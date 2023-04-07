@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Text -->
-    <dimen name="small">8sp</dimen>
-    <dimen name="x_small">12sp</dimen>
+    <dimen name="small">10sp</dimen>
+    <dimen name="x_short">12sp</dimen>
     <dimen name="medium">16sp</dimen>
     <dimen name="x_large">20sp</dimen>
     <dimen name="xx_large">24sp</dimen>

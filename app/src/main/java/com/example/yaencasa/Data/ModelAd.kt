@@ -1,6 +1,6 @@
 package com.example.yaencasa.Data
 
-data class Model_Ad(
+data class ModelAd(
     var id:Long,
     var name:String,
     var url:String

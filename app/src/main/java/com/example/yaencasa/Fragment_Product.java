@@ -17,7 +17,6 @@ public class Fragment_Product extends Fragment {
 
 
     public Fragment_Product() {
-        // Required empty public constructor
     }
 
 
@@ -33,4 +32,9 @@ public class Fragment_Product extends Fragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
 
     }
+
+
+
+
+
 }

@@ -1,7 +1,7 @@
 package com.example.yaencasa.Data.Network
 
 import com.example.yaencasa.Auxiliary.Constants
-import com.example.yaencasa.Data.Model_Ad
+import com.example.yaencasa.Data.ModelAd
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -15,7 +15,7 @@ class RetrofitAdsImpl : IRetrofitAds {
         .build()
 
     private val adsApi: IRetrofitAds = retrofit.create(IRetrofitAds::class.java)
-    override fun fetchAds(): Call<ArrayList<Model_Ad>> {
+    override fun fetchAds(): Call<ArrayList<ModelAd>> {
         return adsApi.fetchAds();
     }
 

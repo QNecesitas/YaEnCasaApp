@@ -19,4 +19,224 @@
     <string name="little_description">Descripción del producto....</string>
     <string name="name_product">Nombre del producto</string>
     <string name="price_default">0.00</string>
+
+    <string name="Productos">Productos</string>
+    <string name="Precio">Precio:</string>
+    <string name="Nombre_del_producto">Nombre del producto</string>
+    <string name="Eliminar">Eliminar</string>
+    <string name="Editar">Editar</string>
+    <string name="Agregar_producto">Agregar producto</string>
+    <string name="Producto">Producto</string>
+    <string name="Descripcion">Descripción</string>
+    <string name="Cancelar">Cancelar</string>
+    <string name="Agregar">Agregar</string>
+    <string name="Vsibilidad">Visibilidad</string>
+    <string name="_0CUP">0.00 CUP</string>
+    <string name="Sobre_nosotros">Sobre nosotros</string>
+    <string name="Sobre_los_desarrolladores">Desarrolladores</string>
+    <string name="Terminos_de_uso">Términos de uso</string>
+    <string name="Pedidos">Pedidos</string>
+    <string name="Imagen_de_la_empresa">Imagen de la empresa</string>
+    <string name="Contacto">Contacto</string>
+    <string name="Carrito">Carrito</string>
+    <string name="Numero_de_telefono">Número de teléfono</string>
+    <string name="_5352364120">+5353005611</string>
+    <string name="Se_ha_producido_un_error">Se ha producido un error</string>
+    <string name="Revise_su_conexion">Revise su conexión a Internet e intente de nuevo</string>
+    <string name="Aceptar">Aceptar</string>
+    <string name="Agregando_producto">Agregando producto</string>
+    <string name="Espere">Por favor, espere…</string>
+    <string name="existe_ya_producto_con_este_nombre">Existe ya un producto con este nombre</string>
+    <string name="Este_campo_no_puede_vacio">Este campo no puede estar vacío</string>
+    <string name="no">no</string>
+    <string name="Demasiados_elementos">Demasiados elementos</string>
+    <string name="Ha_excedido_numero_maximo_productos">Ha excedido el número máximo de elementos permitidos. Contacte al equipo de desarrollo de la aplicación para incrementar esta cantidad.</string>
+    <string name="Ha_excedido_numero_maximo_categorias">Ha excedido el número máximo de categorias permitidos. Contacte al equipo de desarrollo de la aplicación para incrementar esta cantidad.</string>
+    <string name="No_hay_productos">No hay productos en esta categoría</string>
+    <string name="Cantidad">Cantidad</string>
+    <string name="Menos">Menos</string>
+    <string name="error">Se ha producido un error</string>
+    <string name="error_obtener_imagen">Error al obtener imagen</string>
+    <string name="Al_carrito">Al carrito</string>
+    <string name="cerrar">Cerrar</string>
+    <string name="Categor_as">Categorías</string>
+    <string name="imagen_categor_a">Imagen categoría</string>
+    <string name="Vacio">Vacío</string>
+    <string name="Todas_las_categorias">Todas las categorías</string>
+    <string name="Cerrar">Cerrar</string>
+    <string name="Cargando_datos">Cargando datos</string>
+    <string name="Reintentar">Reintentar</string>
+    <string name="Ocultar">Ocultar</string>
+    <string name="Mostrar">Mostrar</string>
+    <string name="Eliminar_producto">Eliminar producto</string>
+    <string name="Desea_eliminar_producto">¿Desea realmente eliminar el producto?</string>
+    <string name="Si">Sí</string>
+    <string name="No">No</string>
+    <string name="Actualizando">Actualizando producto</string>
+    <string name="Eliminando_producto">Eliminando producto</string>
+    <string name="Buscar_producto">Buscar producto</string>
+    <string name="Categorias">Categorías</string>
+    <string name="enviar">Enviar</string>
+    <string name="Opciones">Opciones</string>
+    <string name="en_espera">En espera</string>
+    <string name="numero_telefono">Teléfono:</string>
+    <string name="direccion">Dirección:</string>
+    <string name="finalizar">Finalizar</string>
+    <string name="envie_una_respuesta_al_cliente_sobre_la_cancelacion_de_su_pedido">Envíe una respuesta al cliente sobre la cancelación de su pedido:</string>
+    <string name="_0_00_cup">0.00 CUP</string>
+    <string name="quitar_producto">Quitar producto</string>
+    <string name="no_pedido">No.Pedido:</string>
+    <string name="Ex_1253">1253</string>
+    <string name="_0_00">0.00</string>
+    <string name="realizando_operacion">Realizando operación</string>
+    <string name="por_favor_espere">Por favor espere…</string>
+    <string name="campo_vacio">Este campo no puede estar vacío</string>
+    <string name="Eliminar_elementos">Eliminar elementos</string>
+    <string name="Tiene_certeza_eliminar_elemento">¿Tiene certeza de eliminar este elemento?</string>
+    <string name="Enviando_pedido">Enviando pedido</string>
+    <string name="Mis_Pedidos">Mis Pedidos</string>
+    <string name="revise_conx">Revise su conexión a Internet e intente de nuevo</string>
+    <string name="salir">Salir</string>
+    <string name="seguro_desea_salir">¿Realmente desea salir?</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="En_espera_extendido">Su pedido está en espera de ser aceptado, cuando sea aceptado será enviado a su dirección</string>
+    <string name="Pedido_cancelado">Su pedido fue cancelado por la siguiente razón:</string>
+    <string name="Pedido_aceptado">Su pedido fue aceptado. En menos de cuatro horas lo recibirá en la dirección que colocó</string>
+    <string name="quitar_registro_de_pedidos">Quitar registro de pedidos</string>
+    <string name="pedido_enviado_correctamente">¡Pedido enviado correctamente!</string>
+    <string name="espere_la_confirmaci_n_de_su_pedido">Espere a que su pedido sea aceptado para que luego sea enviado a la dirección que colocó</string>
+    <string name="ir_a_mis_pedidos">/Ir a mis pedidos</string>
+    <string name="ir_a_wapp">/Confirmar pedido en WhatsApp</string>
+    <string name="direcci_n">Dirección:</string>
+    <string name="si">Si</string>
+    <string name="abierto">Abierto</string>
+    <string name="cerrado">Cerrado</string>
+    <string name="politica_privacidad_texto">
+        La aplicación de PuertoShop es un software móvil a través del cual el usuario puede ordenar un pedido de compra referente a productos de diversa índole del negocio que lleva el mismo nombre de la aplicación.
+        \nLa presente Política de Privacidad establece los términos en que PuertoShop usa y protege la información proporcionada por los usuarios al momento de usar la aplicación. Esta Política de Privacidad puede cambiar con el tiempo por lo que recomendamos revisar continuamente esta página para asegurarse que está de acuerdo con dichos cambios.\n
+\nInformación que es recogida:\n
+\nLa información es brindada por el mismo usuario. Tomamos latitud, longitud y dirección para poder saber cuál será la ubicación y entregar el pedido, también utilizaremos el número móvil del cliente para su comunicación en caso de cualquier percance y el nombre de la persona a entregar para que sea el titular quien reciba.\n
+\nInformación de terceros:\n\n
+El contenido es brindado por PuertoShop, los creadores no nos responsabilizamos de dicho contenido.No nos responsabilizamos por los datos dados por el usuario que no se correspondan con latitud, longitud, dirección y nombre. Está aplicación no comparte datos con terceros.
+    </string>
+    <string name="licencia_texto">
+        La aplicación de PuertoShop está bajo el uso de la licencia Creative Commons.\n\n
+¿Cómo funcionan las Licencias Creative Commons?\n\n
+Las licencias Creative Commons  se basan en el derecho de autor, con lo cual la obra sigue perteneciendo al  dominio privativo, pero con excepciones y limitaciones que son elegidas y explicitadas por el autor de la obra.  Un autor, que desea otorgar algunos permisos sobre su trabajo, para que terceros puedan copiarlo, o modificarlo  sin problemas de copyright, puede licenciar su obra bajo una licencia CC y de esa forma explicitar su voluntad de que la obra circule sin restricciones legales.
+\n\nEsta licencia contiene:
+Reconocimiento-NoComercial-SinDerivadas 4.0 Internacional (CC BY-NC-ND 4.0).\n
+\nEres libre de : Compartir copiar y redistribuir el material en cualquier medio o formato.
+El licenciante no puede revocar estas libertades mientras siga los siguientes términos de la licencia:\n
+\nReconocimiento : Debe otorgar el crédito correspondiente , proporcionar un enlace a la licencia e indicar si se realizaron cambios . Puede hacerlo de cualquier manera razonable, pero no de ninguna manera que sugiera que el licenciante lo respalda a usted o su uso.\n
+\nNo comercial : No puede utilizar el material con fines comerciales.\n
+\nNo Derivatives : Si remezcla, transforma o construye sobre el material, no puede distribuir el material modificado.\n
+\nSin restricciones adicionales : No puede aplicar términos legales o medidas tecnológicas que restrinjan legalmente a otros de hacer cualquier cosa que permita la licencia.
+\n\n------------------------------\n\n
+Licencia para grupos de terceros---Ucrop
+Copyright 2017, Yalantis
+  Con licencia de Apache License, Versión 2.0 no puede usar este archivo excepto de conformidad con la Licencia. Puede obtener una copia de la Licencia en: http:------www.apache.org---licenses---LICENSE-2.0.
+  A menos que lo exija la ley aplicable o se acuerde por escrito, el software distribuido bajo la Licencia se distribuye "TAL CUAL", SIN GARANTÍAS NI CONDICIONES DE NINGÚN TIPO, ya sean expresas o implícitas. Consulte la Licencia para conocer el idioma específico que rige los permisos y limitaciones bajo la Licencia.
+\n\n------------------------------\n\n
+Licencia para grupo de terceros---Glide
+Copyright 2014 Google, Inc. Todos los derechos reservados.
+La redistribución y el uso en formato fuente y binario, con o sin modificación, están permitidos siempre que se cumplan las siguientes condiciones:
+ 1. Las redistribuciones del código fuente deben conservar el aviso de derechos de autor anterior, esta lista de condiciones y el siguiente aviso legal.
+ 2. Las redistribuciones en forma binaria deben reproducir el aviso de derechos de autor anterior, esta lista de condiciones y el siguiente descargo de responsabilidad en la documentación y---u otros materiales proporcionado con la distribución.
+ESTE SOFTWARE ES PROPORCIONADO POR GOOGLE, INC. TAL CUAL Y CUALQUIER  EXPLÍCITO O IMPLÍCITO GARANTÍAS, INCLUIDAS, ENTRE OTRAS, LAS GARANTÍAS IMPLÍCITAS DE COMERCIABILIDAD Y SE RENUNCIA A LA IDONEIDAD PARA UN PROPÓSITO PARTICULAR. EN NINGÚN CASO GOOGLE, INC. O LOS COLABORADORES SERÁN RESPONSABLES DE CUALQUIER DAÑO DIRECTO, INDIRECTO, INCIDENTAL, ESPECIAL, EJEMPLAR O DAÑOS CONSECUENTES (INCLUYENDO, ENTRE OTROS, ADQUISICIÓN DE BIENES SUSTITUTOS O SERVICIOS; PÉRDIDA DE USO, DATOS O BENEFICIOS; O INTERRUPCIÓN DEL NEGOCIO) CUALQUIERA QUE SE CAUSE Y EN CUALQUIER TEORÍA DE RESPONSABILIDAD, YA SEA POR CONTRATO, RESPONSABILIDAD ESTRICTA O AGRAVIO (INCLUYENDO NEGLIGENCIA U OTRA) QUE SURJA DE CUALQUIER MANERA DEL USO DE ESTE SOFTWARE, INCLUSO SI ADVERTIDO DE LA POSIBILIDAD DE TALES DAÑOS.
+  Las opiniones y conclusiones contenidas en el software y la documentación son las del autor y no debe interpretarse como representación de políticas oficiales, expresadas o implícitas, de Google, Inc.
+\n\n------------------------------\n\n
+Licencia para grupo de terceros---Gson  Copyright 2008 Google Inc.
+  Con licencia de Apache License, Versión 2.0 no puede usar este archivo excepto de conformidad con la Licencia. Puede obtener una copia de la Licencia en: http:------www.apache.org---licenses---LICENSE-2.0
+  A menos que lo exija la ley aplicable o se acuerde por escrito, el software distribuido bajo la Licencia se distribuye "TAL CUAL", SIN GARANTÍAS NI CONDICIONES DE NINGÚN TIPO, ya sean expresas o implícitas. Consulte la Licencia para conocer el idioma específico que rige los permisos y limitaciones bajo la Licencia.
+    </string>
+    <string name="licencia">Licencia:</string>
+    <string name="Foto_del_producto">Foto del producto</string>
+    <string name="Carrito_vacio">Carrito vacío</string>
+    <string name="Nada_a_enviar">No hay nada para enviar, coloque productos para hacer su pedido</string>
+    <string name="Enviar_pedido">Enviar Pedido</string>
+    <string name="verificar_envio">¿Tiene certeza de hacer el pedido?</string>
+    <string name="los_datos_no_est_n_actualizados">Los datos no se están actualizando. Compruebe su conexión a Internet</string>
+    <string name="t_rminos_y_condiciones_de_uso">Términos y condiciones de uso:</string>
+    <string name="aceptado_o_cancelado">Una vez haya aceptado el pedido no es posible cancelarlo o viceversa</string>
+    <string name="pedido_ya_entregado">Su pedido ya debió haberse entregado con éxito.</string>
+    <string name="no_hay_pedidos_a_n">No hay pedidos aún</string>
+    <string name="permiso_denegado">Permiso denegado</string>
+    <string name="debe_otorgar_permisos_galeria">Debe otorgar el permiso para poder acceder a las fotos de la galería</string>
+    <string name="administrador">Administrador</string>
+    <string name="categor_as">Editar Categorías</string>
+    <string name="pedidos">Pedidos</string>
+    <string name="Eliminar_categoría">Eliminar categoría</string>
+    <string name="Desea_realm_elim_categ">¿Tiene certeza de eliminar esta categoría? Si existen productos dentro de esta, serán eliminados</string>
+    <string name="Enviado_al_carrito">Enviado al carrito</string>
+    <string name="Operacion_realizada_con_exito">Operación realizada con éxito</string>
+    <string name="Vaciar_pedidos">Vaciar pedidos</string>
+    <string name="Tiene_certeza_de_vaciar">Tiene certeza de vaciar los pedidos. Se eliminarán todos los pedidos finalizados</string>
+    <string name="Tiene_certeza_de_vaciarMisPedidos">Tiene certeza de vaciar los pedidos. Si hay algún pedido sin aceptar, no podrá ver los cambios</string>
+    <string name="http_qnecesitas_nat_cu">http://qnecesitas.nat.cu<h ref="http://qnecesitas.nat.cu" /></string>
+    <string name="logo">Logo</string>
+    <string name="imagen_del_producto">Imagen del producto</string>
+    <string name="visibilidad">Visibilidad</string>
+    <string name="Nombre">Nombre</string>
+    <string name="CUP"> CUP</string>
+    <string name="Fecha">Fecha:</string>
+    <string name="nombre_dosp">Nombre:</string>
+    <string name="Nombre_apell">Nombre y apellidos</string>
+    <string name="Comprar">Comprar</string>
+    <string name="Ayuda">Ayuda</string>
+    <string name="no_hay_productos_en_el_carrito">No hay productos en el carrito</string>
+    <string name="Como_hacer_un_pedido">¿Cómo hacer un pedido?</string>
+    <string name="Explicacion_como_pagar">Siga los siguientes pasos:\n 1. LLene el carrito con los artículos que desea comprar\n 2. Revise en la esquina superior derecha de la pantalla el coste total del pedido \n 3. Coloque sus datos en los espacios que se indican, solo se permiten direcciones en Puerto Padre, Las Tunas\n 4. Envíe su pedido\n 5. En la pantalla de WhatsApp que se abre, envíe el mensaje por defecto que aparece ya escrito. 6. Espere a que su compra sea enviada a la dirección que colocó</string>
+    <string name="No_mostrar_m_s">No mostrar más</string>
+    <string name="Fuera_de_horario">Fuera de horario</string>
+    <string name="Horario">Solo se permiten pedidos de 8:00 am a 4:00 pm</string>
+    <string name="advertencia">Advertencia: Solo se permiten compras para Puerto Padre, Las Tunas y solo de 8:00 am a 4:00 pm</string>
+    <string name="pantalla_categorias">Pantalla Categorías</string>
+    <string name="pantalla_productos">Pantalla Productos</string>
+    <string name="Editar_Productos">Editar Productos</string>
+    <string name="Errores_de_coincidencia">Errores de coincidencia</string>
+    <string name="Hay_cambios_en_cantidades">Alguien ha comprado justo antes de usted y ahora hay cambios en las cantidades que puede comprar:\n</string>
+    <string name="Detalles_del_producto">Detalles del producto</string>
+    <string name="im_genes_nadicionales">Imágenes</string>
+    <string name="Imagenes_adicionales">Imágenes adicionales</string>
+    <string name="primero_coloque">Primero coloque la otra foto</string>
+    <string name="Ccomo_hacer_un_pedido">¿Cómo hacer un pedido?</string>
+    <string name="Error_confirmacion">Error en la confirmación</string>
+    <string name="Parece_wapp_no_instalado">Parece que no tiene instalado WhatsApp, llame al número +5353005611 y confirme que hizo un pedido</string>
+    <string name="number_intent">+5353005611</string>
+    <string name="Condiciones_de_uso">Condiciones de uso</string>
+    <string name="Condiciones_texto">1- ORDENAR EN PUERTOSHOP
+ \n_Aceptamos órdenes de cualquier lugar de Cuba y por ahora solamente entregamos en la ciudad de PUERTO PADRE Las Tunas
+\n
+\n2 - VIOLACIONES
+\n_Por favor note que, en cualquier momento, si el sitio determina que usted está relacionado con una estafa como podría ser envíos de pagos incorrectos será eliminado del sitio sin previo aviso
+\n
+\n3 - CORRECCIONES DE ERRORES E INEXACTITUDES, LIMITACIONES DE CANTIDAD
+\n_La información en el sitio puede contener errores tipográficos o inexactitudes y puede no estar completa o actualizada. Por lo tanto, nos reservamos el derecho de corregir cualquier error, inexactitud u omisión y de cambiar o actualizar información en cualquier momento, (incluyendo después que usted haya realizado órdenes). Por favor note que tales errores o inexactitudes pueden estar relacionados con la descripción de productos, precios y disponibilidad. Por lo tanto, si realiza una orden e incluye algún producto que contenga errores en su descripción o un precio incorrecto se le contactará para la DEVOLUCIÓN DEL DINERO, Al usar este sitio usted está de acuerdo en mantenernos libres de daños por reclamaciones relacionadas con errores u omisiones en el sitio.
+\n
+\n4 - SISTEMAS DE PAGO y ENTREGA DE CONTENIDO
+\n_Una vez que usted realiza la compra está será comprobada y aprobada por el personal de supervisión y luego se procede a la entrega de la misma
+\n_Como regla general,a domicilio las órdenes son entregadas en un tiempo de máximo 4 horas y con un coste de envío de acuerdo a su zona, mientras que pidiendo a buscar en el local, solo se le guardará durante una hora después de hecho el pedido.
+\n_Usted debe de colocar correctamente el nombre, número de teléfono y dirección exacta para que se le puedan realizar las entregas correctamente, si coloca mal algo de lo mencionado tendría que comunicarse con soporte.
+\n
+\n5 – SOBRE NOSOTROS
+\n_ Visite PuertoShop y recibirá el mejor servicio al cliente, navegación fácil y conveniente, productos exhibidos de manera clara y organizada, lo que hará de su compra una experiencia muy cómoda.
+\n_En cualquier momento que necesite asistencia o ayuda, no dude en contactarnos por el # +5353005611 o por el correo electrónico: puertoshop4@gmail.com
+</string>
+    <string name="agregos">Agregos</string>
+    <string name="buscar_en_local">Buscar en local</string>
+    <string name="pedir_a_domicilio">Pedir a domicilio</string>
+    <string name="zona_a_entregar">Zona a entregar:</string>
+    <string name="zona_de_entrega">Zona de entrega</string>
+    <string name="Maximo_numero_de_tallas">Ha excedido el máximo número de tallas o agregos</string>
+    <string name="Agregos">Agregos</string>
+    <string name="Tallas">Tallas</string>
+    <string name="productos">productos</string>
+    <string name="personalizar_categorias">Personalizar Categorías</string>
+    <string name="nombre_de_la_categor_a">Nombre de la categoría</string>
+    <string name="Existe_ya_nombre_categoria">Ya existe el nombre de categoría seleccionado</string>
+    <string name="ofertas">Ofertas</string>
+    <string name="tallas_agregos">Tallas/Agregos</string>
+    <string name="nombre_del_elemento">Nombre del elemento</string>
+
+
 </resources>

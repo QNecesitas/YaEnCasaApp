@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--Visibility-->
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="4sp"
+        app:cardCornerRadius="50sp"
+        android:translationZ="4sp"
+        android:background="@color/white"
+        android:layout_marginTop="8sp"
+        android:layout_marginStart="4sp">
+
+        <ImageView
+            android:id="@+id/liop_iv_visibility"
+            android:layout_margin="4sp"
+            android:contentDescription="@string/Vsibilidad"
+            android:layout_width="24sp"
+            android:layout_height="24sp"
+            android:src="@drawable/visibility"
+            android:textColor="attr?secondary_color"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <!--Card with the contain-->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/cardview_default_elevation"
+        android:translationZ="@dimen/cardview_default_elevation"
+        app:cardCornerRadius="@dimen/radius_cards"
+        android:layout_marginTop="-24sp"
+        android:layout_marginStart="8sp"
+        android:layout_marginEnd="8sp">
+
+        <!--Container-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!--TV Nombre Producto-->
+            <TextView
+                android:padding="12sp"
+                android:id="@+id/liop_tv_nombre"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:text="@string/Nombre_del_producto"
+                android:textAlignment="center"
+                android:textSize="@dimen/x_large"
+                app:layout_constraintEnd_toStartOf="@id/liop_btn_close"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+
+            <!--Btn Close-->
+            <ImageView
+                android:layout_marginEnd="12sp"
+                android:id="@+id/liop_btn_close"
+                app:layout_constraintBottom_toTopOf="@id/liop_ll_imagen"
+                app:layout_constraintStart_toEndOf="@id/liop_tv_nombre"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="30sp"
+                android:layout_height="30sp"
+                android:src="@drawable/baseline_add_24"
+                app:tint="@color/black"
+                android:rotation="45"
+                android:contentDescription="@string/Cerrar" />
+
+            <!--IV Imagen Producto-->
+            <FrameLayout
+                android:id="@+id/liop_ll_imagen"
+                app:layout_constraintDimensionRatio="1"
+                android:layout_width="match_parent"
+                android:layout_height="0sp"
+                android:background="@color/white_gray"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/liop_tv_nombre">
+
+                <ImageView
+                    android:id="@+id/liop_iv"
+                    android:scaleType="centerCrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/outline_shopping_bag_24"
+                    android:backgroundTint="@color/white" />
+
+            </FrameLayout>
+
+            <!--Precio CUP-->
+            <TextView
+                android:id="@+id/liop_tv_precioCUP"
+                android:layout_marginStart="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="12sp"
+                app:layout_constraintTop_toBottomOf="@id/liop_ll_imagen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/x_short"
+                android:textStyle="bold"
+                android:textColor="@color/red"
+                android:text="@string/_0CUP"/>
+
+            <!--Precio Rebaja CUP-->
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/liop_tv_precioRebajaCUP"
+                android:layout_marginStart="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="12sp"
+                app:layout_constraintTop_toBottomOf="@id/liop_tv_precioCUP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/x_short"
+                android:textStyle="bold"
+                android:textColor="@color/red"
+                android:text="@string/_0CUP"/>
+
+
+
+            <View
+                app:layout_constraintTop_toBottomOf="@id/liop_tv_precioCUP"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textColor="attr?secondary_color"
+                android:id="@+id/liop_separator"
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="@color/white_gray"
+                android:layout_margin="20sp"/>
+
+            <!--TV Descripcion-->
+            <TextView
+                android:id="@+id/liop_tv_descripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Descripcion"
+                android:textAlignment="center"
+                android:textSize="@dimen/medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/liop_separator"
+                android:layout_margin="20sp"/>
+
+
+            <!--Botones-->
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:layout_marginTop="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/liop_tv_descripcion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20sp"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <Button
+                    android:layout_marginStart="12sp"
+                    style="@style/Button_redonded_filled"
+                    android:id="@+id/liop_btn_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="@string/Eliminar"
+                    android:layout_gravity="center"/>
+
+                <Button
+                    style="@style/Button_redonded_filled"
+                    android:id="@+id/liop_btn_turnVisibility"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:text="@string/Mostrar"
+                    android:layout_gravity="center"/>
+
+                <Button
+                    android:layout_marginEnd="12sp"
+                    style="@style/Button_redonded_filled"
+                    android:id="@+id/liop_btn_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="@string/Editar"
+                    android:layout_gravity="center"/>
+
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>
