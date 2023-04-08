@@ -237,6 +237,8 @@ Licencia para grupo de terceros---Gson  Copyright 2008 Google Inc.
     <string name="ofertas">Ofertas</string>
     <string name="tallas_agregos">Tallas/Agregos</string>
     <string name="nombre_del_elemento">Nombre del elemento</string>
+    <string name="anuncio">Anuncio!!!</string>
+    <string name="ubicaci_n">Ubicación</string>
 
 
 </resources>

@@ -1,5 +1,7 @@
 package com.example.yaencasa.Data;
 
+import android.util.Log;
+
 import com.example.yaencasa.Auxiliary.Constants;
 import com.example.yaencasa.Data.Network.RetrofitAdsImpl;
 import com.example.yaencasa.Data.Network.RetrofitProductsImpl;
@@ -18,7 +20,7 @@ public class ContentRepository {
     private ContentReadyListener listener;
 
     //Category
-    int idCategorySelected=0;
+    int idCategorySelected=1;
 
     //Data
     private ArrayList<IModel_Content> al_content;
@@ -63,7 +65,12 @@ public class ContentRepository {
         callProduct.enqueue(new Callback<ArrayList<ModelProduct>>() {
             @Override
             public void onResponse(Call<ArrayList<ModelProduct>> call, Response<ArrayList<ModelProduct>> response) {
-                fetchAds();
+                if(response.isSuccessful()){
+                    al_products=response.body();
+                    fetchAds();
+                }else{
+                    if(listener!=null)listener.onFailure();
+                }
             }
 
             @Override
@@ -80,7 +87,12 @@ public class ContentRepository {
         callAd.enqueue(new Callback<ArrayList<ModelAd>>() {
             @Override
             public void onResponse(Call<ArrayList<ModelAd>> call, Response<ArrayList<ModelAd>> response) {
+                if (response.isSuccessful()){
+                    al_ads=response.body();
                     makeContent();
+                }else{
+                    if(listener!=null)listener.onFailure();
+                }
             }
 
             @Override
@@ -98,7 +110,7 @@ public class ContentRepository {
         stack_ads_aux.addAll(al_ads);
 
         for (int f=0; f<al_content.size();f++){
-            if(f%5==0){
+            if(f % 5 == 0 && f != 0){
                 if(!stack_ads_aux.isEmpty())al_content.add(f,stack_ads_aux.pop());
             }
         }

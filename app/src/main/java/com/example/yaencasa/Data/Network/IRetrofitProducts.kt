@@ -57,7 +57,7 @@ interface IRetrofitProducts {
 
     @GET("FetchProducts.php")
     fun fetchProducts(
-        @Field("token") token: String,
+        @Query("token") token: String,
         @Query("idCategory") idCategory: Int
     ):Call<ArrayList<ModelProduct>>
 

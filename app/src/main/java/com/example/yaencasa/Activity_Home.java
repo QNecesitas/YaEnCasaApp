@@ -9,6 +9,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -27,6 +29,12 @@ public class Activity_Home extends AppCompatActivity {
 
     //Fragments
     private FragmentManager fragmentManager;
+
+    //Preferences
+    private String idsSends;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor sharedEditor;
+    private RadioButton radioButtonLocal;
 
 
     //DrawerLayout
@@ -68,7 +76,7 @@ public class Activity_Home extends AppCompatActivity {
                         showFragmentMenu();
                         break;
                 }
-                return false;
+                return true;
             }
         });
 
@@ -92,7 +100,9 @@ public class Activity_Home extends AppCompatActivity {
 
 
 
-
+        //Shared preferences
+        sharedPreferences=getSharedPreferences("YaEnCasa", 0);
+        sharedEditor= sharedPreferences.edit();
 
 
     }
@@ -100,9 +110,9 @@ public class Activity_Home extends AppCompatActivity {
 
     private void showFragmentProducts(){
 
-        Fragment_Product fragment_product=new Fragment_Product();
+        Fragment_EditProduct fragment_edit_product=new Fragment_EditProduct();
         fragmentManager.beginTransaction()
-                .add(R.id.AH_FL,fragment_product)
+                .replace(R.id.AH_FL,fragment_edit_product)
                 .commit();
     }
 
@@ -110,14 +120,14 @@ public class Activity_Home extends AppCompatActivity {
     private void showFragmentCategories(){
         Fragment_Categories fragment_categories=new Fragment_Categories();
         fragmentManager.beginTransaction()
-                .add(R.id.AH_FL,fragment_categories)
+                .replace(R.id.AH_FL,fragment_categories)
                 .commit();
     }
 
     private void showFragmentShopping_cart(){
         Fragment_Shopping_cart fragment_shopping_cart=new Fragment_Shopping_cart();
         fragmentManager.beginTransaction()
-                .add(R.id.AH_FL,fragment_shopping_cart)
+                .replace(R.id.AH_FL,fragment_shopping_cart)
                 .commit();
     }
 

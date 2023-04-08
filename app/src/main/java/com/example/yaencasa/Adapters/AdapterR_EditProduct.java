@@ -45,7 +45,7 @@ public class AdapterR_EditProduct extends RecyclerView.Adapter<AdapterR_EditProd
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
         LayoutInflater inflater= LayoutInflater.from(context);
-        View view=inflater.inflate(R.layout.recycler_product,null);
+        View view=inflater.inflate(R.layout.recycler_edit_product,null);
         return new ProductViewHolder(view);
     }
 
@@ -71,11 +71,11 @@ public class AdapterR_EditProduct extends RecyclerView.Adapter<AdapterR_EditProd
                 .skipMemoryCache(true)
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .into(holder.image);
+                .into(holder.IV_image);
 
-        holder.name.setText(ad.getName());
-        holder.price.setVisibility(View.GONE);
-        holder.descProduct.setVisibility(View.GONE);
+        holder.TV_name.setText(ad.getName());
+        holder.TV_price.setVisibility(View.GONE);
+        holder.TV_descProduct.setVisibility(View.GONE);
 
     }
 
@@ -89,12 +89,13 @@ public class AdapterR_EditProduct extends RecyclerView.Adapter<AdapterR_EditProd
                 .skipMemoryCache(true)
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .into(holder.image);
+                .into(holder.IV_image);
 
-        holder.name.setText(product.getName());
+        holder.TV_name.setText(product.getName());
         String priceStr=product.getPrice()+" CUP";
-        holder.price.setText(priceStr);
-        holder.descProduct.setText(product.getDesc());
+        holder.TV_price.setText(priceStr);
+        holder.TV_descProduct.setText(product.getDesc());
+        holder.TV_Ad.setVisibility(View.GONE);
     }
 
     public void setClickListener(RecyclerTouchListener listener){
@@ -102,17 +103,20 @@ public class AdapterR_EditProduct extends RecyclerView.Adapter<AdapterR_EditProd
     }
 
     protected class ProductViewHolder extends RecyclerView.ViewHolder{
-        ImageView image;
-        TextView name;
-        TextView price;
-        TextView descProduct;
+        ImageView IV_image;
+        TextView TV_name;
+        TextView TV_price;
+        TextView TV_descProduct;
+        TextView TV_Ad;
+
 
         public ProductViewHolder(final View itemView){
             super(itemView);
-            image=(ImageView)itemView.findViewById(R.id.RP_IV_ImageProduct);
-            name=(TextView)itemView.findViewById(R.id.RP_TV_name);
-            price=(TextView)itemView.findViewById(R.id.RP_TV_Price);
-            descProduct=(TextView)itemView.findViewById(R.id.RP_TV_descProduct);
+            IV_image =(ImageView)itemView.findViewById(R.id.RP_IV_ImageProduct);
+            TV_name =(TextView)itemView.findViewById(R.id.RP_TV_name);
+            TV_price =(TextView)itemView.findViewById(R.id.RP_TV_Price);
+            TV_descProduct =(TextView)itemView.findViewById(R.id.RP_TV_descProduct);
+            TV_Ad = (TextView) itemView.findViewById(R.id.RP_TV_AD);
 
             itemView.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -150,15 +154,26 @@ public class AdapterR_EditProduct extends RecyclerView.Adapter<AdapterR_EditProd
         protected FilterResults performFiltering(CharSequence charSequence) {
             al_EditarProductos_filter.clear();
 
+
+
             FilterResults filterResults=new FilterResults();
             if(charSequence.length()==0){
                 al_EditarProductos_filter.addAll(al_contents);
             }else{
                 String filterPattern = charSequence.toString().toLowerCase().trim();
-                for( IModel_Content product:al_contents){
-                    if(product.getName().toLowerCase().trim().contains(filterPattern)){
-                        al_EditarProductos_filter.add(product);
+                for( IModel_Content content:al_contents){
+                    if(content instanceof ModelProduct){
+                        ModelProduct product=(ModelProduct) content;
+                        if(product.getName().toLowerCase().trim().contains(filterPattern)){
+                            al_EditarProductos_filter.add(content);
+                        }
+                    }else{
+                        ModelAd ad=(ModelAd) content;
+                        if(ad.getName().toLowerCase().trim().contains(filterPattern)){
+                            al_EditarProductos_filter.add(content);
+                        }
                     }
+
                 }
             }
             filterResults.values=al_EditarProductos_filter;

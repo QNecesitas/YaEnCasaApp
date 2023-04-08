@@ -13,4 +13,6 @@
     <color name="red_ad">#DA2D21</color>
     <color name="white_5F6">#EBF5F6</color>
     <color name="red">#F44336</color>
+    <color name="blue_light">#76B1E0</color>
+    <color name="green_light">#22D33A</color>
 </resources>

@@ -64,7 +64,7 @@
             android:layout_height="0sp"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:onClick="click_FABadd"
+            android:id="@+id/FEP_FAB_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"

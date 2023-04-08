@@ -24,7 +24,7 @@
             android:layout_width="24sp"
             android:layout_height="24sp"
             android:src="@drawable/visibility"
-            android:textColor="attr?secondary_color"/>
+            android:tint="@color/red"/>
 
     </androidx.cardview.widget.CardView>
 
@@ -128,7 +128,6 @@
             <View
                 app:layout_constraintTop_toBottomOf="@id/liop_tv_precioCUP"
                 app:layout_constraintStart_toStartOf="parent"
-                android:textColor="attr?secondary_color"
                 android:id="@+id/liop_separator"
                 android:layout_width="match_parent"
                 android:layout_height="0.5sp"

@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -49,6 +50,7 @@ import com.example.yaencasa.Data.IModel_Content;
 import com.example.yaencasa.Data.ModelCategory;
 import com.example.yaencasa.Data.ModelProduct;
 import com.example.yaencasa.Data.Network.RetrofitProductsImpl;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shashank.sony.fancytoastlib.FancyToast;
 import com.yalantis.ucrop.UCrop;
 
@@ -123,6 +125,8 @@ public class Fragment_EditProduct extends Fragment {
         TV_filter_category = (TextView) root.findViewById(R.id.FEP_TV_Category);
         linearLayoutEmpty = (LinearLayout) root.findViewById(R.id.FEP_imagen_empty);
 
+
+
         //Search
         SearchView searchView = (SearchView) root.findViewById(R.id.FEP_SearchView);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -141,6 +145,15 @@ public class Fragment_EditProduct extends Fragment {
         //Internet
         contentRepository = new ContentRepository();
         retrofitProducts = new RetrofitProductsImpl();
+
+        //Listeners
+        FloatingActionButton floatingActionButton = root.findViewById(R.id.FEP_FAB_add);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                click_FABadd();
+            }
+        });
 
         return root;
     }
@@ -177,7 +190,7 @@ public class Fragment_EditProduct extends Fragment {
                 @Override
                 public void onReady(ArrayList<IModel_Content> arrayList) {
                     array_content.clear();
-                    array_content=arrayList;
+                    array_content.addAll(arrayList);
                     updateRecyclerAdapter();
                 }
 
@@ -216,7 +229,7 @@ public class Fragment_EditProduct extends Fragment {
 
 
     //Add element
-    public void click_FABadd(View view) {
+    private void click_FABadd() {
         if (array_content.size() < 700) {
             liAddElement();
         } else {
@@ -433,7 +446,7 @@ public class Fragment_EditProduct extends Fragment {
 
         //Fill product
         IModel_Content iModel_content = array_content.get(position);
-        tv_nombre.setText(array_content.get(position).getName());
+        tv_nombre.setText(((ModelProduct)array_content.get(position)).getName());
         
         
         ModelProduct modelProduct = (ModelProduct) iModel_content; 
@@ -799,6 +812,5 @@ public class Fragment_EditProduct extends Fragment {
         super.onResume();
         loadMainInternetInfo();
     }
-
 
 }

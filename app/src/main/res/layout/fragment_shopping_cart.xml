@@ -5,14 +5,322 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!--RecyclerVIew-->
-    <androidx.recyclerview.widget.RecyclerView
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/FSC_recycler"
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0sp"/>
+        android:layout_height="0sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/FSC_LL_personal_info">
+
+        <!--Recycler-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/FSC_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--Imagen de vacio-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginTop="10sp"
+            android:id="@+id/FSC_CL_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/FSC_imageBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/Vacio"
+                android:scaleType="centerCrop"
+                android:src="@drawable/cajas_vacias"
+                app:layout_constraintBottom_toTopOf="@+id/FSC_TV_empty"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/FSC_TV_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/no_hay_productos_en_el_carrito"
+                android:textAlignment="center"
+                android:textSize="@dimen/x_large"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/FSC_imageBox" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--Descripcion detalles del envio-->
+    <LinearLayout
+        android:id="@+id/FSC_LL_personal_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/cardview_default_elevation"
+        android:translationZ="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/colorPrimary">
+
+            <!--Sect Buy-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/FSC_sectionBuy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                >
+
+                <TextView
+                    android:layout_marginStart="12sp"
+                    android:textSize="20sp"
+                    android:textColor="@color/white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Comprar"/>
+
+                <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                    android:layout_marginTop="8sp"
+                    android:layout_marginBottom="8sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:icon="@drawable/payments"
+                    app:iconTint="@color/white"
+                    android:layout_marginEnd="12sp"
+                    android:onClick="btn_enviarPedido"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--Separator-->
+            <View
+                android:layout_marginEnd="20sp"
+                android:layout_marginStart="20sp"
+                android:id="@+id/FSC_separator1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/FSC_sectionBuy"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"/>
+
+            <!--UserName-->
+            <LinearLayout
+                android:layout_marginTop="12sp"
+                android:id="@+id/FSC_LL_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/FSC_separator1"
+                android:layout_marginStart="20sp">
+
+
+                <!--Image person-->
+                <ImageView
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/direcci_n"
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:src="@drawable/ic_person"
+                    android:layout_marginTop="5sp"
+                    app:tint="@color/white" />
+
+
+
+                <!--Nombre del cliente-->
+                <EditText
+                    android:minWidth="100sp"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/medium"
+                    android:autofillHints="phone"
+                    android:layout_marginStart="8sp"
+                    android:id="@+id/FSC_ET_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLength="60"
+                    android:maxLines="1"
+                    android:hint="@string/Nombre_apell"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:backgroundTint="@color/white"
+                    android:inputType="textPersonName" />
+
+
+
+
+            </LinearLayout>
+
+            <!--LL contiene icono mas ET num de telef-->
+            <LinearLayout
+                android:layout_marginTop="10sp"
+                android:id="@+id/FSC_LL_cellNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/FSC_LL_name"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="20sp">
+
+                <!--IV icono telef-->
+                <ImageView
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/Numero_de_telefono"
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:src="@drawable/call"
+                    android:layout_marginTop="5sp"
+                    app:tint="@color/white"/>
+
+
+                <!--ET num de telef-->
+                <EditText
+                    android:minWidth="100sp"
+                    android:layout_gravity="center"
+                    android:textSize="@dimen/medium"
+                    android:autofillHints="phone"
+                    android:layout_marginStart="8sp"
+                    android:id="@+id/FSC_ET_cellNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLength="20"
+                    android:maxLines="1"
+                    android:hint="@string/Numero_de_telefono"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:inputType="phone"
+                    android:backgroundTint="@color/white"/>
+
+            </LinearLayout>
+
+            <!--LL contiene icono mas ET direccion-->
+            <LinearLayout
+                android:layout_marginTop="10sp"
+                android:id="@+id/FSC_LL_adress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/FSC_LL_cellNum"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="20sp">
+
+                <!--IV icono direccion-->
+                <ImageView
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/direcci_n"
+                    android:layout_width="20sp"
+                    android:layout_height="20sp"
+                    android:src="@drawable/address"
+                    android:layout_marginTop="5sp"
+                    app:tint="@color/white" />
+
+                <!--ET direccion-->
+                <EditText
+                    android:id="@+id/FSC_ET_adress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="8sp"
+                    android:autofillHints="postalAddress"
+                    android:backgroundTint="@color/white"
+                    android:hint="@string/direcci_n"
+                    android:inputType="text"
+                    android:maxLength="100"
+                    android:maxLines="2"
+                    android:minWidth="100sp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
+                    android:textSize="@dimen/medium" />
+
+            </LinearLayout>
+
+            <Button
+                app:icon="@drawable/baseline_pin_drop_24"
+                android:layout_marginTop="12sp"
+                android:layout_marginStart="20sp"
+                android:id="@+id/FSC_Btn_Ubic"
+                app:layout_constraintTop_toBottomOf="@id/FSC_LL_adress"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ubicaci_n"/>
+
+            <!--Separator-->
+            <View
+                android:layout_marginEnd="20sp"
+                android:layout_marginStart="20sp"
+                android:id="@+id/FSC_separator2"
+                android:layout_marginBottom="12sp"
+                android:layout_marginTop="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/FSC_Btn_Ubic"
+                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"/>
+
+
+            <!--Zone-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="10sp"
+                android:id="@+id/FSC_TIL_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/CustomBorderTIl"
+                app:layout_constraintTop_toBottomOf="@id/FSC_separator2"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="20sp"
+                android:textColorHint="@color/white"
+                app:hintTextColor="@color/white"
+                app:endIconTint="@color/white">
+
+                <AutoCompleteTextView
+                    android:layout_marginBottom="20sp"
+                    android:id="@+id/FSC_autoC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/zona_de_entrega"
+                    android:inputType="none"
+                    android:minWidth="150sp"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
