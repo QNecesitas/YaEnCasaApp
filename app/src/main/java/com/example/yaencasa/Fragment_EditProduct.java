@@ -47,6 +47,7 @@ import com.example.yaencasa.Auxiliary.NetworkTools;
 import com.example.yaencasa.Auxiliary.Permissions;
 import com.example.yaencasa.Data.ContentRepository;
 import com.example.yaencasa.Data.IModel_Content;
+import com.example.yaencasa.Data.ModelAd;
 import com.example.yaencasa.Data.ModelCategory;
 import com.example.yaencasa.Data.ModelProduct;
 import com.example.yaencasa.Data.Network.RetrofitProductsImpl;
@@ -707,13 +708,20 @@ public class Fragment_EditProduct extends Fragment {
         adapterR_editProducts = new AdapterR_EditProduct(requireContext(), array_content);
         adapterR_editProducts.setClickListener(new AdapterR_EditProduct.RecyclerTouchListener() {
                                                    @Override
-                                                   public void onClickAd(View v, int position) {
-
+                                                   public void onClickAd(View v, int position, ArrayList<IModel_Content> al_filter) {
+                                                       String url = ((ModelAd) al_filter.get(position)).getUrl();
+                                                       Intent intent = new Intent(requireActivity(),Activity_AdView.class);
+                                                       intent.putExtra("urlAd",url);
+                                                       startActivity(intent);
                                                    }
 
                                                    @Override
-                                                   public void onClickProduct(View v, int position) {
-                                                       li_options_product(position);
+                                                   public void onClickProduct(View v, int position, ArrayList<IModel_Content> al_filter) {
+                                                       for (int f=0;f<array_content.size();f++){
+                                                           if(al_filter.get(position)==array_content.get(f)) {
+                                                               li_options_product(f);
+                                                           }
+                                                       }
                                                    }
                                                });
         recycler.setAdapter(adapterR_editProducts);

@@ -108,7 +108,7 @@ public class Activity_Home extends AppCompatActivity {
     }
 
 
-    private void showFragmentProducts(){
+    private void showFragmentEditProducts(){
 
         Fragment_EditProduct fragment_edit_product=new Fragment_EditProduct();
         fragmentManager.beginTransaction()
@@ -116,6 +116,13 @@ public class Activity_Home extends AppCompatActivity {
                 .commit();
     }
 
+    private void showFragmentProducts(){
+
+        Fragment_Product fragment_product=new Fragment_Product();
+        fragmentManager.beginTransaction()
+                .replace(R.id.AH_FL,fragment_product)
+                .commit();
+    }
 
     private void showFragmentCategories(){
         Fragment_Categories fragment_categories=new Fragment_Categories();

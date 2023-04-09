@@ -253,6 +253,12 @@ Licencia para grupo de terceros---Gson  Copyright 2008 Google Inc.
     <string name="ciudad">Ciudad</string>
     <string name="quitar_zona">Quitar zona</string>
     <string name="nombre_de_la_zona">Nombre de la zona</string>
+    <string name="info_product">Info de producto</string>
+    <string name="image_product">Imagen del producto</string>
+    <string name="enviar_al_carrito">Enviar al carrito</string>
+    <string name="amount_required">Debe colocar una cantidad</string>
+    <string name="sended_to_shopping_car">Producto agregado al carrito</string>
+    <string name="Salir">Salir</string>
 
 
 </resources>

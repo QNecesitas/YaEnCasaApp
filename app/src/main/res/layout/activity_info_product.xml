@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity_InfoProduct">
+
+    <!--Toolbar-->
+    <com.google.android.material.appbar.AppBarLayout
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/AIP_AppBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/AIP_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ToolbarIcons"
+            app:title="@string/info_product"
+            app:titleTextColor="@color/white"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!--Content scroll-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="-244dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!--Images-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!--Image-->
+                <ImageView
+                    android:id="@+id/aip_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="0sp"
+                    android:background="@color/white_gray"
+                    android:contentDescription="@string/image_product"
+                    android:src="@drawable/shopping_bag_white"
+                    app:layout_constraintDimensionRatio="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--Name-->
+            <TextView
+                android:id="@+id/aip_tv_nombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12sp"
+                android:text="@string/name_product"
+                android:textAlignment="center"
+                android:textSize="@dimen/medium" />
+
+            <!--Separator-->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.0sp"
+                android:layout_marginStart="20sp"
+                android:layout_marginEnd="20sp"
+                android:background="@color/white_gray" />
+
+            <!--Chip Group hidden-->
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/actInfP_ChG"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                app:selectionRequired="true"
+                app:singleSelection="true" />
+
+            <!--Description-->
+
+            <!--TextView-->
+            <TextView
+                android:id="@+id/aip_tv_descripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12sp"
+                android:text="@string/Descripcion"
+                android:textAlignment="center"
+                android:textSize="@dimen/small" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.0sp"
+                android:layout_marginStart="20sp"
+                android:layout_marginEnd="20sp"
+                android:background="@color/white_gray" />
+
+            <!--Amount & price-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!--Cant-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/aip_cantidad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    app:layout_constraintEnd_toStartOf="@id/aip_cl_precio"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/aip_tv_cant"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Cantidad"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/small"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!--5.1-LLH con elegir cantidad-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12sp"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/aip_tv_cant">
+
+                        <!--5.1.1-IV "-menos"-->
+                        <ImageView
+                            android:id="@+id/aip_btn_less"
+                            android:layout_width="30sp"
+                            android:layout_height="30sp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/remove"
+                            android:onClick="decreaseAmount"/>
+
+                        <!--5.1.2-ET de elegir cantidad-->
+                        <EditText
+                            android:id="@+id/aip_et_cantidad"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:autofillHints="no"
+                            android:inputType="number"
+                            android:maxLength="5"
+                            android:minWidth="50sp"
+                            android:text="1"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/medium" />
+
+                        <!--5.1.3-IV "+mas"-->
+                        <ImageView
+                            android:id="@+id/aip_btn_more"
+                            android:layout_width="30sp"
+                            android:layout_height="30sp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/add"
+                            android:onClick="increaseAmount"/>
+
+                    </LinearLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!--Precio-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/aip_cl_precio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/aip_cantidad"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/aip_tv_prec"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/Precio"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/small"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/aip_precio"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="12sp"
+                        android:layout_weight="1"
+                        android:textAlignment="center"
+                        android:textSize="@dimen/medium"
+                        app:layout_constraintTop_toBottomOf="@id/aip_tv_prec" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--Buttons-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!--Cancelar-->
+                <Button
+                    android:id="@+id/aip_btn_cancel"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:layout_marginBottom="20sp"
+                    android:text="@string/Cancelar"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/aip_btn_accept"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:onClick="cancel"/>
+
+                <!--Ir al carrito-->
+                <Button
+                    android:id="@+id/aip_btn_accept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20sp"
+                    android:layout_marginBottom="20sp"
+                    android:text="@string/enviar_al_carrito"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/aip_btn_cancel"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:onClick="sendProductToCar"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

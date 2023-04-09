@@ -133,10 +133,10 @@ public class AdapterR_EditProduct extends RecyclerView.Adapter<AdapterR_EditProd
             itemView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
-                    if(al_contents.get(getAdapterPosition()) instanceof ModelProduct){
-                        if(listener!=null) listener.onClickProduct(itemView,getAdapterPosition());
+                    if(al_EditarProductos_filter.get(getAdapterPosition()) instanceof ModelProduct){
+                        if(listener!=null) listener.onClickProduct(itemView,getAdapterPosition(), al_EditarProductos_filter);
                     }else{
-                        if(listener!=null) listener.onClickAd(itemView,getAdapterPosition());
+                        if(listener!=null) listener.onClickAd(itemView,getAdapterPosition(), al_EditarProductos_filter);
                     }
                 }
             });
@@ -145,8 +145,8 @@ public class AdapterR_EditProduct extends RecyclerView.Adapter<AdapterR_EditProd
     }
 
     public interface RecyclerTouchListener{
-        void onClickAd(View v, int position);
-        void onClickProduct(View v,int position);
+        void onClickAd(View v, int position, ArrayList<IModel_Content> al_filter);
+        void onClickProduct(View v,int position, ArrayList<IModel_Content> al_filter);
     }
 
     @Override

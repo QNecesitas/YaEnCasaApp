@@ -75,6 +75,7 @@ public class AdapterR_Product extends RecyclerView.Adapter<AdapterR_Product.Prod
         holder.name.setText(ad.getName());
         holder.price.setVisibility(View.GONE);
         holder.descProduct.setVisibility(View.GONE);
+        holder.TV_Ad.setVisibility(View.VISIBLE);
     }
 
     private void onBindViewHolderProducts(ProductViewHolder holder, int position){
@@ -93,6 +94,7 @@ public class AdapterR_Product extends RecyclerView.Adapter<AdapterR_Product.Prod
         String priceStr=product.getPrice()+" CUP";
         holder.price.setText(priceStr);
         holder.descProduct.setText(product.getDesc());
+        holder.TV_Ad.setVisibility(View.GONE);
     }
 
     public void setClickListener(RecyclerTouchListener listener){
@@ -117,10 +119,10 @@ public class AdapterR_Product extends RecyclerView.Adapter<AdapterR_Product.Prod
             itemView.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
-                    if(al_contents.get(getAdapterPosition()) instanceof ModelProduct){
-                        if(listener!=null) listener.onClickProduct(itemView,getAdapterPosition());
+                    if(al_Productos_filter.get(getAdapterPosition()) instanceof ModelProduct){
+                        if(listener!=null) listener.onClickProduct(itemView,getAdapterPosition(),al_Productos_filter);
                     }else{
-                        if(listener!=null) listener.onClickAd(itemView,getAdapterPosition());
+                        if(listener!=null) listener.onClickAd(itemView,getAdapterPosition(), al_Productos_filter);
                     }
                 }
             });
@@ -129,8 +131,8 @@ public class AdapterR_Product extends RecyclerView.Adapter<AdapterR_Product.Prod
     }
 
     public interface RecyclerTouchListener{
-        void onClickAd(View v, int position);
-        void onClickProduct(View v,int position);
+        void onClickAd(View v, int position, ArrayList<IModel_Content> al_filter);
+        void onClickProduct(View v,int position, ArrayList<IModel_Content> al_filter);
     }
 
 
