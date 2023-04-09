@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity_Orders">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <!--TV no conex-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/FO_CL_text_no_conx"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/red_light"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:contentDescription="@string/Vacio"
+                android:layout_marginStart="12sp"
+                android:id="@+id/FO_IV_noInternet"
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:src="@drawable/wifi_off"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/FO_TV_noInternet"
+                app:tint="@color/red" />
+
+            <TextView
+                android:layout_margin="12sp"
+                android:id="@+id/FO_TV_noInternet"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:text="@string/los_datos_no_est_n_actualizados"
+                android:textAlignment="center"
+                android:textColor="@color/red"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/FO_TV_noInternet"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--Boton flotante de borrar-->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:onClick="click_vaciar_pedidos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="@dimen/x_large"
+            android:layout_marginEnd="@dimen/x_large"
+            android:src="@drawable/delete" />
+
+        <!--Recycler-->
+        <androidx.recyclerview.widget.RecyclerView
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/FO_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/FO_CL_text_no_conx"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/FO_image_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/FO_recycler"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                app:layout_constraintHorizontal_chainStyle="packed"
+                android:id="@+id/FO_imageCaja"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@string/Vacio"
+                android:src="@drawable/cajas_vacias"
+                app:layout_constraintBottom_toTopOf="@+id/FO_TV_empty"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:textStyle="bold"
+                android:id="@+id/FO_TV_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/no_hay_pedidos_a_n"
+                android:textAlignment="center"
+                android:textSize="@dimen/x_large"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/FO_imageCaja" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- Navigation Drawer -->
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header"
+        app:menu="@menu/navigation_menu_productos" />
+
+
+
+</androidx.drawerlayout.widget.DrawerLayout>

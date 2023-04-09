@@ -15,8 +15,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.yaencasa.Auxiliary.Constants;
-import com.example.yaencasa.Data.CurrentProduct;
-import com.example.yaencasa.Data.ProductOnCar;
+import com.example.yaencasa.Data.Cart_Elements;
+import com.example.yaencasa.Data.ModelElement;
+import com.example.yaencasa.Data.ModelProduct;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.util.Objects;
@@ -35,7 +36,6 @@ public class Activity_InfoProduct extends AppCompatActivity {
     private int amount = 1;
     private double productPrice;
     private double totalPrice;
-
 
 
     @Override
@@ -66,9 +66,9 @@ public class Activity_InfoProduct extends AppCompatActivity {
 
         //Setting values to show info
         loadImage();
-        name.setText(CurrentProduct.name);
-        description.setText(CurrentProduct.description);
-        productPrice = CurrentProduct.price;
+        name.setText(Cart_Elements.productInfo.getName());
+        description.setText(Cart_Elements.productInfo.getDesc());
+        productPrice = Cart_Elements.productInfo.getPrice();
         totalPrice = productPrice;
         tv_price.setText(totalPrice+" CUP");
 
@@ -110,7 +110,7 @@ public class Activity_InfoProduct extends AppCompatActivity {
     //Glide for set the image's product
     private void loadImage() {
         Glide.with(Activity_InfoProduct.this)
-                .load(Constants.PHP_IMAGES + "P_" + CurrentProduct.id + ".jpg")
+                .load(Constants.PHP_IMAGES + "P_" + Cart_Elements.productInfo.getIdProduct() + ".jpg")
                 .error(ContextCompat.getDrawable(Activity_InfoProduct.this,R.drawable.shopping_bag_white))
                 .skipMemoryCache(true)
                 .centerCrop()
@@ -124,8 +124,8 @@ public class Activity_InfoProduct extends AppCompatActivity {
             FancyToast.makeText(Activity_InfoProduct.this,getString(R.string.amount_required), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
         }
         else {
-            ProductOnCar productOnCar=new ProductOnCar(CurrentProduct.name,totalPrice,amount);
-            CurrentProduct.shoppingCar.add(productOnCar);
+            ModelElement element=new ModelElement(Cart_Elements.productInfo,totalPrice,amount);
+            Cart_Elements.al_elements.add(element);
             finish();
             FancyToast.makeText(Activity_InfoProduct.this,getString(R.string.sended_to_shopping_car), FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
         }

@@ -248,7 +248,7 @@ Licencia para grupo de terceros---Gson  Copyright 2008 Google Inc.
     <string name="la_direccion_es_ave_52_37_y_39_delante_de_un_edificio_rojo_que_tiene_un_elefante_pintado">La direccion es Ave 52//37 y 39. Delante de un edificio rojo que tiene un elefante pintado</string>
     <string name="date">Fecha:</string>
     <string name="zona">Zona</string>
-    <string name="ya_en_casa">Ya En Casa</string>
+    <string name="ya_en_casa">YaEnCasa</string>
     <string name="adicionar_una_zona_nueva">Adicionar una zona nueva</string>
     <string name="ciudad">Ciudad</string>
     <string name="quitar_zona">Quitar zona</string>
@@ -259,6 +259,30 @@ Licencia para grupo de terceros---Gson  Copyright 2008 Google Inc.
     <string name="amount_required">Debe colocar una cantidad</string>
     <string name="sended_to_shopping_car">Producto agregado al carrito</string>
     <string name="Salir">Salir</string>
-
-
+    <string name="Precio_total">Precio total:</string>
+    <string name="add_location">Agregar Localización</string>
+    <string name="mantenga_presionado_en_el_mapa_para_seleccionar_su_ubicaci_n">Mantenga presionado en el mapa para seleccionar su ubicación</string>
+    <string name="reload_map">Cargando mapa</string>
+    <string name="wrong_location">La ubicación escogida no es correcta.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about_dev">Sobre desarrolladores</string>
+    <string name="q_necesitas">QNecesitas</string>
+    <string name="productos_inform_ticos">Productos Informáticos</string>
+    <string name="Nuestro_numero">+53 55759386</string>
+    <string name="ronnynordelo_gmail_com">ronnynordelo@gmail.com</string>
+    <string name="mision_nuestra">El enfoque que buscamos es el de una empresa acogedora, cuyos complicados servicios sean llevados a los clientes de forma fácil de comprender. Cuba es un país poco informatizado por lo que tenemos noción de que la mayoría de nuestros clientes conocen la importancia de llevar su negocio a las redes y la tecnología pero sus conocimientos de aplicaciones y páginas web son pocos o ninguno, así que si ese es su caso no se preocupe, solo tiene que decirnos alguna idea que tenga o la información que quiere informatizar y haremos magia.</string>
+    <string name="qnecesitas_nat_cu">qnecesitas.nat.cu</string>
+    <string name="https_www_facebook_com_qnecesitas_paginaprincipal">https://www.facebook.com/qnecesitas.paginaprincipal</string>
+    <string name="misi_n">Misión:</string>
+    <string name="sobre_nosotros">Sobre nosotros:</string>
+    <string name="Acerca_de_nosotros">Sobre nosotros</string>
+    <string name="negocio_particular">Negocio particular</string>
+    <string name="_53_53720001">+53 53720001</string>
+    <string name="ubicacion_incorrecta">Ubicación incorrecta</string>
+    <string name="any_location_selected_jet">Ninguna localización seleccionada aún</string>
+    <string name="change_location">Cambiar localización</string>
+    <string name="Ubicacion_obtenida_con_exito">Ubicación obtenida</string>
+    <string name="error_get_location">Error al obtener localización</string>
+    <string name="selecc_ubic">Debe seleccionar su ubicación</string>
 </resources>

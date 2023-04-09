@@ -44,8 +44,8 @@ import com.example.yaencasa.Auxiliary.IDCreater;
 import com.example.yaencasa.Auxiliary.ImageTools;
 import com.example.yaencasa.Auxiliary.NetworkTools;
 import com.example.yaencasa.Auxiliary.Permissions;
+import com.example.yaencasa.Data.Cart_Elements;
 import com.example.yaencasa.Data.ContentRepository;
-import com.example.yaencasa.Data.CurrentProduct;
 import com.example.yaencasa.Data.IModel_Content;
 import com.example.yaencasa.Data.ModelAd;
 import com.example.yaencasa.Data.ModelCategory;
@@ -219,11 +219,7 @@ public class Fragment_Product extends Fragment {
 
             @Override
             public void onClickProduct(View v, int position, ArrayList<IModel_Content> al_filter) {
-                ModelProduct product = (ModelProduct)al_filter.get(position);
-                CurrentProduct.id = product.getIdProduct();
-                CurrentProduct.name = product.getName();
-                CurrentProduct.price = product.getPrice();
-                CurrentProduct.description = product.getDesc();
+                Cart_Elements.productInfo = (ModelProduct)al_filter.get(position);
                 Intent intent = new Intent(requireActivity(), Activity_InfoProduct.class);
                 startActivity(intent);
             }

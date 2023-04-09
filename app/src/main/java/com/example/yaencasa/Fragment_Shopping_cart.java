@@ -1,14 +1,14 @@
 package com.example.yaencasa;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,17 +16,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -40,21 +36,15 @@ import com.example.yaencasa.Data.Cart_Elements;
 import com.example.yaencasa.Data.ModelElement;
 import com.example.yaencasa.Data.ModelProduct;
 import com.example.yaencasa.Data.Network.RetrofitOrdersImpl;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Locale;
-import java.util.Objects;
-import java.util.StringTokenizer;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -81,6 +71,8 @@ public class Fragment_Shopping_cart extends Fragment {
     private AutoCompleteTextView autoC;
     private String selectedZone="No";
     private int lastAutoCSelected=0;
+    private Button showMap;
+    private ExtendedFloatingActionButton sendOrder;
 
 
     //Shared Preferences
@@ -91,12 +83,13 @@ public class Fragment_Shopping_cart extends Fragment {
 
     //Location
     private static final int RESULT_CODE_MAP = 31;
-    private String latitud = "no";
-    private String longitud = "no";
+    private String latitude = "no";
+    private String longitude = "no";
 
     //Internet
-    RetrofitOrdersImpl retrofitOrders;
-    ProgressDialog progressDialogSubiend;
+    private RetrofitOrdersImpl retrofitOrders;
+    private ProgressDialog progressDialogSubiend;
+    private TextView tv_totalPrice;
 
 
     public Fragment_Shopping_cart() {
@@ -118,7 +111,20 @@ public class Fragment_Shopping_cart extends Fragment {
         ET_name=(EditText) root.findViewById(R.id.FSC_ET_name);
         textInputLayout=(TextInputLayout)root.findViewById(R.id.FSC_TIL_spinner);
         autoC=(AutoCompleteTextView) root.findViewById(R.id.FSC_autoC);
-
+        showMap=(Button) root.findViewById(R.id.FSC_Btn_Ubic);
+        showMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                click_choice_loc();
+            }
+        });
+        sendOrder=(ExtendedFloatingActionButton) root.findViewById(R.id.FSC_FAB_sendOrder);
+        sendOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btn_enviarPedido();
+            }
+        });
 
         //Spinner--Zona
         ArrayList<String> al_zones=new ArrayList<>();
@@ -140,6 +146,7 @@ public class Fragment_Shopping_cart extends Fragment {
 
 
         //RecyclerView
+        tv_totalPrice = (TextView) root.findViewById(R.id.FSC_PrecioTotal);
         al_products=new ArrayList<>();
         recycler=(RecyclerView) root.findViewById(R.id.FSC_recycler);
         recycler.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
@@ -149,6 +156,7 @@ public class Fragment_Shopping_cart extends Fragment {
         recycler.setAdapter(adapterR_shopping_cart);
         linearLayoutEmpty=(ConstraintLayout) root.findViewById(R.id.FSC_CL_empty);
         updateRecyclerAdapter();
+
 
         //Preferencias
         sharedPreferences = requireActivity().getSharedPreferences("YaEnCasa", 0);
@@ -168,6 +176,7 @@ public class Fragment_Shopping_cart extends Fragment {
 
         //Internet
         retrofitOrders = new RetrofitOrdersImpl();
+
 
 
         return root;
@@ -198,6 +207,9 @@ public class Fragment_Shopping_cart extends Fragment {
         for(ModelElement element: al_shopping_cart){
             priceTotalCUP += element.getPrice();
         }
+
+        String textTotalPrice = getString(R.string.Precio_total)+" "+priceTotalCUP+" CUP";
+        tv_totalPrice.setText(textTotalPrice);
     }
 
     private void addZones(ArrayList<String> al_zones) {
@@ -269,25 +281,29 @@ public class Fragment_Shopping_cart extends Fragment {
         return stringBuilder.toString().replace("*","+");
     }
 
-    //BtnEnviarPedido
-    public void btn_enviarPedido(View view) {
+    //BtnSendOrder
+    public void btn_enviarPedido() {
         checkData();
     }
     private void checkData(){
-        if (NetworkTools.isOnline(getContext(), true)) {
+        if (NetworkTools.isOnline(requireContext(), true)) {
             if(!al_shopping_cart.isEmpty()) {
                 if (!ET_name.getText().toString().trim().isEmpty()) {
                     if (!cell_num.getText().toString().trim().isEmpty()) {
                         if (!ET_adress.getText().toString().trim().isEmpty()) {
-                            if(!selectedZone.equals("No")){
-                                sharedEditor.putString("Nombre",ET_name.getText().toString());
-                                sharedEditor.putString("NumTelef",cell_num.getText().toString());
-                                sharedEditor.putString("Direccion",ET_adress.getText().toString());
-                                sharedEditor.putInt("zoneIndexS",lastAutoCSelected);
-                                sharedEditor.apply();
-                                showAlertDialogVerifEnvio();
+                            if(!longitude.equals("no") && !latitude.equals("no")){
+                                if(!selectedZone.equals("No")) {
+                                    sharedEditor.putString("Nombre", ET_name.getText().toString());
+                                    sharedEditor.putString("NumTelef", cell_num.getText().toString());
+                                    sharedEditor.putString("Direccion", ET_adress.getText().toString());
+                                    sharedEditor.putInt("zoneIndexS", lastAutoCSelected);
+                                    sharedEditor.apply();
+                                    showAlertDialogVerifEnvio();
+                                }else{
+                                    autoC.setError(getString(R.string.Este_campo_no_puede_vacio));
+                                }
                             }else{
-                                autoC.setError(getString(R.string.Este_campo_no_puede_vacio));
+                                FancyToast.makeText(requireContext(),getString(R.string.selecc_ubic),FancyToast.LENGTH_SHORT, FancyToast.ERROR,false).show();
                             }
                         } else {
                             ET_adress.setError(getString(R.string.Este_campo_no_puede_vacio));
@@ -351,7 +367,7 @@ public class Fragment_Shopping_cart extends Fragment {
         double price = priceTotalCUP;
         String products = makeProduct();
         String celnumber = cell_num.getText().toString();
-        String location = latitud+":"+longitud;
+        String location = latitude+":"+longitude;
         String address = ET_adress.getText().toString();
         String name = ET_name.getText().toString();
 
@@ -361,6 +377,7 @@ public class Fragment_Shopping_cart extends Fragment {
             @Override
             public void onResponse(Call<Integer> call, Response<Integer> response) {
                 if(response.isSuccessful()){
+                    progressDialogSubiend.dismiss();
                     li_finalizado(response.body());
                 }else{
                     progressDialogSubiend.dismiss();
@@ -425,9 +442,29 @@ public class Fragment_Shopping_cart extends Fragment {
     }
 
 
+    public void click_choice_loc() {
+        if (NetworkTools.isOnline(requireContext(), true)) {
+            startActivityForResult(new Intent(requireActivity(), Activity_PutMap.class), 31);
+        }
+    }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RESULT_CODE_MAP) {
+            if (resultCode == Activity.RESULT_OK) {
+                latitude = data.getStringExtra("latitude");
+                longitude = data.getStringExtra("longitude");
+                showMap.setText(getString(R.string.change_location));
+                FancyToast.makeText(requireContext(), getString(R.string.Ubicacion_obtenida_con_exito), FancyToast.LENGTH_SHORT, FancyToast.SUCCESS, false).show();
+            }else{
+                FancyToast.makeText(requireContext(), getString(R.string.error_get_location), FancyToast.LENGTH_LONG, FancyToast.ERROR, false).show();
+            }
+        }
     }
 }

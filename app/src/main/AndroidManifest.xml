@@ -31,6 +31,15 @@
             android:name=".Activity_Home"
             android:exported="false" />
         <activity
+            android:name=".Activity_ShowMap"
+            android:exported="false" />
+        <activity
+            android:name=".Activity_PutMap"
+            android:exported="false" />
+        <activity
+            android:name=".Activity_MyOrders"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

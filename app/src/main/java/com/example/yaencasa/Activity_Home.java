@@ -75,6 +75,12 @@ public class Activity_Home extends AppCompatActivity {
                     case R.id.page_menu:
                         showFragmentMenu();
                         break;
+                    case R.id.page_orders:
+                        showFragmentOrders();
+                        break;
+                    case R.id.page_edit_products:
+                        showFragmentEditProducts();
+                        break;
                 }
                 return true;
             }
@@ -121,6 +127,14 @@ public class Activity_Home extends AppCompatActivity {
         Fragment_Product fragment_product=new Fragment_Product();
         fragmentManager.beginTransaction()
                 .replace(R.id.AH_FL,fragment_product)
+                .commit();
+    }
+
+    private void showFragmentOrders(){
+
+        Fragment_Orders fragment_orders=new Fragment_Orders();
+        fragmentManager.beginTransaction()
+                .replace(R.id.AH_FL,fragment_orders)
                 .commit();
     }
 

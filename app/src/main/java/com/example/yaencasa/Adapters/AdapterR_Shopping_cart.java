@@ -61,8 +61,10 @@ public class AdapterR_Shopping_cart extends RecyclerView.Adapter<AdapterR_Shoppi
                 .into(holder.imageview);
 
         holder.name.setText(element.getProduct().getName());
-        String price="x"+element.getAmount()+"------"+element.getPrice()+" CUP";
+        String price="Precio: "+element.getPrice()+" CUP";
         holder.price.setText(price);
+        String cantidad = "Cantidad: "+element.getAmount();
+        holder.tv_amount.setText(cantidad);
     }
 
     @Override
@@ -73,6 +75,7 @@ public class AdapterR_Shopping_cart extends RecyclerView.Adapter<AdapterR_Shoppi
     class CarritoViewHolder extends RecyclerView.ViewHolder{
         TextView name;
         TextView price;
+        TextView tv_amount;
         ImageView imageview;
         ImageView iv_delete;
 
@@ -83,6 +86,8 @@ public class AdapterR_Shopping_cart extends RecyclerView.Adapter<AdapterR_Shoppi
             price=(TextView)itemView.findViewById(R.id.RSC_TV_price);
             imageview=(ImageView)itemView.findViewById(R.id.RSC_IV_productPicture);
             iv_delete=(ImageView)itemView.findViewById(R.id.RSC_IV_delete);
+            tv_amount = (TextView) itemView.findViewById(R.id.RSC_TV_amount);
+
 
             iv_delete.setOnClickListener(new View.OnClickListener(){
                 @Override
