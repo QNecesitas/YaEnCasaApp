@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group >
+        <item  android:id="@+id/navprod_mis_pedidos" android:title="@string/Mis_Pedidos" android:icon="@drawable/local_post_office"/>
+        <item android:id="@+id/navprod_about_us" android:title="@string/Sobre_nosotros" android:icon="@drawable/info"/>
+        <item android:id="@+id/navprod_terms" android:title="@string/Terminos_de_uso" android:icon="@drawable/book"/>
+        <item android:id="@+id/navprod_condiciones" android:title="@string/Condiciones_de_uso" android:icon="@drawable/import_contacts"/>
+        <item android:id="@+id/navprod_about_developers" android:title="@string/Sobre_los_desarrolladores" android:icon="@drawable/developer_mode"/>
+    </group>
+
+</menu>

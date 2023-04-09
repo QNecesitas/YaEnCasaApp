@@ -29,12 +29,11 @@ class RetrofitOrdersImpl :IRetrofitOrders{
         price: Double,
         products: String,
         celnumber: String,
-        actDate: String,
         location: String,
         address: String,
         name: String
     ): Call<Int> {
-        return productApi.addOrder(token, price, products, celnumber, actDate, location, address, name);
+        return productApi.addOrder(token, price, products, celnumber,  location, address, name);
     }
 
     override fun fetchOrders(): Call<ArrayList<ModelOrder>> {

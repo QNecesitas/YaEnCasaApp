@@ -110,7 +110,7 @@ public class ContentRepository {
         stack_ads_aux.addAll(al_ads);
 
         for (int f=0; f<al_content.size();f++){
-            if(f % 5 == 0 && f != 0){
+            if(f % 4 == 0 && f != 0){
                 if(!stack_ads_aux.isEmpty())al_content.add(f,stack_ads_aux.pop());
             }
         }

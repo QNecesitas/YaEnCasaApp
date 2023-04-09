@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <!--CardView container-->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12sp"
+        android:elevation="@dimen/cardview_default_elevation"
+        android:translationZ="@dimen/cardview_default_elevation"
+        app:cardCornerRadius="@dimen/radius_cards">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--Basic info of the order-->
+            <LinearLayout
+                android:layout_marginTop="20sp"
+                android:layout_marginEnd="20sp"
+                android:layout_marginStart="20sp"
+                android:id="@+id/RMO_ll_1"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <!--No.Pedidos-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_pedido"
+                    android:textSize="@dimen/medium"/>
+
+                <!--Numero del pedido-->
+                <TextView
+                    android:id="@+id/RMO_numberOrder"
+                    android:layout_marginStart="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Ex_1253"/>
+
+
+            </LinearLayout>
+
+            <!--Price-->
+            <LinearLayout
+                android:layout_marginEnd="20sp"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="12sp"
+                android:id="@+id/RMO_ll_2"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/RMO_ll_1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <!--Price-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Precio"
+                    android:textSize="@dimen/medium"/>
+
+
+                <!--Precio del pedido-->
+                <TextView
+                    android:id="@+id/RMO_price"
+                    android:layout_marginStart="12sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_500"/>
+
+            </LinearLayout>
+
+
+
+            <!--Phone number-->
+            <LinearLayout
+                android:layout_marginEnd="20sp"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="12sp"
+                android:id="@+id/RMO_ll_3"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/RMO_ll_2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <!--Telefono-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/numero_telefono"
+                    android:textSize="@dimen/medium"/>
+
+
+                <!--Numero del cliente-->
+                <TextView
+                    android:id="@+id/RMO_phoneNumber"
+                    android:layout_marginStart="8sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_59134571"/>
+
+            </LinearLayout>
+
+            <!--Date-->
+            <LinearLayout
+                android:layout_marginEnd="20sp"
+                android:layout_marginStart="20sp"
+                android:id="@+id/RMO_ll_date"
+                android:layout_marginTop="12sp"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/RMO_ll_3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/date"
+                    android:textSize="@dimen/medium"/>
+
+                <TextView
+                    android:id="@+id/RMO_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8sp"
+                    android:text="@string/_10_4_2022"/>
+
+
+            </LinearLayout>
+
+            <!--Name-->
+            <LinearLayout
+                android:layout_marginEnd="20sp"
+                android:layout_marginStart="20sp"
+                android:id="@+id/RMO_ll_name"
+                app:layout_constraintTop_toBottomOf="@id/RMO_ll_date"
+                android:layout_marginTop="12sp"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nombre_dosp"
+                    android:textSize="@dimen/medium"/>
+
+                <TextView
+                    android:id="@+id/RMO_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8sp"
+                    android:text="@string/Nombre"/>
+
+            </LinearLayout>
+
+            <!--Zona-->
+            <LinearLayout
+                android:layout_marginEnd="20sp"
+                android:layout_marginStart="20sp"
+                android:id="@+id/RMO_ll_zona"
+                app:layout_constraintTop_toBottomOf="@id/RMO_ll_name"
+                android:layout_marginTop="12sp"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/zona_a_entregar"
+                    android:textSize="@dimen/medium"/>
+
+                <TextView
+                    android:id="@+id/RMO_zona"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8sp"
+                    android:text="@string/zona"/>
+
+            </LinearLayout>
+
+            <!--Separator###################################-->
+            <View
+                android:id="@+id/RMO_separador_1"
+                app:layout_constraintTop_toBottomOf="@+id/RMO_ll_zona"
+                android:layout_marginTop="20sp"
+                android:layout_marginStart="32sp"
+                android:layout_marginEnd="32sp"
+                android:layout_marginBottom="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="0.3sp"
+                android:background="@color/black" />
+
+            <!--Elements-->
+            <LinearLayout
+                android:layout_marginTop="20sp"
+                android:id="@+id/RMO_ll_4"
+                android:orientation="horizontal"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/RMO_separador_1"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_marginStart="32sp"
+                    android:layout_marginEnd="32sp"
+                    android:id="@+id/RMO_product"
+                    android:textSize="@dimen/medium"
+                    android:text="@string/_1_producto_x4_500_n_1_1_queso_n_1_2_mortadella"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+
+
+            <!--Separator###################################-->
+            <View
+                android:id="@+id/RMO_separador_2"
+                app:layout_constraintTop_toBottomOf="@+id/RMO_ll_4"
+                android:layout_marginTop="20sp"
+                android:layout_marginStart="30sp"
+                android:layout_marginEnd="30sp"
+                android:layout_width="match_parent"
+                android:layout_height="0.3sp"
+                android:background="@color/black"/>
+
+            <!--Address-->
+            <LinearLayout
+                android:layout_marginTop="10sp"
+                android:orientation="vertical"
+                android:id="@+id/RMO_ll_5"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/RMO_separador_2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:layout_marginEnd="20sp"
+                    android:layout_marginStart="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/direccion"
+                    android:textSize="@dimen/medium"/>
+
+                <TextView
+                    android:layout_marginEnd="20sp"
+                    android:layout_marginStart="20sp"
+                    android:id="@+id/RMO_address"
+                    android:layout_marginTop="12sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/la_direccion_es_ave_52_37_y_39_delante_de_un_edificio_rojo_que_tiene_un_elefante_pintado"
+                    android:textSize="@dimen/medium"/>
+
+
+            </LinearLayout>
+
+            <!--State Order-->
+            <TextView
+                android:id="@+id/RMO_state"
+                android:textAlignment="center"
+                android:padding="12sp"
+                app:layout_constraintTop_toBottomOf="@+id/RMO_ll_5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="20sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/blue_light"
+                android:textColor="@color/blue"
+                android:text="@string/En_espera_extendido"/>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

@@ -1,6 +1,8 @@
 package com.example.yaencasa.Adapters;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,7 +42,7 @@ public class AdapterR_EditProduct extends RecyclerView.Adapter<AdapterR_EditProd
 
     @Override
     public int getItemCount(){
-        return al_contents.size();
+        return al_EditarProductos_filter.size();
     }
 
     @Override
@@ -51,7 +54,7 @@ public class AdapterR_EditProduct extends RecyclerView.Adapter<AdapterR_EditProd
 
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position){
-        IModel_Content content = al_contents.get(position);
+        IModel_Content content = al_EditarProductos_filter.get(position);
 
         if(content instanceof ModelAd){
             onBindViewHolderAds(holder,position);
@@ -63,7 +66,7 @@ public class AdapterR_EditProduct extends RecyclerView.Adapter<AdapterR_EditProd
 
 
     private void onBindViewHolderAds(ProductViewHolder holder, int position){
-        ModelAd ad = (ModelAd) al_contents.get(position);
+        ModelAd ad = (ModelAd) al_EditarProductos_filter.get(position);
 
         Glide.with(context)
                 .load(Constants.PHP_IMAGES_AD+"Ad_"+ad.getId()+".jpg")
@@ -76,15 +79,16 @@ public class AdapterR_EditProduct extends RecyclerView.Adapter<AdapterR_EditProd
         holder.TV_name.setText(ad.getName());
         holder.TV_price.setVisibility(View.GONE);
         holder.TV_descProduct.setVisibility(View.GONE);
+        holder.TV_Ad.setVisibility(View.VISIBLE);
 
     }
 
     private void onBindViewHolderProducts(ProductViewHolder holder, int position){
-        IModel_Content iproduct = (IModel_Content) al_contents.get(position);
+        IModel_Content iproduct = (IModel_Content) al_EditarProductos_filter.get(position);
         ModelProduct product = (ModelProduct) iproduct;
 
         Glide.with(context)
-                .load(Constants.PHP_IMAGES+"P_"+product.getId()+".jpg")
+                .load(Constants.PHP_IMAGES+"P_"+product.getIdProduct()+".jpg")
                 .error(ContextCompat.getDrawable(context,R.drawable.shopping_bag_white))
                 .skipMemoryCache(true)
                 .centerCrop()
@@ -96,6 +100,11 @@ public class AdapterR_EditProduct extends RecyclerView.Adapter<AdapterR_EditProd
         holder.TV_price.setText(priceStr);
         holder.TV_descProduct.setText(product.getDesc());
         holder.TV_Ad.setVisibility(View.GONE);
+        if(product.getState()){
+            holder.IV_visibility.setImageDrawable(AppCompatResources.getDrawable(context, R.drawable.visibility));
+        }else{
+            holder.IV_visibility.setImageDrawable(AppCompatResources.getDrawable(context,R.drawable.visibility_off));
+        }
     }
 
     public void setClickListener(RecyclerTouchListener listener){
@@ -108,15 +117,18 @@ public class AdapterR_EditProduct extends RecyclerView.Adapter<AdapterR_EditProd
         TextView TV_price;
         TextView TV_descProduct;
         TextView TV_Ad;
+        ImageView IV_visibility;
 
 
         public ProductViewHolder(final View itemView){
             super(itemView);
-            IV_image =(ImageView)itemView.findViewById(R.id.RP_IV_ImageProduct);
-            TV_name =(TextView)itemView.findViewById(R.id.RP_TV_name);
-            TV_price =(TextView)itemView.findViewById(R.id.RP_TV_Price);
-            TV_descProduct =(TextView)itemView.findViewById(R.id.RP_TV_descProduct);
-            TV_Ad = (TextView) itemView.findViewById(R.id.RP_TV_AD);
+            IV_image =(ImageView)itemView.findViewById(R.id.REP_IV_ImageProduct);
+            TV_name =(TextView)itemView.findViewById(R.id.REP_TV_name);
+            TV_price =(TextView)itemView.findViewById(R.id.REP_TV_Price);
+            TV_descProduct =(TextView)itemView.findViewById(R.id.REP_TV_descProduct);
+            TV_Ad = (TextView) itemView.findViewById(R.id.REP_TV_AD);
+            IV_visibility=(ImageView)itemView.findViewById(R.id.REP_IV_Visibility);
+
 
             itemView.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -178,6 +190,8 @@ public class AdapterR_EditProduct extends RecyclerView.Adapter<AdapterR_EditProd
             }
             filterResults.values=al_EditarProductos_filter;
             filterResults.count=al_EditarProductos_filter.size();
+
+            Log.e("ArrayFilter",al_EditarProductos_filter.toString());
             return filterResults;
         }
 

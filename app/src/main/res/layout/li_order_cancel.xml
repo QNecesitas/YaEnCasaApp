@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/radius_cards">
+
+    <LinearLayout
+        android:background="@color/red_light"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_marginTop="10sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20sp"
+            android:layout_marginEnd="20sp"
+            android:text="@string/envie_una_respuesta_al_cliente_sobre_la_cancelacion_de_su_pedido"
+            android:textAlignment="center"
+            android:textSize="18sp" />
+
+        <EditText
+            android:textAlignment="center"
+            android:layout_marginTop="10sp"
+            android:id="@+id/li_order_cancel_et_respuesta_cliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20sp"
+            android:layout_marginEnd="20sp"
+            android:maxLines="3"
+            android:maxLength="200"/>
+
+        <RelativeLayout
+            android:layout_marginTop="10sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/li_order_cancel_tv_cancelar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="20sp"
+                android:layout_marginBottom="10sp"
+                android:background="@drawable/redonded_price_rojo"
+                android:paddingStart="10sp"
+                android:paddingTop="5sp"
+                android:paddingEnd="10sp"
+                android:paddingBottom="5sp"
+                android:text="@string/Cancelar"
+                android:textColor="@color/red"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/li_order_cancel_tv_acept"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="20sp"
+                android:layout_marginBottom="10sp"
+                android:background="@drawable/redonded_price_rojo"
+                android:paddingStart="10sp"
+                android:paddingTop="5sp"
+                android:paddingEnd="10sp"
+                android:paddingBottom="5sp"
+                android:text="@string/Aceptar"
+                android:textColor="@color/red"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

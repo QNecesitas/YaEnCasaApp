@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,16 +24,21 @@ import java.util.ArrayList;
 public class AdapterR_Product extends RecyclerView.Adapter<AdapterR_Product.ProductViewHolder>{
     private Context context;
     private ArrayList<IModel_Content> al_contents;
-    private RecyclerTouchListener listener;
+    private AdapterR_Product.RecyclerTouchListener listener;
+    private AdapterR_Product.CustomFilter customFilter;
+    private ArrayList<IModel_Content> al_Productos_filter;
 
     public AdapterR_Product(Context context, ArrayList<IModel_Content> al_contents){
         this.context = context;
         this.al_contents = al_contents;
+        this.customFilter= new AdapterR_Product.CustomFilter(AdapterR_Product.this);
+        this.al_Productos_filter=new ArrayList<>();
+        al_Productos_filter.addAll(al_contents);
     }
 
     @Override
     public int getItemCount(){
-        return al_contents.size();
+        return al_Productos_filter.size();
     }
 
     @Override
@@ -44,7 +50,7 @@ public class AdapterR_Product extends RecyclerView.Adapter<AdapterR_Product.Prod
 
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position){
-        IModel_Content content = al_contents.get(position);
+        IModel_Content content = al_Productos_filter.get(position);
 
         if(content instanceof ModelAd){
             onBindViewHolderAds(holder,position);
@@ -56,7 +62,7 @@ public class AdapterR_Product extends RecyclerView.Adapter<AdapterR_Product.Prod
 
 
     private void onBindViewHolderAds(ProductViewHolder holder, int position){
-        ModelAd ad = (ModelAd) al_contents.get(position);
+        ModelAd ad = (ModelAd) al_Productos_filter.get(position);
 
         Glide.with(context)
                 .load(Constants.PHP_IMAGES_AD+"Ad_"+ad.getId()+".jpg")
@@ -69,15 +75,14 @@ public class AdapterR_Product extends RecyclerView.Adapter<AdapterR_Product.Prod
         holder.name.setText(ad.getName());
         holder.price.setVisibility(View.GONE);
         holder.descProduct.setVisibility(View.GONE);
-
     }
 
     private void onBindViewHolderProducts(ProductViewHolder holder, int position){
-        IModel_Content iproduct = (IModel_Content) al_contents.get(position);
+        IModel_Content iproduct = (IModel_Content) al_Productos_filter.get(position);
         ModelProduct product = (ModelProduct) iproduct;
 
         Glide.with(context)
-                .load(Constants.PHP_IMAGES+"P_"+product.getId()+".jpg")
+                .load(Constants.PHP_IMAGES+"P_"+product.getIdProduct()+".jpg")
                 .error(ContextCompat.getDrawable(context,R.drawable.shopping_bag_white))
                 .skipMemoryCache(true)
                 .centerCrop()
@@ -99,6 +104,7 @@ public class AdapterR_Product extends RecyclerView.Adapter<AdapterR_Product.Prod
         TextView name;
         TextView price;
         TextView descProduct;
+        TextView TV_Ad;
 
         public ProductViewHolder(final View itemView){
             super(itemView);
@@ -106,6 +112,7 @@ public class AdapterR_Product extends RecyclerView.Adapter<AdapterR_Product.Prod
             name=(TextView)itemView.findViewById(R.id.RP_TV_name);
             price=(TextView)itemView.findViewById(R.id.RP_TV_Price);
             descProduct=(TextView)itemView.findViewById(R.id.RP_TV_descProduct);
+            TV_Ad = (TextView) itemView.findViewById(R.id.RP_Ad);
 
             itemView.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -124,6 +131,56 @@ public class AdapterR_Product extends RecyclerView.Adapter<AdapterR_Product.Prod
     public interface RecyclerTouchListener{
         void onClickAd(View v, int position);
         void onClickProduct(View v,int position);
+    }
+
+
+    public Filter getFilter() {
+        return customFilter;
+    }
+
+    public class CustomFilter extends Filter {
+        AdapterR_Product adapterR_Products;
+
+        public CustomFilter(AdapterR_Product adapterR_Products) {
+            super();
+            this.adapterR_Products = adapterR_Products;
+        }
+
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            al_Productos_filter.clear();
+
+
+
+            FilterResults filterResults=new FilterResults();
+            if(charSequence.length()==0){
+                al_Productos_filter.addAll(al_contents);
+            }else{
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+                for( IModel_Content content:al_contents){
+                    if(content instanceof ModelProduct){
+                        ModelProduct product=(ModelProduct) content;
+                        if(product.getName().toLowerCase().trim().contains(filterPattern)){
+                            al_Productos_filter.add(content);
+                        }
+                    }else{
+                        ModelAd ad=(ModelAd) content;
+                        if(ad.getName().toLowerCase().trim().contains(filterPattern)){
+                            al_Productos_filter.add(content);
+                        }
+                    }
+
+                }
+            }
+            filterResults.values=al_Productos_filter;
+            filterResults.count=al_Productos_filter.size();
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            adapterR_Products.notifyDataSetChanged();
+        }
     }
 
 }

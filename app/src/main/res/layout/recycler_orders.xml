@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <!--Cardview contenedor-->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="12sp"
+        android:elevation="@dimen/cardview_default_elevation"
+        android:translationZ="@dimen/cardview_default_elevation"
+        app:cardCornerRadius="@dimen/radius_cards">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <!--State of order-->
+            <TextView
+                android:padding="8sp"
+                android:textAlignment="center"
+                android:id="@+id/RO_state"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/blue_light"
+                android:paddingStart="10sp"
+                android:paddingEnd="10sp"
+                android:text="@string/en_espera"
+                android:textColor="@color/black"
+                android:textSize="@dimen/medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--Content of order-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_margin="12sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/RO_state"
+                app:layout_constraintStart_toStartOf="parent">
+
+
+
+                <!--Basic info of the order-->
+                <LinearLayout
+                    android:id="@+id/RO_ll_1"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <!--No.Pedidos-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/no_pedido"
+                        android:textSize="@dimen/medium"/>
+
+                    <!--Numero del pedido-->
+                    <TextView
+                        android:id="@+id/RO_numberOrder"
+                        android:layout_marginStart="12sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Ex_1253"/>
+
+
+                </LinearLayout>
+
+                <!--Price-->
+                <LinearLayout
+                    android:layout_marginTop="4sp"
+                    android:id="@+id/RO_ll_2"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/RO_ll_1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <!--Precio-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Precio"
+                        android:textSize="@dimen/medium"/>
+
+
+                    <!--Precio del pedido-->
+                    <TextView
+                        android:id="@+id/RO_price"
+                        android:layout_marginStart="12sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="500 $"/>
+
+                </LinearLayout>
+
+
+                <!--Phone number-->
+                <LinearLayout
+                    android:layout_marginTop="4sp"
+                    android:id="@+id/RO_ll_3"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/RO_ll_2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <!--Telefono-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/numero_telefono"
+                        android:textSize="@dimen/medium"/>
+
+
+                    <!--Numero del cliente-->
+                    <TextView
+                        android:id="@+id/RO_phoneNumber"
+                        android:layout_marginStart="8sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="59134571"/>
+
+                </LinearLayout>
+
+                <!--Date-->
+                <LinearLayout
+                    android:id="@+id/RO_ll_date"
+                    android:layout_marginTop="4sp"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/RO_ll_3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Fecha"
+                        android:textSize="@dimen/medium"/>
+
+                    <TextView
+                        android:id="@+id/RO_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8sp"
+                        android:text="@string/_10_4_2022"/>
+
+
+                </LinearLayout>
+
+                <!--Name-->
+                <LinearLayout
+                    android:id="@+id/RO_ll_nombre"
+                    android:layout_marginTop="4sp"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/RO_ll_date"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/nombre_dosp"
+                        android:textSize="@dimen/medium"/>
+
+                    <TextView
+                        android:id="@+id/RO_nombre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8sp"
+                        android:text="@string/Nombre"/>
+
+
+                </LinearLayout>
+
+                <!--Zona-->
+                <LinearLayout
+                    android:id="@+id/RO_ll_zona"
+                    app:layout_constraintTop_toBottomOf="@id/RO_ll_nombre"
+                    android:layout_marginTop="4sp"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/zona_a_entregar"
+                        android:textSize="@dimen/medium"/>
+
+                    <TextView
+                        android:id="@+id/RO_zone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8sp"
+                        android:text="Zona"/>
+
+                </LinearLayout>
+
+
+                <!--Separator###################################-->
+                <View
+                    android:id="@+id/RO_separador_1"
+                    app:layout_constraintTop_toBottomOf="@+id/RO_ll_zona"
+                    android:layout_marginTop="20sp"
+                    android:layout_marginStart="32sp"
+                    android:layout_marginEnd="32sp"
+                    android:layout_marginBottom="20sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3sp"
+                    android:background="@color/black" />
+
+                <!--Elements-->
+                <LinearLayout
+                    android:layout_marginTop="20sp"
+                    android:id="@+id/RO_ll_4"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/RO_separador_1"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_marginStart="12sp"
+                        android:layout_marginEnd="12sp"
+                        android:id="@+id/RO_product"
+                        android:textSize="@dimen/medium"
+                        android:text="@string/producto_x4_500"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+
+                </LinearLayout>
+
+
+                <!--Separator###################################-->
+                <View
+                    android:id="@+id/RO_separador_2"
+                    app:layout_constraintTop_toBottomOf="@+id/RO_ll_4"
+                    android:layout_marginBottom="20sp"
+                    android:layout_marginTop="20sp"
+                    android:layout_marginStart="30sp"
+                    android:layout_marginEnd="30sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0.3sp"
+                    android:background="@color/black"/>
+
+                <!--Address-->
+                <LinearLayout
+                    android:layout_marginTop="20sp"
+                    android:orientation="vertical"
+                    android:id="@+id/RO_ll_5"
+                    android:layout_width="0sp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/RO_separador_2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/direccion"
+                        android:textSize="@dimen/medium"/>
+
+                    <TextView
+                        android:id="@+id/RO_address"
+                        android:layout_marginTop="4sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/la_direccion_es_ave_52_37_y_39"
+                        android:textSize="@dimen/medium"
+                        android:layout_marginStart="20sp"/>
+
+                </LinearLayout>
+
+                <!--Actions-->
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:layout_marginTop="20sp"
+                    android:layout_marginBottom="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/RO_ll_5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:textColor="@color/green_plight"
+                        android:id="@+id/RO_btn_cancel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Cancelar"
+                        android:textSize="@dimen/small"
+                        style="@style/Button_redonded"/>
+
+                    <Button
+                        android:textColor="@color/green_plight"
+                        android:id="@+id/RO_btn_accept"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Aceptar"
+                        android:textSize="@dimen/small"
+                        style="@style/Button_redonded"/>
+
+                    <Button
+                        android:textColor="@color/green_plight"
+                        android:id="@+id/RO_btn_finished"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/finalizar"
+                        android:textSize="@dimen/small"
+                        style="@style/Button_redonded"/>
+
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

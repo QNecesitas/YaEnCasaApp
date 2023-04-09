@@ -33,7 +33,7 @@ interface IRetrofitProducts {
 
 
     @FormUrlEncoded
-    @POST("RemoveProduct.php")
+    @POST("DeleteProduct.php")
     fun removeProduct(
         @Field("token") token: String,
         @Field("idProduct") idProduct: Long

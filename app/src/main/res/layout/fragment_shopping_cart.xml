@@ -263,7 +263,7 @@
             </LinearLayout>
 
             <Button
-                app:icon="@drawable/baseline_pin_drop_24"
+                app:icon="@drawable/pin_drop"
                 android:layout_marginTop="12sp"
                 android:layout_marginStart="20sp"
                 android:id="@+id/FSC_Btn_Ubic"

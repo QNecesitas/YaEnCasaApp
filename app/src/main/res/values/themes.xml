@@ -26,6 +26,14 @@
     </style>
 
 
+    <!--Button Redonded-->
+    <style name="Button_redonded" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="shapeAppearance">@style/Shape_redonded</item>
+        <item name="strokeColor">?attr/colorPrimary</item>
+        <item name="strokeWidth">2sp</item>
+    </style>
+
+
 
     <style name="Button_redonded_filled" parent="Widget.MaterialComponents.Button">
         <item name="shapeAppearance">@style/Shape_redonded</item>

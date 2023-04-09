@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!--Navigation Opions -->
+    <!--Navigation Options -->
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,7 +41,7 @@
             android:layout_height="match_parent">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/CV_Image"
+                android:id="@+id/LI_CV_Image"
                 android:layout_width="100sp"
                 android:layout_height="0sp"
                 android:layout_marginStart="12sp"
@@ -55,10 +55,10 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/Image_edit_product"
+                    android:id="@+id/LI_IV_edit_product"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/outline_shopping_bag_24"
+                    android:background="@drawable/shopping_bag_grey"
                     android:backgroundTint="@color/white"
                     android:contentDescription="@string/Producto"
                     android:scaleType="centerCrop" />
@@ -67,8 +67,8 @@
 
             <!--Nombre-->
             <EditText
-                app:layout_constraintBottom_toTopOf="@id/ET_PrecioCUP"
-                android:id="@+id/ET_Nombre"
+                app:layout_constraintBottom_toTopOf="@id/LI_ET_PriceCUP"
+                android:id="@+id/LI_ET_Nombre"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12sp"
@@ -79,16 +79,16 @@
                 android:maxLength="60"
                 android:textSize="@dimen/medium"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/CV_Image"
-                app:layout_constraintTop_toTopOf="@+id/CV_Image" />
+                app:layout_constraintStart_toEndOf="@+id/LI_CV_Image"
+                app:layout_constraintTop_toTopOf="@+id/LI_CV_Image" />
 
             <!--Precio en CUP-->
             <EditText
-                app:layout_constraintTop_toBottomOf="@id/ET_Nombre"
-                android:id="@+id/ET_PrecioCUP"
+                app:layout_constraintTop_toBottomOf="@id/LI_ET_Nombre"
+                android:id="@+id/LI_ET_PriceCUP"
                 android:layout_width="0sp"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/ET_Nombre"
+                android:layout_below="@id/LI_ET_Nombre"
                 android:layout_marginStart="12sp"
                 android:layout_marginEnd="12sp"
                 android:autofillHints="none"
@@ -96,29 +96,29 @@
                 android:inputType="numberDecimal"
                 android:maxLength="10"
                 android:textSize="@dimen/medium"
-                app:layout_constraintBottom_toBottomOf="@+id/CV_Image"
-                app:layout_constraintEnd_toStartOf="@+id/ET_tv_dice_cup"
+                app:layout_constraintBottom_toBottomOf="@+id/LI_CV_Image"
+                app:layout_constraintEnd_toStartOf="@+id/LI_TV_cup"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@id/CV_Image" />
+                app:layout_constraintStart_toEndOf="@id/LI_CV_Image" />
 
 
 
             <!--CUP-->
             <TextView
-                android:id="@+id/ET_tv_dice_cup"
+                android:id="@+id/LI_TV_cup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="12sp"
                 android:text="@string/CUP"
                 android:textAlignment="textEnd"
                 android:textSize="@dimen/medium"
-                app:layout_constraintBaseline_toBaselineOf="@id/ET_PrecioCUP"
+                app:layout_constraintBaseline_toBaselineOf="@id/LI_ET_PriceCUP"
                 app:layout_constraintEnd_toEndOf="parent" />
 
 
             <!--Descripcion-->
             <EditText
-                android:id="@+id/ET_Desc"
+                android:id="@+id/LI_ET_Desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
@@ -131,13 +131,13 @@
                 android:maxLength="250"
                 android:maxLines="2"
                 android:textAlignment="center"
-                app:layout_constraintTop_toBottomOf="@id/ET_PrecioCUP" />
+                app:layout_constraintTop_toBottomOf="@id/LI_ET_PriceCUP" />
 
 
 
             <!--Btn Cancelar-->
             <Button
-                android:id="@+id/btn_cancel"
+                android:id="@+id/LI_btn_cancel"
                 style="?attr/materialButtonOutlinedStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -147,11 +147,11 @@
                 android:text="@string/Cancelar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ET_Desc" />
+                app:layout_constraintTop_toBottomOf="@id/LI_ET_Desc" />
 
             <!--Btn Agregar-->
             <Button
-                android:id="@+id/btn_add"
+                android:id="@+id/LI_btn_add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20sp"
@@ -160,7 +160,7 @@
                 android:text="@string/Agregar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ET_Desc" />
+                app:layout_constraintTop_toBottomOf="@id/LI_ET_Desc" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

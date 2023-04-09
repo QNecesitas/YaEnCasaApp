@@ -268,12 +268,6 @@ public class Fragment_Shopping_cart extends Fragment {
         }
         return stringBuilder.toString().replace("*","+");
     }
-    private String makeDate(){
-        String allDate;
-        Calendar calendar=Calendar.getInstance();
-        allDate=new SimpleDateFormat("dd-MM-yy hh:mm aa", Locale.getDefault()).format(calendar.getTime());
-        return allDate;
-    }
 
     //BtnEnviarPedido
     public void btn_enviarPedido(View view) {
@@ -357,12 +351,11 @@ public class Fragment_Shopping_cart extends Fragment {
         double price = priceTotalCUP;
         String products = makeProduct();
         String celnumber = cell_num.getText().toString();
-        String actDate = makeDate();
         String location = latitud+":"+longitud;
         String address = ET_adress.getText().toString();
         String name = ET_name.getText().toString();
 
-        Call<Integer> call = retrofitOrders.addOrder(token, price, products, celnumber, actDate, location, address, name);
+        Call<Integer> call = retrofitOrders.addOrder(token, price, products, celnumber, location, address, name);
 
         call.enqueue(new Callback<Integer>() {
             @Override

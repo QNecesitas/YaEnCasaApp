@@ -53,7 +53,7 @@ public class AdapterR_Shopping_cart extends RecyclerView.Adapter<AdapterR_Shoppi
         ModelElement element = al_contents.get(position);
 
         Glide.with(context)
-                .load(Constants.PHP_IMAGES+"P_"+element.getProduct().getId()+".jpg")
+                .load(Constants.PHP_IMAGES+"P_"+element.getProduct().getIdProduct()+".jpg")
                 .error(ContextCompat.getDrawable(context,R.drawable.shopping_bag))
                 .skipMemoryCache(true)
                 .centerCrop()

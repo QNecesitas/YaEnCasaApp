@@ -1,18 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".Fragment_Product">
 
-    <!--RecyclerVIew-->
-    <androidx.recyclerview.widget.RecyclerView
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/FP_recycler"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0sp"/>
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
 
+        <LinearLayout
+            android:id="@+id/FP_LL_Category"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="0sp"
+            android:orientation="horizontal"
+            android:background="@drawable/backg_category"
+            android:elevation="20sp"
+            android:padding="4sp"
+            app:layout_constraintBottom_toBottomOf="@id/FP_SearchView">
+
+            <ImageView
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/filter_alt"
+                android:layout_width="20sp"
+                android:layout_height="20sp"/>
+
+            <TextView
+                android:layout_marginEnd="12sp"
+                android:layout_marginStart="4sp"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/FP_TV_Category"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Categorias"
+                android:textSize="@dimen/medium"
+                android:textStyle="bold"
+                />
+        </LinearLayout>
+
+        <SearchView
+            android:id="@+id/FP_SearchView"
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/FP_LL_Category"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:queryHint="@string/Buscar_producto"
+            android:iconifiedByDefault="false"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/FP_recycler"
+            app:layout_constraintTop_toBottomOf="@id/FP_LL_Category"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="0sp"/>
+
+
+        <!--IsEmpty-->
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/FP_imagen_empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/cajas_vacias"
+                android:contentDescription="@string/Vacio" />
+
+            <TextView
+                android:textStyle="bold"
+                android:layout_marginStart="20sp"
+                android:layout_marginEnd="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/No_hay_productos"
+                android:textSize="@dimen/x_large"
+                android:textAlignment="center"
+                android:layout_gravity="center"/>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

@@ -6,7 +6,7 @@
 
     <!--AD-->
     <TextView
-        android:id="@+id/RP_TV_AD"
+        android:id="@+id/REP_TV_AD"
         android:textColor="@color/red_ad"
         android:padding="4sp"
         android:paddingEnd="12sp"
@@ -15,7 +15,7 @@
         android:background="@drawable/redonded_ad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/RP_CV_container"
+        app:layout_constraintBottom_toTopOf="@+id/REP_CV_container"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="@string/anuncio"
         android:textSize="@dimen/small"
@@ -26,9 +26,9 @@
 
     <androidx.cardview.widget.CardView
         android:layout_marginBottom="-20sp"
-        app:layout_constraintBottom_toTopOf="@+id/RP_CV_container"
-        app:layout_constraintStart_toStartOf="@id/RP_CV_container"
-        android:id="@+id/rep_CV_Visibilidad"
+        app:layout_constraintBottom_toTopOf="@+id/REP_CV_container"
+        app:layout_constraintStart_toStartOf="@id/REP_CV_container"
+        android:id="@+id/REP_CV_Visibility"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="-4sp"
@@ -38,7 +38,7 @@
         app:cardCornerRadius="50sp">
 
         <ImageView
-            android:id="@+id/rep_IV_Visibility"
+            android:id="@+id/REP_IV_Visibility"
             android:layout_width="20sp"
             android:layout_height="20sp"
             android:layout_margin="4sp"
@@ -48,7 +48,7 @@
 
     <!--Container-->
     <androidx.cardview.widget.CardView
-        android:id="@+id/RP_CV_container"
+        android:id="@+id/REP_CV_container"
         android:elevation="4sp"
         app:cardCornerRadius="8sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +70,7 @@
 
             <!--Image product-->
             <ImageView
-                android:id="@+id/RP_IV_ImageProduct"
+                android:id="@+id/REP_IV_ImageProduct"
                 app:layout_constraintDimensionRatio="2:2"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:background="@color/white_5F6"
@@ -85,16 +85,16 @@
                 android:layout_marginStart="8sp"
                 android:layout_marginTop="20sp"
                 android:text="@string/name_product"
-                android:id="@+id/RP_TV_name"
+                android:id="@+id/REP_TV_name"
                 android:textSize="@dimen/medium"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/RP_IV_ImageProduct"
+                app:layout_constraintTop_toBottomOf="@id/REP_IV_ImageProduct"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <!--Price-->
             <TextView
-                android:id="@+id/RP_TV_Price"
+                android:id="@+id/REP_TV_Price"
                 android:textSize="@dimen/small"
                 android:text="@string/price_default"
                 android:layout_marginStart="8sp"
@@ -103,7 +103,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/RP_TV_name"/>
+                app:layout_constraintTop_toBottomOf="@+id/REP_TV_name"/>
 
 
             <!--Little description-->
@@ -112,10 +112,10 @@
                 android:layout_marginTop="8sp"
                 android:layout_marginEnd="8sp"
                 android:textSize="@dimen/small"
-                android:id="@+id/RP_TV_descProduct"
+                android:id="@+id/REP_TV_descProduct"
                 android:text="@string/little_description"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/RP_TV_Price"
+                app:layout_constraintTop_toBottomOf="@+id/REP_TV_Price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"

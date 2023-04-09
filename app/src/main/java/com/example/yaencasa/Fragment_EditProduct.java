@@ -111,7 +111,7 @@ public class Fragment_EditProduct extends Fragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment__edit_product, container, false);
 
-        selected_category = getActivity().getIntent().getIntExtra("category", 0);
+        selected_category = requireActivity().getIntent().getIntExtra("category", 1);
 
 
         //RecyclerView
@@ -244,12 +244,12 @@ public class Fragment_EditProduct extends Fragment {
         AlertDialog alertDialog = builder.create();
 
         //Declaraciones
-        ImageView imageView = (ImageView) view.findViewById(R.id.Image_edit_product);
-        EditText et_nombre = (EditText) view.findViewById(R.id.ET_Nombre);
-        EditText et_precioCUP = (EditText) view.findViewById(R.id.ET_PrecioCUP);
-        EditText et_desc = (EditText) view.findViewById(R.id.ET_Desc);
-        Button btn_cancel = (Button) view.findViewById(R.id.btn_cancel);
-        Button btn_add = (Button) view.findViewById(R.id.btn_add);
+        ImageView imageView = (ImageView) view.findViewById(R.id.LI_IV_edit_product);
+        EditText et_nombre = (EditText) view.findViewById(R.id.LI_ET_Nombre);
+        EditText et_precioCUP = (EditText) view.findViewById(R.id.LI_ET_PriceCUP);
+        EditText et_desc = (EditText) view.findViewById(R.id.LI_ET_Desc);
+        Button btn_cancel = (Button) view.findViewById(R.id.LI_btn_cancel);
+        Button btn_add = (Button) view.findViewById(R.id.LI_btn_add);
 
 
         //Inicializaciones
@@ -286,7 +286,7 @@ public class Fragment_EditProduct extends Fragment {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         if (menuItem.getItemId() == R.id.menu_image_add) {
-                            escogerimagenGaleria(INTENT_RESULT_GALERIA);
+                            escogerimagenGaleria();
                         } else if (menuItem.getItemId() == R.id.menu_image_del) {
                             li_imagen_producto.setImageDrawable(null);
                             imageFile="no";
@@ -321,6 +321,7 @@ public class Fragment_EditProduct extends Fragment {
             public void onResponse(Call<String> call, Response<String> response) {
                 progressDialogAdding.dismiss();
                 FancyToast.makeText(requireContext(), getString(R.string.Operacion_realizada_con_exito), FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
+                imageFile="no";
                 loadMainInternetInfo();
             }
 
@@ -328,6 +329,7 @@ public class Fragment_EditProduct extends Fragment {
             public void onFailure(Call<String> call, Throwable t) {
                 progressDialogAdding.dismiss();
                 showAlertDialogNoInternet();
+                imageFile="no";
             }
         });
     }
@@ -462,7 +464,7 @@ public class Fragment_EditProduct extends Fragment {
             btn_turnVisibility.setText(R.string.Mostrar);
         }
         Glide.with(requireContext())
-                .load(Constants.PHP_IMAGES + "P_" + modelProduct.getId() + ".jpg")
+                .load(Constants.PHP_IMAGES + "P_" + modelProduct.getIdProduct() + ".jpg")
                 .skipMemoryCache(true)
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
@@ -513,7 +515,7 @@ public class Fragment_EditProduct extends Fragment {
 
         Call<String> call = retrofitProducts.updateVisibilityProduct(
                 Constants.PHP_TOKEN,
-                ((ModelProduct)array_content.get(position)).getId(),
+                ((ModelProduct)array_content.get(position)).getIdProduct(),
                 ((ModelProduct)array_content.get(position)).getState()?0:1
         );
 
@@ -538,7 +540,7 @@ public class Fragment_EditProduct extends Fragment {
     private void deleteProduct(int position){
         Call<String> call = retrofitProducts.removeProduct(
                 Constants.PHP_TOKEN,
-                ((ModelProduct)array_content.get(position)).getId()
+                ((ModelProduct)array_content.get(position)).getIdProduct()
                 );
 
         call.enqueue(new Callback<String>() {
@@ -596,12 +598,12 @@ public class Fragment_EditProduct extends Fragment {
         AlertDialog alertDialog = builder.create();
 
         //Declaraciones
-        li_imagen_producto = (ImageView) view.findViewById(R.id.Image_edit_product);
-        EditText et_nombre = (EditText) view.findViewById(R.id.ET_Nombre);
-        EditText et_precioCUP = (EditText) view.findViewById(R.id.ET_PrecioCUP);
-        EditText et_desc = (EditText) view.findViewById(R.id.ET_Desc);
-        Button btn_cancel = (Button) view.findViewById(R.id.btn_cancel);
-        Button btn_add = (Button) view.findViewById(R.id.btn_add);
+        li_imagen_producto = (ImageView) view.findViewById(R.id.LI_IV_edit_product);
+        EditText et_nombre = (EditText) view.findViewById(R.id.LI_ET_Nombre);
+        EditText et_precioCUP = (EditText) view.findViewById(R.id.LI_ET_PriceCUP);
+        EditText et_desc = (EditText) view.findViewById(R.id.LI_ET_Desc);
+        Button btn_cancel = (Button) view.findViewById(R.id.LI_btn_cancel);
+        Button btn_add = (Button) view.findViewById(R.id.LI_btn_add);
 
         //Fill product
         ModelProduct modelProduct = (ModelProduct) array_content.get(position);
@@ -621,9 +623,10 @@ public class Fragment_EditProduct extends Fragment {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         if (menuItem.getItemId() == R.id.menu_image_add) {
-                            escogerimagenGaleria(INTENT_RESULT_GALERIA);
+                            escogerimagenGaleria();
                         } else if (menuItem.getItemId() == R.id.menu_image_del) {
                             li_imagen_producto.setImageDrawable(null);
+                            imageFile="delete";
                         }
                         return false;
                     }
@@ -645,7 +648,7 @@ public class Fragment_EditProduct extends Fragment {
                 if(checkInfoDataEdit(et_desc,et_nombre,et_precioCUP)) {
                     alertDialog.dismiss();
                     progressDialogActualizando = ProgressDialog.show(requireContext(), getString(R.string.Actualizando), getString(R.string.Espere), false, false);
-                    editInfoInternet(et_desc,et_nombre,et_precioCUP);
+                    editInfoInternet(et_desc,et_nombre,et_precioCUP,modelProduct);
                 }
             }
         });
@@ -659,11 +662,13 @@ public class Fragment_EditProduct extends Fragment {
         alertDialog.show();
     }
     private void editInfoInternet(EditText et_desc, EditText et_nombre,
-                                 EditText et_precioCUP){
+                                 EditText et_precioCUP, ModelProduct modelProduct){
+
+
         Call<String> call = retrofitProducts.updateProduct(
                 Constants.PHP_TOKEN,
                 imageFile,
-                IDCreater.generate(),
+                modelProduct.getIdProduct(),
                 et_nombre.getText().toString(),
                 Double.parseDouble(et_precioCUP.getText().toString()),
                 et_desc.getText().toString());
@@ -673,6 +678,7 @@ public class Fragment_EditProduct extends Fragment {
             public void onResponse(Call<String> call, Response<String> response) {
                 progressDialogActualizando.dismiss();
                 FancyToast.makeText(requireContext(), getString(R.string.Operacion_realizada_con_exito), FancyToast.LENGTH_LONG, FancyToast.SUCCESS, false).show();
+                imageFile = "no";
                 loadMainInternetInfo();
             }
 
@@ -680,6 +686,7 @@ public class Fragment_EditProduct extends Fragment {
             public void onFailure(Call<String> call, Throwable t) {
                 progressDialogActualizando.dismiss();
                 showAlertDialogNoInternet();
+                imageFile = "no";
             }
         });
     }
@@ -752,7 +759,7 @@ public class Fragment_EditProduct extends Fragment {
             Toast.makeText(requireContext(), getString(R.string.error_obtener_imagen), Toast.LENGTH_SHORT).show();
         }
     }
-    private void escogerimagenGaleria(int INTENT_RESULT_GALERIA){
+    private void escogerimagenGaleria(){
 
         if (Permissions.siHayPermisoDeAlmacenamiento(requireContext())) {
 
@@ -769,7 +776,7 @@ public class Fragment_EditProduct extends Fragment {
             UCrop.of(uri1, uri2)
                     .withAspectRatio(3, 3)
                     .withMaxResultSize(ImageTools.ANCHO_DE_FOTO_A_SUBIR, ImageTools.ALTO_DE_FOTO_A_SUBIR)
-                    .start(requireActivity());
+                    .start(requireContext(),this);
         } catch (Exception e) {
             Toast.makeText(requireContext(), getString(R.string.error), Toast.LENGTH_SHORT).show();
         }
@@ -783,7 +790,7 @@ public class Fragment_EditProduct extends Fragment {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == PERMISO_GALERIA) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                escogerimagenGaleria(INTENT_RESULT_GALERIA);
+                escogerimagenGaleria();
             } else {
                 showAlertDialogPermisoDenegado();
             }

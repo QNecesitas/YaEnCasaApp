@@ -25,7 +25,7 @@
 
             <ImageView
                 android:layout_gravity="center_vertical"
-                android:src="@drawable/outline_filter_alt_24"
+                android:src="@drawable/filter_alt"
                 android:layout_width="20sp"
                 android:layout_height="20sp"/>
 
@@ -71,7 +71,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="20sp"
             android:layout_marginEnd="20sp"
-            android:src="@drawable/baseline_add_24"/>
+            android:src="@drawable/add"/>
 
         <!--IsEmpty-->
         <LinearLayout

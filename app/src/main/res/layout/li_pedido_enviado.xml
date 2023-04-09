@@ -54,7 +54,7 @@
                 android:contentDescription="@string/pedido_enviado_correctamente"
                 android:layout_width="100sp"
                 android:layout_height="100sp"
-                android:src="@drawable/baseline_local_shipping_24"
+                android:src="@drawable/local_shipping"
                 android:layout_gravity="center"
                 app:tint="@color/green_light" />
 
@@ -108,7 +108,7 @@
                     <ImageView
                         android:layout_width="25sp"
                         android:layout_height="25sp"
-                        android:src="@drawable/baseline_receipt_long_24"
+                        android:src="@drawable/receipt_long"
                         android:layout_gravity="center" />
                 </LinearLayout>
 

@@ -15,4 +15,10 @@
     <color name="red">#F44336</color>
     <color name="blue_light">#76B1E0</color>
     <color name="green_light">#22D33A</color>
+    <color name="red_light">#FF9FA3</color>
+    <color name="green_plight">#A3CF46</color>
+    <color name="blue">#064477</color>
+    <color name="green">#00A807</color>
+    <color name="yellow">#BEAB00</color>
+    <color name="yellow_light">#FFF496</color>
 </resources>

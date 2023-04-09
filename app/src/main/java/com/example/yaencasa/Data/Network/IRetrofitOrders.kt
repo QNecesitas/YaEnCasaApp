@@ -34,7 +34,6 @@ interface IRetrofitOrders {
         @Field("price") price: Double,
         @Field("products")products: String,
         @Field("celnumber") celnumber: String,
-        @Field("actDate") actDate: String,
         @Field("location") location: String,
         @Field("address") address: String,
         @Field("name") name: String
