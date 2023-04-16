@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-        <item
+
+
+    <item
+        android:id="@+id/page_categories"
+        android:enabled="true"
+        android:icon="@drawable/widgets"
+        android:title="@string/category"/>
+
+
+    <item
             android:id="@+id/page_edit_products"
             android:enabled="true"
             android:icon="@drawable/home"
             android:title="@string/products"/>
 
-
-        <item
-            android:id="@+id/page_categories"
-            android:enabled="true"
-            android:icon="@drawable/widgets"
-            android:title="@string/category"/>
 
         <item
             android:id="@+id/page_orders"

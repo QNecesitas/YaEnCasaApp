@@ -6,13 +6,63 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment_Categories">
 
-   <!--RecyclerVIew-->
-   <androidx.recyclerview.widget.RecyclerView
-       app:layout_constraintTop_toTopOf="parent"
-       app:layout_constraintBottom_toBottomOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       android:id="@+id/FC_recycler"
-       android:layout_width="match_parent"
-       android:layout_height="0sp"/>
+
+        <!--Contenido-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!--Recycler-->
+            <androidx.recyclerview.widget.RecyclerView
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:id="@+id/categories_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="0sp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <!--IsEmpty-->
+            <LinearLayout
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:visibility="gone"
+                android:id="@+id/categories_image_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:scaleType="centerCrop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/cajas_vacias"
+                    android:contentDescription="@string/Vacio" />
+
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_marginStart="20sp"
+                    android:layout_marginEnd="20sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_hay_categor_as"
+                    android:textSize="@dimen/x_large"
+                    android:textAlignment="center"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

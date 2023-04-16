@@ -195,7 +195,7 @@ public class Fragment_Product extends Fragment {
         builder.create().show();
     }
 
-    //Auxiliares
+    //Aux
     private void updateRecyclerAdapter() {
 
 

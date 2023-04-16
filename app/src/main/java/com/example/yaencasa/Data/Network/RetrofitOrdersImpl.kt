@@ -20,6 +20,10 @@ class RetrofitOrdersImpl :IRetrofitOrders{
         return productApi.cleanOrders(token);
     }
 
+    override fun cleanMyOrders(token: String, idClient: Long): Call<String> {
+        return productApi.cleanMyOrders(token, idClient);
+    }
+
     override fun updateOrder(token: String, id: Int, state: String, descr: String): Call<String> {
         return productApi.updateOrder(token, id, state, descr);
     }
@@ -31,13 +35,18 @@ class RetrofitOrdersImpl :IRetrofitOrders{
         celnumber: String,
         location: String,
         address: String,
-        name: String
+        name: String,
+        idClient: Long
     ): Call<Int> {
-        return productApi.addOrder(token, price, products, celnumber,  location, address, name);
+        return productApi.addOrder(token, price, products, celnumber,  location, address, name, idClient);
     }
 
-    override fun fetchOrders(): Call<ArrayList<ModelOrder>> {
-        return productApi.fetchOrders();
+    override fun fetchOrders(token: String): Call<ArrayList<ModelOrder>> {
+        return productApi.fetchOrders(token);
+    }
+
+    override fun fetchMyOrders(token: String, id: Long): Call<ArrayList<ModelOrder>> {
+        return productApi.fetchMyOrders(token, id)
     }
 
 

@@ -287,6 +287,17 @@
 
                 </LinearLayout>
 
+                <!--Ubication-->
+                <Button
+                    android:layout_marginTop="8sp"
+                    android:textSize="@dimen/small"
+                    android:id="@+id/RO_btn_ubic"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Ver_ubic"
+                    app:layout_constraintTop_toBottomOf="@id/RO_ll_5"/>
+
                 <!--Actions-->
                 <com.google.android.material.button.MaterialButtonToggleGroup
                     android:layout_marginTop="20sp"
@@ -294,7 +305,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/RO_ll_5"
+                    app:layout_constraintTop_toBottomOf="@+id/RO_btn_ubic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content">
 

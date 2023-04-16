@@ -6,4 +6,6 @@ public class IDCreater {
         return System.currentTimeMillis();
     }
 
+    public static long personalId=0;
+
 }

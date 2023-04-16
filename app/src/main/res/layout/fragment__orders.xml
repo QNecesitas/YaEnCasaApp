@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Activity_Orders">
+    android:orientation="vertical">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -25,15 +24,16 @@
 
             <ImageView
                 android:contentDescription="@string/Vacio"
-                android:layout_marginStart="12sp"
+                android:layout_margin="12sp"
                 android:id="@+id/FO_IV_noInternet"
                 android:layout_width="40sp"
                 android:layout_height="40sp"
                 android:src="@drawable/wifi_off"
+                android:layout_marginEnd="12sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/FO_TV_noInternet"
+
                 app:tint="@color/red" />
 
             <TextView
@@ -45,16 +45,16 @@
                 android:textAlignment="center"
                 android:textColor="@color/red"
                 android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/FO_TV_noInternet"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@id/FO_IV_noInternet"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <!--Boton flotante de borrar-->
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:onClick="click_vaciar_pedidos"
+            android:id="@+id/FO_vaciar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -80,7 +80,7 @@
             android:layout_gravity="center"
             android:background="@color/white"
             android:orientation="vertical"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/FO_recycler"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--Background-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:background="@color/blue_light"
+            android:src="@drawable/category"
+            app:layout_constraintDimensionRatio="3:1.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--Imagen-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/imagen_recycler_categorias"
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            app:layout_constraintDimensionRatio="3:1.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--Imagen-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:background="#65000000"
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            app:layout_constraintDimensionRatio="3:1.4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/recycler_categoria_nombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="categoria"
+            android:layout_gravity="center"
+            android:textSize="@dimen/xx_large"
+            android:textColor="@color/white"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/recycler_categoria_cant_productos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="cantidad_productos"
+            android:textColor="@color/white"
+            android:background="@drawable/textview_redondeado"
+            android:textSize="@dimen/medium"
+            android:paddingTop="4sp"
+            android:paddingEnd="8sp"
+            android:paddingStart="8sp"
+            android:paddingBottom="4sp"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

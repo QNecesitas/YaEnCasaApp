@@ -15,6 +15,12 @@ interface IRetrofitOrders {
         @Field("token") token: String
     ) : Call<String>
 
+    @FormUrlEncoded
+    @POST("CleanMyOrders.php")
+    fun cleanMyOrders(
+        @Field("token") token: String,
+        @Field("idClient") idClient: Long
+    ) : Call<String>
 
     @FormUrlEncoded
     @POST("UpdateOrder.php")
@@ -36,13 +42,20 @@ interface IRetrofitOrders {
         @Field("celnumber") celnumber: String,
         @Field("location") location: String,
         @Field("address") address: String,
-        @Field("name") name: String
+        @Field("name") name: String,
+        @Field("idClient") idClient: Long
     ) : Call<Int>
 
 
 
     @GET("FetchOrders.php")
-    fun fetchOrders():Call<ArrayList<ModelOrder>>
+    fun fetchOrders(@Query("token")token: String):Call<ArrayList<ModelOrder>>
+
+    @GET("FetchMyOrders.php")
+    fun fetchMyOrders(
+        @Query("token")token: String,
+        @Query("idClient")id :Long
+    ):Call<ArrayList<ModelOrder>>
 
 
 }

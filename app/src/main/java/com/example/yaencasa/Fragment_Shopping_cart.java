@@ -31,6 +31,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yaencasa.Adapters.AdapterR_Shopping_cart;
 import com.example.yaencasa.Auxiliary.Constants;
+import com.example.yaencasa.Auxiliary.IDCreater;
 import com.example.yaencasa.Auxiliary.NetworkTools;
 import com.example.yaencasa.Data.Cart_Elements;
 import com.example.yaencasa.Data.ModelElement;
@@ -77,7 +78,6 @@ public class Fragment_Shopping_cart extends Fragment {
 
     //Shared Preferences
     private boolean show=true;
-    private String idsSends;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedEditor;
 
@@ -161,7 +161,6 @@ public class Fragment_Shopping_cart extends Fragment {
         //Preferencias
         sharedPreferences = requireActivity().getSharedPreferences("YaEnCasa", 0);
         sharedEditor= sharedPreferences.edit();
-        idsSends = sharedPreferences.getString("idsEnviados", " ");
         show=sharedPreferences.getBoolean("mostrar", true);
         ET_name.setText(sharedPreferences.getString("Nombre",""));
         cell_num.setText(sharedPreferences.getString("NumTelef",""));
@@ -371,7 +370,7 @@ public class Fragment_Shopping_cart extends Fragment {
         String address = ET_adress.getText().toString();
         String name = ET_name.getText().toString();
 
-        Call<Integer> call = retrofitOrders.addOrder(token, price, products, celnumber, location, address, name);
+        Call<Integer> call = retrofitOrders.addOrder(token, price, products, celnumber, location, address, name, IDCreater.personalId);
 
         call.enqueue(new Callback<Integer>() {
             @Override
@@ -424,8 +423,6 @@ public class Fragment_Shopping_cart extends Fragment {
         //Preferernces
         al_shopping_cart.clear();
         updateRecyclerAdapter();
-        sharedEditor.putString("idsEnviados",idsSends+"/"+id);
-        sharedEditor.apply();
 
         //Finalizado
         builder.setCancelable(true);
@@ -436,7 +433,7 @@ public class Fragment_Shopping_cart extends Fragment {
     private void ir_a_mis_pedidos(){
 
         if(NetworkTools.isOnline(requireContext(),true)){
-            Intent intent=new Intent(getContext(),Activity_Orders.class);
+            Intent intent=new Intent(getContext(),Activity_MyOrders.class);
             startActivity(intent);
         }
     }

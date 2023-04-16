@@ -19,8 +19,11 @@ import java.util.ArrayList;
 public class AdapterR_Orders extends RecyclerView.Adapter<AdapterR_Orders.ProductosViewHolder>{
     private Context context;
     private ArrayList<ModelOrder> al_Pedido;
-    private RecyclerTouchListener listener_cancel,listener_accept,listener_finished;
+    private RecyclerTouchListener listener_cancel,listener_accept,listener_finished, listener_ubic;
 
+    public void setListener_ubic(RecyclerTouchListener listener_ubic) {
+        this.listener_ubic = listener_ubic;
+    }
 
 
     public interface RecyclerTouchListener{
@@ -51,7 +54,7 @@ public class AdapterR_Orders extends RecyclerView.Adapter<AdapterR_Orders.Produc
         String number=String.valueOf(modelo.getId());
         String phone_number=String.valueOf(modelo.getCelnumber());
         String product=String.valueOf(modelo.getProducts());
-        String address= makeAddress(String.valueOf(modelo.getAddress()));
+        String address= modelo.getAddress();
         String date=String.valueOf(modelo.getActDate());
         String name=modelo.getName();
         String location=modelo.getLocation();
@@ -89,15 +92,6 @@ public class AdapterR_Orders extends RecyclerView.Adapter<AdapterR_Orders.Produc
 
     }
 
-    public String makeAddress(String origin){
-        origin=origin.replace("signNumeral","#")
-        .replace("signSlach","/")
-        .replace("signBackSlach","\\")
-        .replace("signGuion","-")
-        .replace("signBajoGuion","_");
-        return origin;
-    }
-
 
     public void setListener_cancel(RecyclerTouchListener listener_cancel) {
         this.listener_cancel = listener_cancel;
@@ -130,6 +124,7 @@ public class AdapterR_Orders extends RecyclerView.Adapter<AdapterR_Orders.Produc
         TextView tv_date;
         TextView tv_name;
         TextView tv_zone;
+        Button btn_ubic;
 
 
         public ProductosViewHolder(final View itemView){
@@ -141,12 +136,13 @@ public class AdapterR_Orders extends RecyclerView.Adapter<AdapterR_Orders.Produc
             tv_state=(TextView)itemView.findViewById(R.id.RO_state);
             tv_product=(TextView)itemView.findViewById(R.id.RO_product);
             tv_address=(TextView)itemView.findViewById(R.id.RO_address);
-            btn_cancel=(Button)itemView.findViewById(R.id.LI_btn_cancel);
+            btn_cancel=(Button)itemView.findViewById(R.id.RO_btn_cancel);
             btn_accept=(Button)itemView.findViewById(R.id.RO_btn_accept);
             btn_finished=(Button)itemView.findViewById(R.id.RO_btn_finished);
             tv_date=(TextView)itemView.findViewById(R.id.RO_date);
             tv_name=(TextView)itemView.findViewById(R.id.RO_nombre);
             tv_zone=(TextView)itemView.findViewById(R.id.RO_zone);
+            btn_ubic = (Button) itemView.findViewById(R.id.RO_btn_ubic);
 
             btn_cancel.setOnClickListener(new View.OnClickListener(){
                 @Override
@@ -169,6 +165,12 @@ public class AdapterR_Orders extends RecyclerView.Adapter<AdapterR_Orders.Produc
                 }
             });
 
+            btn_ubic.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(listener_ubic != null) listener_ubic.onClickItem(itemView, getAdapterPosition());
+                }
+            });
 
         }
 

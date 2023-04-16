@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt">
+
+    <group>
+        <item android:id="@+id/menu_boss_home" android:enabled="true" android:icon="@drawable/home" android:title="@string/Productos"/>
+        <item android:id="@+id/menu_boss_zone" android:enabled="true" android:icon="@drawable/location_city" android:title="@string/zonas"/>
+    </group>
+
+    <group>
+        <item android:icon="@drawable/baseline_info_24" android:id="@+id/menu_boss_about_us" android:title="@string/about_us"/>
+        <item android:icon="@drawable/baseline_book_24" android:id="@+id/menu_boss_terms" android:title="@string/t_rmino_de_uso"/>
+        <item android:icon="@drawable/baseline_developer_mode_24" android:id="@+id/menu_boss_about_developers" android:title="@string/about_developer"/>
+    </group>
+
+</menu>

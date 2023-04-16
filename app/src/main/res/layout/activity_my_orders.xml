@@ -1,151 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".Activity_MyOrders"
-    android:background="@color/white_gray">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
+    <!--Toolbar-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/AMO_appBar"
+        android:layout_width="0sp"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/AMO_toolbar"
+            android:fitsSystemWindows="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:theme="@style/ToolbarIcons"
+            app:title="@string/Mis_Pedidos"
+            app:titleTextColor="@color/white" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!--TV no conexion-->
     <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintTop_toBottomOf="@id/AMO_appBar"
+        android:id="@+id/AMO_CL_text_no_conx"
+        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="@color/red_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
-        <!--Toolbar-->
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/AMO_appBar"
+        <ImageView
+            android:contentDescription="@string/Vacio"
+            android:layout_margin="12sp"
+            android:id="@+id/AMO_IV_noInternet"
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:src="@drawable/wifi_off"
+            android:layout_marginEnd="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:tint="@color/red" />
+
+        <TextView
+            android:layout_margin="12sp"
+            android:id="@+id/AMO_TV_noInternet"
             android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/AMO_toolbar"
-                android:fitsSystemWindows="true"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:theme="@style/ToolbarIcons"
-                app:menu="@menu/menu_bar_standar"
-                app:title="@string/Mis_Pedidos"
-                app:titleTextColor="@color/white" />
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <!--TV no conexion-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/AMO_CL_text_no_conx"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/red_light"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/AMO_appBar">
-
-            <ImageView
-                android:layout_marginStart="12sp"
-                android:id="@+id/AMO_IV_noInternet"
-                android:layout_width="40sp"
-                android:layout_height="40sp"
-                android:src="@drawable/wifi_off"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/AMO_TV_noInternet"
-                app:tint="@color/red" />
-
-            <TextView
-                android:layout_margin="12sp"
-                android:id="@+id/AMO_TV_noInternet"
-                android:layout_width="0sp"
-                android:layout_height="wrap_content"
-                android:text="@string/no_hay_pedidos_a_n"
-                android:textAlignment="center"
-                android:textColor="@color/red"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/AMO_TV_noInternet"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!--Boton flotante de borrar-->
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:onClick="click_vaciar_mis_pedidos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:text="@string/los_datos_no_est_n_actualizados"
+            android:textAlignment="center"
+            android:textColor="@color/red"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginBottom="@dimen/x_large"
-            android:layout_marginEnd="@dimen/x_large"
-            android:src="@drawable/delete"
-            android:contentDescription="@string/quitar_registro_de_pedidos" />
-
-        <!--Recycler-->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/AMO_recycler"
-            android:layout_width="match_parent"
-            android:layout_height="0sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/AMO_CL_text_no_conx" />
-
-        <!--Layout vacio-->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/AMO_image_empty"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                app:layout_constraintHorizontal_chainStyle="packed"
-                android:id="@+id/AMO_IV"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:contentDescription="@string/Vacio"
-                android:src="@drawable/cajas_vacias"
-                app:layout_constraintBottom_toTopOf="@+id/AMO_TV_vacio"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
-
-            <TextView
-                android:textStyle="bold"
-                android:id="@+id/AMO_TV_vacio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/x_large"
-                android:text="@string/No_hay_productos"
-                android:textAlignment="center"
-                android:textSize="@dimen/x_large"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/AMO_IV" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintStart_toEndOf="@id/AMO_IV_noInternet"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Navegation Drawer -->
-    <com.google.android.material.navigation.NavigationView
+    <!--Boton flotante de borrar-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:onClick="click_vaciar_mis_pedidos"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/navigation_menu_productos" />
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="@dimen/x_large"
+        android:layout_marginEnd="@dimen/x_large"
+        android:src="@drawable/delete"
+        android:contentDescription="@string/quitar_registro_de_pedidos" />
 
-</androidx.drawerlayout.widget.DrawerLayout>
+    <!--Recycler-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/AMO_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="0sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/AMO_CL_text_no_conx" />
+
+    <!--Layout vacio-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/AMO_image_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            app:layout_constraintHorizontal_chainStyle="packed"
+            android:id="@+id/AMO_IV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/Vacio"
+            android:src="@drawable/cajas_vacias"
+            app:layout_constraintBottom_toTopOf="@+id/AMO_TV_vacio"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:textStyle="bold"
+            android:id="@+id/AMO_TV_vacio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/x_large"
+            android:text="@string/aun_no_hay_pedidos"
+            android:textAlignment="center"
+            android:textSize="@dimen/x_large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/AMO_IV" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

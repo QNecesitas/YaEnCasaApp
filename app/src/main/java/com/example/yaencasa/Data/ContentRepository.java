@@ -2,6 +2,7 @@ package com.example.yaencasa.Data;
 
 import android.util.Log;
 
+import com.example.yaencasa.Auxiliary.CategoryState;
 import com.example.yaencasa.Auxiliary.Constants;
 import com.example.yaencasa.Data.Network.RetrofitAdsImpl;
 import com.example.yaencasa.Data.Network.RetrofitProductsImpl;
@@ -18,9 +19,6 @@ public class ContentRepository {
     private RetrofitAdsImpl retrofitAds;
     private RetrofitProductsImpl retrofitProducts;
     private ContentReadyListener listener;
-
-    //Category
-    int idCategorySelected=1;
 
     //Data
     private ArrayList<IModel_Content> al_content;
@@ -60,7 +58,7 @@ public class ContentRepository {
     }
 
     private void fetchProducts(){
-        Call<ArrayList<ModelProduct>> callProduct = retrofitProducts.fetchProducts(Constants.PHP_TOKEN,idCategorySelected);
+        Call<ArrayList<ModelProduct>> callProduct = retrofitProducts.fetchProducts(Constants.PHP_TOKEN, CategoryState.IdCategorySelected);
 
         callProduct.enqueue(new Callback<ArrayList<ModelProduct>>() {
             @Override

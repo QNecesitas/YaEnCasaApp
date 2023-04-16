@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="600sp"
+        android:translationY="@dimen/cardview_default_elevation"
+        android:elevation="@dimen/cardview_default_elevation"
+        app:cardCornerRadius="@dimen/radius_cards">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="12sp">
+
+            <!--Title and close-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Condiciones_de_uso"
+                    android:textSize="@dimen/x_large"/>
+
+                <ImageView
+                    android:id="@+id/li_condiciones_Close"
+                    android:contentDescription="@string/Cerrar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="25sp"
+                    android:layout_height="25sp"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel"
+                    app:tint="?attr/colorSecondary" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--Separator-->
+            <View
+                android:layout_marginEnd="24sp"
+                android:layout_marginStart="24sp"
+                android:layout_marginTop="12sp"
+                android:layout_width="match_parent"
+                android:layout_height="0.5sp"
+                android:background="@color/black"/>
+
+            <!--Content-->
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="12sp"
+                        android:contentDescription="@string/Pedidos"
+                        android:layout_width="150sp"
+                        android:layout_height="150sp"
+                        android:layout_marginStart="30sp"
+                        android:layout_marginEnd="30sp"
+                        android:src="@drawable/contract" />
+
+                    <TextView
+                        android:layout_marginTop="12sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/medium"
+                        android:text="@string/Condiciones_texto" />
+
+
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

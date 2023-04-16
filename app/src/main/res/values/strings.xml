@@ -101,7 +101,7 @@
     <string name="aceptar">Aceptar</string>
     <string name="En_espera_extendido">Su pedido está en espera de ser aceptado, cuando sea aceptado será enviado a su dirección</string>
     <string name="Pedido_cancelado">Su pedido fue cancelado por la siguiente razón:</string>
-    <string name="Pedido_aceptado">Su pedido fue aceptado. En menos de cuatro horas lo recibirá en la dirección que colocó</string>
+    <string name="Pedido_aceptado">Su pedido fue aceptado. Espere mientras es enviado a la dirección que colocó</string>
     <string name="quitar_registro_de_pedidos">Quitar registro de pedidos</string>
     <string name="pedido_enviado_correctamente">¡Pedido enviado correctamente!</string>
     <string name="espere_la_confirmaci_n_de_su_pedido">Espere a que su pedido sea aceptado para que luego sea enviado a la dirección que colocó</string>
@@ -112,15 +112,15 @@
     <string name="abierto">Abierto</string>
     <string name="cerrado">Cerrado</string>
     <string name="politica_privacidad_texto">
-        La aplicación de PuertoShop es un software móvil a través del cual el usuario puede ordenar un pedido de compra referente a productos de diversa índole del negocio que lleva el mismo nombre de la aplicación.
-        \nLa presente Política de Privacidad establece los términos en que PuertoShop usa y protege la información proporcionada por los usuarios al momento de usar la aplicación. Esta Política de Privacidad puede cambiar con el tiempo por lo que recomendamos revisar continuamente esta página para asegurarse que está de acuerdo con dichos cambios.\n
+        La aplicación de Ya En Casa es un software móvil a través del cual el usuario puede ordenar un pedido de compra referente a productos de diversa índole del negocio que lleva el mismo nombre de la aplicación.
+        \nLa presente Política de Privacidad establece los términos en que Ya En Casa usa y protege la información proporcionada por los usuarios al momento de usar la aplicación. Esta Política de Privacidad puede cambiar con el tiempo por lo que recomendamos revisar continuamente esta página para asegurarse que está de acuerdo con dichos cambios.\n
 \nInformación que es recogida:\n
 \nLa información es brindada por el mismo usuario. Tomamos latitud, longitud y dirección para poder saber cuál será la ubicación y entregar el pedido, también utilizaremos el número móvil del cliente para su comunicación en caso de cualquier percance y el nombre de la persona a entregar para que sea el titular quien reciba.\n
 \nInformación de terceros:\n\n
-El contenido es brindado por PuertoShop, los creadores no nos responsabilizamos de dicho contenido.No nos responsabilizamos por los datos dados por el usuario que no se correspondan con latitud, longitud, dirección y nombre. Está aplicación no comparte datos con terceros.
+El contenido es brindado por Ya En Casa, los creadores no nos responsabilizamos de dicho contenido.No nos responsabilizamos por los datos dados por el usuario que no se correspondan con latitud, longitud, dirección y nombre. Está aplicación no comparte datos con terceros.
     </string>
     <string name="licencia_texto">
-        La aplicación de PuertoShop está bajo el uso de la licencia Creative Commons.\n\n
+        La aplicación de Ya En Casa está bajo el uso de la licencia Creative Commons.\n\n
 ¿Cómo funcionan las Licencias Creative Commons?\n\n
 Las licencias Creative Commons  se basan en el derecho de autor, con lo cual la obra sigue perteneciendo al  dominio privativo, pero con excepciones y limitaciones que son elegidas y explicitadas por el autor de la obra.  Un autor, que desea otorgar algunos permisos sobre su trabajo, para que terceros puedan copiarlo, o modificarlo  sin problemas de copyright, puede licenciar su obra bajo una licencia CC y de esa forma explicitar su voluntad de que la obra circule sin restricciones legales.
 \n\nEsta licencia contiene:
@@ -285,4 +285,13 @@ Licencia para grupo de terceros---Gson  Copyright 2008 Google Inc.
     <string name="Ubicacion_obtenida_con_exito">Ubicación obtenida</string>
     <string name="error_get_location">Error al obtener localización</string>
     <string name="selecc_ubic">Debe seleccionar su ubicación</string>
+    <string name="Ubicacion">Ubicación</string>
+    <string name="Ver_ubic">Ver Ubicación</string>
+    <string name="zonas">Zonas</string>
+    <string name="pedido_vaciado_exito_admin">Pedidos finalizados vaciados con éxito</string>
+    <string name="eliminando_pedidos">Eliminando pedidos finalizados</string>
+    <string name="aun_no_hay_pedidos">Aún no hay pedidos</string>
+    <string name="no_hay_categor_as">No hay categorías</string>
+    <string name="delete_zone">Eliminando zona</string>
+    <string name="zone_delete">Zona eliminada con éxito</string>
 </resources>

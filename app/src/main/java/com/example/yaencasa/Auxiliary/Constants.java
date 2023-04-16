@@ -1,6 +1,8 @@
 package com.example.yaencasa.Auxiliary;
 
 public class Constants {
+
+    //Tokens
     public static final String PHP_TOKEN="YaEnCasa_355";
 
     //YaEnCasa Folders
@@ -14,6 +16,10 @@ public class Constants {
     //Maps
     public static final String SHOWMAP="https://www.google.com/maps/search/?api=1&query=";
     public static final String PUTMAP="https://map.google.com/maps";
+
+    //Client or Admin
+    public enum ClientAdmin {CLIENT, ADMIN}
+    public static final ClientAdmin APP_MODE = ClientAdmin.CLIENT;
 
 }
 

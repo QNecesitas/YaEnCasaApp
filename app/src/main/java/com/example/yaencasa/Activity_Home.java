@@ -1,7 +1,6 @@
 package com.example.yaencasa;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -9,6 +8,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -20,7 +20,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 
-import com.google.android.material.bottomappbar.BottomAppBar;
+import com.example.yaencasa.Auxiliary.Constants;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
@@ -35,17 +35,22 @@ public class Activity_Home extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor sharedEditor;
     private RadioButton radioButtonLocal;
+    private BottomNavigationView bottomAppBarView;
 
 
     //DrawerLayout
-    DrawerLayout drawer;
-    NavigationView navigationView;
+    private DrawerLayout drawer;
+    private NavigationView navigationView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        if(Constants.APP_MODE == Constants.ClientAdmin.ADMIN) {
+            setContentView(R.layout.activity_home_admin);
+        }else{
+            setContentView(R.layout.activity_home);
+        }
 
         //Toolbar
         Toolbar toolbar=(Toolbar) findViewById(R.id.AH_toolbar);
@@ -57,8 +62,8 @@ public class Activity_Home extends AppCompatActivity {
 
 
         //BottomBar
-        BottomNavigationView bottomAppBarView=findViewById(R.id.AH_bottom_navigation);
-        showFragmentProducts();
+        bottomAppBarView=findViewById(R.id.AH_bottom_navigation);
+        showFragmentCategories();
         bottomAppBarView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -98,7 +103,39 @@ public class Activity_Home extends AppCompatActivity {
 
                 switch (item.getItemId()){
 
+                    case R.id.menu_client_about_developers:
+                    case R.id.menu_boss_about_developers:
+                        Intent intent1 =new Intent(Activity_Home.this, Activity_About_Dev.class);
+                        startActivity(intent1);
+                        break;
+                    case R.id.menu_client_about_us:
+                    case R.id.menu_boss_about_us:
+                        Intent intent2 =new Intent(Activity_Home.this, Activity_About_Us.class);
+                        startActivity(intent2);
+                        break;
+                    case R.id.menu_client_terms:
+                    case R.id.menu_boss_terms:
+                        li_terminos();
+                        break;
+
+
+
+                    case R.id.menu_client_mis_pedidos:
+                        Intent intent3 =new Intent(Activity_Home.this, Activity_MyOrders.class);
+                        startActivity(intent3);
+                        break;
+                    case R.id.menu_boss_home:
+                        showFragmentProducts();
+                        break;
+                    case R.id.menu_boss_zone:
+                        Intent intent6 =new Intent(Activity_Home.this, Activity_Zone.class);
+                        startActivity(intent6);
+                        break;
                 }
+
+                //Admin
+
+
 
                 return true;
             }
@@ -140,6 +177,16 @@ public class Activity_Home extends AppCompatActivity {
 
     private void showFragmentCategories(){
         Fragment_Categories fragment_categories=new Fragment_Categories();
+        fragment_categories.setRecyclerTouchListener(new Fragment_Categories.RecyclerTouchListener() {
+            @Override
+            public void onClick() {
+               if(Constants.APP_MODE==Constants.ClientAdmin.CLIENT){
+                   bottomAppBarView.setSelectedItemId(R.id.page_products);
+               }else{
+                   bottomAppBarView.setSelectedItemId(R.id.page_edit_products);
+               }
+            }
+        });
         fragmentManager.beginTransaction()
                 .replace(R.id.AH_FL,fragment_categories)
                 .commit();

@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.yaencasa.Adapters.AdapterR_MyOrders;
+import com.example.yaencasa.Auxiliary.Constants;
+import com.example.yaencasa.Auxiliary.IDCreater;
 import com.example.yaencasa.Auxiliary.NetworkTools;
 import com.example.yaencasa.Data.ModelOrder;
 import com.example.yaencasa.Data.Network.RetrofitOrdersImpl;
@@ -45,9 +47,7 @@ public class Activity_MyOrders extends AppCompatActivity {
     private ArrayList<ModelOrder> al_myOrders;
     private boolean inActivity;
     private Handler handler;
-    private String idsPreferences;
     private ConstraintLayout clNoInternet;
-    private  SharedPreferences.Editor sharedEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,14 +59,6 @@ public class Activity_MyOrders extends AppCompatActivity {
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
-        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                if(item.getItemId()==R.id.icon_navigation){
-                }
-                return true;
-            }
-        });
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,10 +74,7 @@ public class Activity_MyOrders extends AppCompatActivity {
         adapterR_myOrders=new AdapterR_MyOrders(Activity_MyOrders.this,al_myOrders);
         recycler.setAdapter(adapterR_myOrders);
 
-        //SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences("PuertoShop",0);
-        sharedEditor=sharedPreferences.edit();
-        idsPreferences=sharedPreferences.getString("idsEnviados"," ");
+
 
         //No internet
         clNoInternet=(ConstraintLayout) findViewById(R.id.AMO_CL_text_no_conx);
@@ -105,19 +94,21 @@ public class Activity_MyOrders extends AppCompatActivity {
     private void loadRecyclerInfo(){
         if(NetworkTools.isOnline(Activity_MyOrders.this,false)) {
 
-            Call<ArrayList<ModelOrder>> call = retrofitOrders.fetchOrders();
+            Call<ArrayList<ModelOrder>> call = retrofitOrders.fetchMyOrders(Constants.PHP_TOKEN, IDCreater.personalId);
             call.enqueue(new Callback<ArrayList<ModelOrder>>() {
                 @Override
                 public void onResponse(Call<ArrayList<ModelOrder>> call, Response<ArrayList<ModelOrder>> response) {
                     if (response.isSuccessful()) {
-                        al_myOrders.clear();
                         clNoInternet.setVisibility(View.GONE);
-                        al_myOrders = response.body();
-                        if (al_myOrders.isEmpty()) {
-
-                        } else {
-                            clNoInternet.setVisibility(View.VISIBLE);
+                        ArrayList<ModelOrder> al_orders_internet = response.body();
+                        if(al_orders_internet!=null) {
+                            if (al_orders_internet.size() != al_myOrders.size()) {
+                                al_myOrders.clear();
+                                al_myOrders.addAll(al_orders_internet);
+                                updateRecyclerAdapter();
+                            }
                         }
+
                     }
                 }
 
@@ -173,9 +164,25 @@ public class Activity_MyOrders extends AppCompatActivity {
         showAlertDialogVaciar();
     }
     public void click_vaciar_pedidos(){
-        sharedEditor.putString("idsEnviados"," ");
-        sharedEditor.apply();
-        finish();
+        if(NetworkTools.isOnline(getApplicationContext(),true)){
+            Call<String> call = retrofitOrders.cleanMyOrders(Constants.PHP_TOKEN, IDCreater.personalId);
+            call.enqueue(new Callback<String>() {
+                @Override
+                public void onResponse(Call<String> call, Response<String> response) {
+                    if(response.isSuccessful()){
+                        al_myOrders.clear();
+                        updateRecyclerAdapter();
+                    }else{
+                        NetworkTools.showAlertDialogNoInternet(getApplicationContext());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<String> call, Throwable t) {
+                    NetworkTools.showAlertDialogNoInternet(getApplicationContext());
+                }
+            });
+        }
     }
 
     @Override

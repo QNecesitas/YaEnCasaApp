@@ -2,6 +2,7 @@ package com.example.yaencasa;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -30,6 +31,7 @@ import com.example.yaencasa.Auxiliary.Constants;
 import com.example.yaencasa.Auxiliary.NetworkTools;
 import com.example.yaencasa.Data.ModelOrder;
 import com.example.yaencasa.Data.Network.RetrofitOrdersImpl;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
 import java.util.ArrayList;
@@ -53,13 +55,10 @@ public class Fragment_Orders extends Fragment {
     private boolean inActivity;
     private Handler handler;
     private ConstraintLayout clNoInternet;
-    private ProgressDialog pdialogDel;
 
     //Shared Preferences
-    private int lastOrderSeenOrNotified;
-    private SharedPreferences.Editor sharedEditor;
 
-    View root;
+    private View root;
 
 
     public Fragment_Orders() {
@@ -67,14 +66,9 @@ public class Fragment_Orders extends Fragment {
     }
 
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         root = inflater.inflate(R.layout.fragment__orders, container, false);
 
@@ -83,14 +77,21 @@ public class Fragment_Orders extends Fragment {
         //RecyclerView
         recycler = (RecyclerView)root.findViewById(R.id.FO_recycler);
         recycler.setHasFixedSize(true);
-        recycler.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        recycler.setLayoutManager(new LinearLayoutManager(requireContext()));
         al_orders = new ArrayList<>();
         adapterR_orders= new AdapterR_Orders(getContext(), al_orders);
         recycler.setAdapter(adapterR_orders);
         clNoInternet=(ConstraintLayout) root.findViewById(R.id.FO_CL_text_no_conx);
 
 
-        lastOrderSeenOrNotified = getContext().getSharedPreferences("YaEnCasa", 0).getInt("lastOrderSeenOrNotified", 0);
+        FloatingActionButton floatingActionButton = (FloatingActionButton) root.findViewById(R.id.FO_vaciar);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                click_vaciar_pedidos();
+            }
+        });
+
 
         //Internet
         retrofitOrders=new RetrofitOrdersImpl();
@@ -109,18 +110,19 @@ public class Fragment_Orders extends Fragment {
     private void loadRecyclerInfo() {
         if (NetworkTools.isOnline(getContext(), false)) {
 
-            Call<ArrayList<ModelOrder>> call = retrofitOrders.fetchOrders();
+            Call<ArrayList<ModelOrder>> call = retrofitOrders.fetchOrders(Constants.PHP_TOKEN);
             call.enqueue(new Callback<ArrayList<ModelOrder>>() {
                 @Override
                 public void onResponse(Call<ArrayList<ModelOrder>> call, Response<ArrayList<ModelOrder>> response) {
                     if (response.isSuccessful()) {
-                        al_orders.clear();
                         clNoInternet.setVisibility(View.GONE);
-                        al_orders = response.body();
-                        if (al_orders.isEmpty()) {
-
-                        } else {
-                            clNoInternet.setVisibility(View.VISIBLE);
+                        ArrayList<ModelOrder> al_orders_internet = response.body();
+                        if(al_orders_internet!=null) {
+                            if (al_orders_internet.size() != al_orders.size()) {
+                                al_orders.clear();
+                                al_orders.addAll(al_orders_internet);
+                                updateRecyclerAdapter();
+                            }
                         }
                     }
                 }
@@ -137,7 +139,7 @@ public class Fragment_Orders extends Fragment {
     //Auxiliares
     private void updateRecyclerAdapter() {
 
-        ConstraintLayout linearLayoutEmpty = (ConstraintLayout) root.findViewById(R.id.AO_image_empty);
+        ConstraintLayout linearLayoutEmpty = (ConstraintLayout) root.findViewById(R.id.FO_image_empty);
         if (al_orders.isEmpty()) {
             linearLayoutEmpty.setVisibility(View.VISIBLE);
             recycler.setVisibility(View.GONE);
@@ -166,8 +168,15 @@ public class Fragment_Orders extends Fragment {
                 clickFinalizar(position);
             }
         });
+        adapterR_orders.setListener_ubic(new AdapterR_Orders.RecyclerTouchListener() {
+            @Override
+            public void onClickItem(View v, int position) {
+                clickUbic(position);
+            }
+        });
 
         recycler.setAdapter(adapterR_orders);
+
 
     }
     private void showAlertDialogCancelOrAcept(){
@@ -199,6 +208,7 @@ public class Fragment_Orders extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
                 eliminarPedidosInternet();
+
             }
         });
         builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
@@ -288,7 +298,8 @@ public class Fragment_Orders extends Fragment {
                     clNoInternet.setVisibility(View.GONE);
                     pdialog.dismiss();
                     FancyToast.makeText(getContext(),getString(R.string.Operacion_realizada_con_exito),FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
-                    updateRecyclerAdapter();
+                    al_orders.clear();
+                    loadMainInternetInfo();
                 }else{
                     pdialog.dismiss();
                     showAlertDialogNoInternet();
@@ -320,7 +331,8 @@ public class Fragment_Orders extends Fragment {
                     clNoInternet.setVisibility(View.GONE);
                     pdialog.dismiss();
                     FancyToast.makeText(getContext(),getString(R.string.Operacion_realizada_con_exito),FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
-                    updateRecyclerAdapter();
+                    al_orders.clear();
+                    loadMainInternetInfo();
                 }else{
                     pdialog.dismiss();
                     showAlertDialogNoInternet();
@@ -353,8 +365,9 @@ public class Fragment_Orders extends Fragment {
                 if (response.isSuccessful()){
                     clNoInternet.setVisibility(View.GONE);
                     pdialog.dismiss();
-                    FancyToast.makeText(getContext(),getString(R.string.Operacion_realizada_con_exito),FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
-                    updateRecyclerAdapter();
+                    FancyToast.makeText(requireContext(),getString(R.string.Operacion_realizada_con_exito),FancyToast.LENGTH_LONG,FancyToast.SUCCESS,false).show();
+                    al_orders.clear();
+                    loadMainInternetInfo();
                 }else{
                     pdialog.dismiss();
                     showAlertDialogNoInternet();
@@ -373,14 +386,23 @@ public class Fragment_Orders extends Fragment {
             finalizarPedidoInternet(String.valueOf(al_orders.get(position).getId()), position);
         }
     }
-    public void click_vaciar_pedidos(View view) {
+    private void clickUbic(int position){
+        if (NetworkTools.isOnline(requireContext(), true)) {
+            int posy = this.al_orders.get(position).getLocation().indexOf(":");
+            String latitud = this.al_orders.get(position).getLocation().substring(0, posy);
+            String longitud = this.al_orders.get(position).getLocation().substring(posy + 1);
+            Intent intent = new Intent(requireActivity(), Activity_ShowMap.class);
+            intent.putExtra("Latitud", latitud);
+            intent.putExtra("Longitud", longitud);
+            startActivity(intent);
+        }
+    }
+    public void click_vaciar_pedidos() {
         showAlertDialogVaciar();
     }
     private void clickCancelar(int position) {
         if (!al_orders.get(position).getState().equals("Aceptado")) {
-            if (NetworkTools.isOnline(getContext(), true)) {
                 li_cancelar(String.valueOf(al_orders.get(position).getId()), position);
-            }
         }else showAlertDialogCancelOrAcept();
     }
     private void clickAceptar(int position) {
@@ -392,6 +414,8 @@ public class Fragment_Orders extends Fragment {
     }
 
     private void eliminarPedidosInternet() {
+        ProgressDialog pdialog = ProgressDialog.show(getContext(), getString(R.string.eliminando_pedidos), getString(R.string.por_favor_espere), false, false);
+
 
         Call<String> call = retrofitOrders.cleanOrders(Constants.PHP_TOKEN);
 
@@ -399,13 +423,20 @@ public class Fragment_Orders extends Fragment {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if(response.isSuccessful()){
-
+                    pdialog.dismiss();
+                    al_orders.clear();
+                    loadMainInternetInfo();
+                    FancyToast.makeText(requireContext(),getString(R.string.pedido_vaciado_exito_admin), FancyToast.LENGTH_LONG, FancyToast.SUCCESS,false).show();
+                }else{
+                    pdialog.dismiss();
+                    NetworkTools.showAlertDialogNoInternet(requireContext());
                 }
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-
+                pdialog.dismiss();
+                NetworkTools.showAlertDialogNoInternet(requireContext());
             }
         });
 
