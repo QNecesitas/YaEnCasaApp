@@ -1,7 +1,7 @@
 package com.example.yaencasa.Data
 
 class ModelZone(
-    val idZone: Int,
+    val idZone: Long,
     val name: String,
-    val price: Int
+    val price: Double
 )

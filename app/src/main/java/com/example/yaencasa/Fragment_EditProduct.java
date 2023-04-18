@@ -97,12 +97,6 @@ public class Fragment_EditProduct extends Fragment {
 
 
 
-
-
-
-
-
-
     public Fragment_EditProduct() {
         // Required empty public constructor
     }
@@ -164,12 +158,6 @@ public class Fragment_EditProduct extends Fragment {
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
     }
-
-
-
-
-
-
 
 
 

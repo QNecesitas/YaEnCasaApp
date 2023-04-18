@@ -9,6 +9,7 @@ data class ModelOrder(
     val location: String,
     val address: String,
     val name: String,
+    val zone: String,
     val state: String,
     val descr: String
 )

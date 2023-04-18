@@ -50,8 +50,8 @@ public class AdapterR_MyOrders extends RecyclerView.Adapter<AdapterR_MyOrders.Pr
         String product=String.valueOf(modelo.getProducts());
         String address=makeAddress(String.valueOf(modelo.getAddress()));
         String date=String.valueOf(modelo.getActDate());
-        String nombre=modelo.getName();
-        String zonaEntrega=modelo.getLocation();
+        String nombre = modelo.getName();
+        String zonaEntrega = modelo.getZone();
 
         holder.tv_number_order.setText(number);
         holder.tv_price.setText(price);
@@ -134,8 +134,8 @@ public class AdapterR_MyOrders extends RecyclerView.Adapter<AdapterR_MyOrders.Pr
             tv_product=(TextView)itemView.findViewById(R.id.RMO_product);
             tv_address=(TextView)itemView.findViewById(R.id.RMO_address);
             tv_date=(TextView)itemView.findViewById(R.id.RMO_date);
-            tv_nombre=(TextView)itemView.findViewById(R.id.RMO_name);
-            tv_zona=(TextView)itemView.findViewById(R.id.RMO_zona);
+            tv_nombre = (TextView) itemView.findViewById(R.id.RMO_name);
+            tv_zona = (TextView) itemView.findViewById(R.id.RMO_zone);
 
         }
 

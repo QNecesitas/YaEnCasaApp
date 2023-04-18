@@ -36,9 +36,20 @@ class RetrofitOrdersImpl :IRetrofitOrders{
         location: String,
         address: String,
         name: String,
+        zone: String,
         idClient: Long
     ): Call<Int> {
-        return productApi.addOrder(token, price, products, celnumber,  location, address, name, idClient);
+        return productApi.addOrder(
+            token,
+            price,
+            products,
+            celnumber,
+            location,
+            address,
+            name,
+            zone,
+            idClient
+        );
     }
 
     override fun fetchOrders(token: String): Call<ArrayList<ModelOrder>> {

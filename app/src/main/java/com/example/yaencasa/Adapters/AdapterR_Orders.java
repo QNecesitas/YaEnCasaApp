@@ -57,7 +57,8 @@ public class AdapterR_Orders extends RecyclerView.Adapter<AdapterR_Orders.Produc
         String address= modelo.getAddress();
         String date=String.valueOf(modelo.getActDate());
         String name=modelo.getName();
-        String location=modelo.getLocation();
+        String location = modelo.getLocation();
+        String zone = modelo.getZone();
 
         holder.tv_number_order.setText(number);
         holder.tv_price.setText(price);
@@ -67,7 +68,7 @@ public class AdapterR_Orders extends RecyclerView.Adapter<AdapterR_Orders.Produc
         holder.tv_address.setText(address);
         holder.tv_date.setText(date);
         holder.tv_name.setText(name);
-        holder.tv_zone.setText(location);
+        holder.tv_zone.setText(zone);
 
         switch (modelo.getState()){
             case "En espera":

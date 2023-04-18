@@ -76,7 +76,8 @@
                 app:layout_constraintBottom_toTopOf="@id/RZ_TV_price"
                 app:layout_constraintStart_toEndOf="@+id/RZ_CV_imageContainer"
                 android:layout_marginStart="20sp"
-                android:layout_marginEnd="20sp"/>
+                android:layout_marginEnd="20sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_marginBottom="4sp"

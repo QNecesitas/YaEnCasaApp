@@ -37,23 +37,16 @@ public class AdapterR_Zones extends RecyclerView.Adapter<AdapterR_Zones.ZonesVie
 
 
     public ZonesViewHolder onCreateViewHolder(ViewGroup parent, int viewType){
-        LayoutInflater inflater= LayoutInflater.from(context);
-        View view=inflater.inflate(R.layout.recycler_zone,null);
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.recycler_zone, parent, false);
         return new ZonesViewHolder(view);
     }
 
-    public void onBindViewHolder(ZonesViewHolder holder, int position){
+    public void onBindViewHolder(ZonesViewHolder holder, int position) {
         ModelZone modelZone = pila_Zones.get(position);
-
-        Glide.with(context)
-                .load(Constants.PHP_IMAGES +"Z_"+modelZone.getName()+".jpg")
-                .skipMemoryCache(true)
-                .centerCrop()
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .into(holder.city);
-
         holder.name_zone.setText(modelZone.getName());
-        holder.price.setText(modelZone.getPrice());
+        String textPrice = modelZone.getPrice() + "CUP";
+        holder.price.setText(textPrice);
 
 
     }

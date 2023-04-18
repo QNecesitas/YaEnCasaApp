@@ -12,7 +12,7 @@ import java.util.ArrayList
 interface IRetrofitZones {
 
     @FormUrlEncoded
-    @POST("RemoveZone.php")
+    @POST("DeleteZone.php")
     fun removeZone(
         @Field("token") token: String,
         @Field("idZone") idZone: Long

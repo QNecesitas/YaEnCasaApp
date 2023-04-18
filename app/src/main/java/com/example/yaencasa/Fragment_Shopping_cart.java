@@ -36,7 +36,9 @@ import com.example.yaencasa.Auxiliary.NetworkTools;
 import com.example.yaencasa.Data.Cart_Elements;
 import com.example.yaencasa.Data.ModelElement;
 import com.example.yaencasa.Data.ModelProduct;
+import com.example.yaencasa.Data.ModelZone;
 import com.example.yaencasa.Data.Network.RetrofitOrdersImpl;
+import com.example.yaencasa.Data.Network.RetrofitZoneslmpl;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
@@ -91,12 +93,15 @@ public class Fragment_Shopping_cart extends Fragment {
     private ProgressDialog progressDialogSubiend;
     private TextView tv_totalPrice;
 
+    //Zone
+    private ProgressDialog progressDialogCargando;
+    private ArrayList<ModelZone> al_zones;
+    private ArrayList<String> al_zones_str;
+    private RetrofitZoneslmpl retrofitZoneslmpl;
 
     public Fragment_Shopping_cart() {
         // Required empty public constructor
     }
-
-
 
 
     @Override
@@ -118,7 +123,7 @@ public class Fragment_Shopping_cart extends Fragment {
                 click_choice_loc();
             }
         });
-        sendOrder=(ExtendedFloatingActionButton) root.findViewById(R.id.FSC_FAB_sendOrder);
+        sendOrder = (ExtendedFloatingActionButton) root.findViewById(R.id.FSC_FAB_sendOrder);
         sendOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,55 +132,44 @@ public class Fragment_Shopping_cart extends Fragment {
         });
 
         //Spinner--Zona
-        ArrayList<String> al_zones=new ArrayList<>();
-        addZones(al_zones);
-        ArrayAdapter<String> strigArrayAdapter=new ArrayAdapter<String>(getContext(),R.layout.list_items_spinner,al_zones);
-        autoC.setAdapter(strigArrayAdapter);
-        autoC.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if (autoC.getText().toString().trim().isEmpty()){
-                    selectedZone="No";
-                }else{
-                    selectedZone=autoC.getText().toString();
-                    lastAutoCSelected=i;
-                }
-            }
-        });
-
+        al_zones = new ArrayList<>();
+        al_zones_str = new ArrayList<>();
 
 
         //RecyclerView
         tv_totalPrice = (TextView) root.findViewById(R.id.FSC_PrecioTotal);
-        al_products=new ArrayList<>();
-        recycler=(RecyclerView) root.findViewById(R.id.FSC_recycler);
-        recycler.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        al_products = new ArrayList<>();
+        recycler = (RecyclerView) root.findViewById(R.id.FSC_recycler);
+        recycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recycler.setHasFixedSize(true);
-        al_shopping_cart= Cart_Elements.al_elements;
-        adapterR_shopping_cart=new AdapterR_Shopping_cart(getContext(),al_shopping_cart);
+        al_shopping_cart = Cart_Elements.al_elements;
+        adapterR_shopping_cart = new AdapterR_Shopping_cart(getContext(), al_shopping_cart);
         recycler.setAdapter(adapterR_shopping_cart);
         linearLayoutEmpty=(ConstraintLayout) root.findViewById(R.id.FSC_CL_empty);
-        updateRecyclerAdapter();
 
 
         //Preferencias
         sharedPreferences = requireActivity().getSharedPreferences("YaEnCasa", 0);
         sharedEditor= sharedPreferences.edit();
         show=sharedPreferences.getBoolean("mostrar", true);
-        ET_name.setText(sharedPreferences.getString("Nombre",""));
-        cell_num.setText(sharedPreferences.getString("NumTelef",""));
-        ET_adress.setText(sharedPreferences.getString("Direccion",""));
-        int index=sharedPreferences.getInt("zoneIndexS",0);
-        if (autoC.getText().toString().trim().isEmpty()){
-            selectedZone="No";
-        }else{
-            selectedZone=autoC.getText().toString();
+        ET_name.setText(sharedPreferences.getString("Nombre", ""));
+        cell_num.setText(sharedPreferences.getString("NumTelef", ""));
+        ET_adress.setText(sharedPreferences.getString("Direccion", ""));
+        int index = sharedPreferences.getInt("zoneIndexS", 0);
+        if (autoC.getText().toString().trim().isEmpty()) {
+            selectedZone = "No";
+        } else {
+            selectedZone = autoC.getText().toString();
         }
 
+        //Zones
+        al_zones = new ArrayList<>();
 
         //Internet
         retrofitOrders = new RetrofitOrdersImpl();
+        retrofitZoneslmpl = new RetrofitZoneslmpl();
 
+        loadMainInternetInfo();
 
 
         return root;
@@ -183,12 +177,60 @@ public class Fragment_Shopping_cart extends Fragment {
 
 
     //Start
-    private void updateRecyclerAdapter(){
-        adapterR_shopping_cart=new AdapterR_Shopping_cart(getContext(),al_shopping_cart);
-        if(al_shopping_cart.isEmpty()){
+    private void loadMainInternetInfo() {
+        if (NetworkTools.isOnline(requireContext(), false)) {
+            progressDialogCargando = ProgressDialog.show(requireContext(), getString(R.string.Cargando_datos), getString(R.string.Espere), false, false);
+            loadZone();
+        } else {
+            showAlertDialogNoInternet();
+        }
+    }
+
+    private void loadZone() {
+        if (NetworkTools.isOnline(requireContext(), false)) {
+
+            Call<ArrayList<ModelZone>> call = retrofitZoneslmpl.fetchZones();
+            call.enqueue(new Callback<ArrayList<ModelZone>>() {
+                @Override
+                public void onResponse(Call<ArrayList<ModelZone>> call, Response<ArrayList<ModelZone>> response) {
+                    if (response.isSuccessful()) {
+                        progressDialogCargando.dismiss();
+                        al_zones = response.body();
+                        makeZonesStr();
+                    } else {
+                        progressDialogCargando.dismiss();
+                        NetworkTools.showAlertDialogNoInternet(requireContext());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<ArrayList<ModelZone>> call, Throwable t) {
+                    progressDialogCargando.dismiss();
+                    NetworkTools.showAlertDialogNoInternet(requireContext());
+                }
+            });
+
+
+        } else {
+            showAlertDialogNoInternet();
+        }
+
+    }
+
+    private void makeZonesStr() {
+        for (ModelZone model : al_zones) {
+            al_zones_str.add(model.getName() + "---------" + model.getPrice() + " CUP");
+        }
+        updateRecyclerAdapter();
+    }
+
+    private void updateRecyclerAdapter() {
+        //Cart adapter
+        adapterR_shopping_cart = new AdapterR_Shopping_cart(getContext(), al_shopping_cart);
+        if (al_shopping_cart.isEmpty()) {
             linearLayoutEmpty.setVisibility(View.VISIBLE);
             recycler.setVisibility(View.INVISIBLE);
-        }else{
+        } else {
             linearLayoutEmpty.setVisibility(View.GONE);
             recycler.setVisibility(View.VISIBLE);
         }
@@ -199,43 +241,59 @@ public class Fragment_Shopping_cart extends Fragment {
             }
         });
         recycler.setAdapter(adapterR_shopping_cart);
+
+        //Zones Adapter
+        ArrayAdapter<String> strigArrayAdapter = new ArrayAdapter<String>(getContext(), R.layout.list_items_spinner, al_zones_str);
+        autoC.setAdapter(strigArrayAdapter);
+        autoC.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (autoC.getText().toString().trim().isEmpty()) {
+                    selectedZone = "No";
+                } else {
+                    selectedZone = autoC.getText().toString();
+                    lastAutoCSelected = i;
+                }
+            }
+        });
+
         makeTotalPrice();
     }
-    private void makeTotalPrice(){
-        priceTotalCUP=0;
-        for(ModelElement element: al_shopping_cart){
+
+    private void makeTotalPrice() {
+        priceTotalCUP = 0;
+        for (ModelElement element : al_shopping_cart) {
             priceTotalCUP += element.getPrice();
         }
 
-        String textTotalPrice = getString(R.string.Precio_total)+" "+priceTotalCUP+" CUP";
+        String textTotalPrice = getString(R.string.Precio_total) + " " + priceTotalCUP + " CUP";
         tv_totalPrice.setText(textTotalPrice);
     }
 
-    private void addZones(ArrayList<String> al_zones) {
-        al_zones.add("El Boquerón --- +60 CUP");
-        al_zones.add("La Playita --- +50 CUP");
-        al_zones.add("Sandino --- +100 CUP");
-        al_zones.add("Aguada del Negro --- +100 CUP");
-        al_zones.add("Tiplantas --- +110 CUP");
-        al_zones.add("María Nuñes --- +50 CUP");
-        al_zones.add("La Cooperativa --- +150 CUP");
-        al_zones.add("La Micro --- +60 CUP");
-        al_zones.add("Reparto Militar 1 --- +100 CUP");
-        al_zones.add("Reparto Militar 2 --- +150 CUP");
-        al_zones.add("El Itabo --- +80 CUP");
-        al_zones.add("El Itabo final --- +150 CUP");
-        al_zones.add("Reparto Armando Silva --- +60 CUP");
-        al_zones.add("Reparto Médico --- +50 CUP");
-        al_zones.add("Reparto Cordoví  --- +50 CUP");
-        al_zones.add("La Morena --- +100 CUP");
-        al_zones.add("La Morena final --- +180 CUP");
+    public void showAlertDialogNoInternet() {
+        //init alert dialog
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(requireContext());
+        builder.setCancelable(false);
+        builder.setTitle(R.string.error);
+        builder.setMessage(R.string.Revise_su_conexion);
+        //set listeners for dialog buttons
+        builder.setPositiveButton(R.string.Reintentar, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                loadMainInternetInfo();
+            }
+        });
+
+        //create the alert dialog and show it
+        builder.create().show();
     }
 
 
     //Aux
     public void showAlertDialogDelete(int pos) {
         //init alert dialog
-        android.app.AlertDialog.Builder builder =  new android.app.AlertDialog.Builder(getContext());
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getContext());
         builder.setCancelable(true);
         builder.setTitle(R.string.Eliminar_elementos);
         builder.setMessage(R.string.Tiene_certeza_eliminar_elemento);
@@ -369,8 +427,9 @@ public class Fragment_Shopping_cart extends Fragment {
         String location = latitude+":"+longitude;
         String address = ET_adress.getText().toString();
         String name = ET_name.getText().toString();
+        String zone = autoC.getText().toString();
 
-        Call<Integer> call = retrofitOrders.addOrder(token, price, products, celnumber, location, address, name, IDCreater.personalId);
+        Call<Integer> call = retrofitOrders.addOrder(token, price, products, celnumber, location, address, name, zone, IDCreater.personalId);
 
         call.enqueue(new Callback<Integer>() {
             @Override

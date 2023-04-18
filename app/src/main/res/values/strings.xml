@@ -264,7 +264,6 @@ Licencia para grupo de terceros---Gson  Copyright 2008 Google Inc.
     <string name="mantenga_presionado_en_el_mapa_para_seleccionar_su_ubicaci_n">Mantenga presionado en el mapa para seleccionar su ubicación</string>
     <string name="reload_map">Cargando mapa</string>
     <string name="wrong_location">La ubicación escogida no es correcta.</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="about_dev">Sobre desarrolladores</string>
     <string name="q_necesitas">QNecesitas</string>
@@ -294,4 +293,7 @@ Licencia para grupo de terceros---Gson  Copyright 2008 Google Inc.
     <string name="no_hay_categor_as">No hay categorías</string>
     <string name="delete_zone">Eliminando zona</string>
     <string name="zone_delete">Zona eliminada con éxito</string>
+    <string name="zona_existente">Zona ya existente</string>
+    <string name="no_zonas_mismo_nombre">No puede colocar dos zonas con el mismo nombre</string>
+    <string name="Subiendo_zona">Subiendo zona</string>
 </resources>

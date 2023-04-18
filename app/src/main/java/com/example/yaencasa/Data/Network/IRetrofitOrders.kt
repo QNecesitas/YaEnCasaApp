@@ -38,11 +38,12 @@ interface IRetrofitOrders {
     fun addOrder(
         @Field("token") token: String,
         @Field("price") price: Double,
-        @Field("products")products: String,
+        @Field("products") products: String,
         @Field("celnumber") celnumber: String,
         @Field("location") location: String,
         @Field("address") address: String,
         @Field("name") name: String,
+        @Field("zone") zone: String,
         @Field("idClient") idClient: Long
     ) : Call<Int>
 

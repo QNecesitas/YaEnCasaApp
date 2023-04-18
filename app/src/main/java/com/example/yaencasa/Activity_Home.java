@@ -8,6 +8,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -203,17 +204,6 @@ public class Activity_Home extends AppCompatActivity {
         drawer.openDrawer(navigationView);
     }
 
-    @Override
-    public void onBackPressed() {
-
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            finish();
-        }
-
-    }
-
     private void li_terminos() {
         LayoutInflater layoutInflater = LayoutInflater.from(getApplicationContext());
         View view = layoutInflater.inflate(R.layout.li_terminos, null);
@@ -236,5 +226,44 @@ public class Activity_Home extends AppCompatActivity {
         alertDialog.show();
     }
 
+
+    @Override
+    public void onBackPressed() {
+
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            showAlertDialogExit();
+        }
+
+    }
+
+    private void showAlertDialogExit() {
+        //init alert dialog
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+        builder.setCancelable(false);
+        builder.setTitle(R.string.salir);
+        builder.setMessage(R.string.seguro_desea_salir);
+        //set listeners for dialog buttons
+        builder.setPositiveButton(R.string.Si, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //finish the activity
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //dialog gone
+                dialog.dismiss();
+            }
+        });
+        //create the alert dialog and show it
+        builder.create().show();
+    }
 
 }
