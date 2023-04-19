@@ -15,24 +15,43 @@ class RetrofitProductsImpl : IRetrofitProducts {
 
     private val productApi: IRetrofitProducts = retrofit.create(IRetrofitProducts::class.java)
 
-    override fun updateVisibilityProduct(token: String, idProduct: Long, stateProduct: Int): Call<String> {
+    override fun updateVisibilityProduct(
+        token: String,
+        idProduct: Long,
+        stateProduct: Int
+    ): Call<String> {
         return productApi.updateVisibilityProduct(token, idProduct, stateProduct);
     }
 
-    override fun updateProduct(token: String, file:String, id: Long, name: String, price: Double, desc: String): Call<String> {
-        return productApi.updateProduct(token, file, id, name, price,desc)
+    override fun updateProduct(
+        token: String,
+        file: String,
+        id: Long,
+        name: String,
+        price: Double,
+        desc: String
+    ): Call<String> {
+        return productApi.updateProduct(token, file, id, name, price, desc)
     }
 
-    override fun removeProduct(token: String, idProduct: Long): Call<String> {
-        return productApi.removeProduct(token,idProduct)
+    override fun removeProduct(token: String, idProduct: Long, idCategory: Int): Call<String> {
+        return productApi.removeProduct(token, idProduct, idCategory);
     }
 
-    override fun addProduct(token: String, file: String,idCategory: Int, id: Long, name: String, price: Double, desc: String): Call<String> {
-        return productApi.addProduct(token,file,idCategory, id,name,price,desc)
+    override fun addProduct(
+        token: String,
+        file: String,
+        idCategory: Int,
+        id: Long,
+        name: String,
+        price: Double,
+        desc: String
+    ): Call<String> {
+        return productApi.addProduct(token, file, idCategory, id, name, price, desc)
     }
 
     override fun fetchProducts(token: String, idCategory: Int): Call<ArrayList<ModelProduct>> {
-        return productApi.fetchProducts(token,idCategory)
+        return productApi.fetchProducts(token, idCategory)
     }
 
 

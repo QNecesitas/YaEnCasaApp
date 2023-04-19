@@ -7,9 +7,12 @@
     tools:context=".MainActivity">
 
 
-
-
-
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/logo_main"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/logo_del_negocio" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -36,7 +36,8 @@ interface IRetrofitProducts {
     @POST("DeleteProduct.php")
     fun removeProduct(
         @Field("token") token: String,
-        @Field("idProduct") idProduct: Long
+        @Field("idProduct") idProduct: Long,
+        @Field("idCategory") idCategory: Int
     ) : Call<String>
 
 

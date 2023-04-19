@@ -12,7 +12,8 @@
         android:contentDescription="@string/imagen_de_la_empresa"
         android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/logo_header" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,8 +50,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="4sp"
-                android:text=""
-                android:textSize="@dimen/medium" />
+                android:text="@string/admin_email"
+                android:textSize="@dimen/small" />
         </LinearLayout>
 
         <LinearLayout

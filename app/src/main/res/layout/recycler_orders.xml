@@ -310,7 +310,7 @@
                     android:layout_height="wrap_content">
 
                     <Button
-                        android:textColor="@color/green_plight"
+                        android:textColor="@color/orange_2B"
                         android:id="@+id/RO_btn_cancel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -319,7 +319,7 @@
                         style="@style/Button_redonded"/>
 
                     <Button
-                        android:textColor="@color/green_plight"
+                        android:textColor="@color/orange_2B"
                         android:id="@+id/RO_btn_accept"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -328,7 +328,7 @@
                         style="@style/Button_redonded"/>
 
                     <Button
-                        android:textColor="@color/green_plight"
+                        android:textColor="@color/orange_2B"
                         android:id="@+id/RO_btn_finished"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

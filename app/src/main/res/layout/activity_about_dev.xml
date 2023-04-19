@@ -51,7 +51,7 @@
                 app:cardCornerRadius="8sp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:background="@color/purple_178"
+                    android:background="@color/orange_2B"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 

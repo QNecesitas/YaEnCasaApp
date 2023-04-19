@@ -38,7 +38,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/Categorias"
+                android:text="@string/Productos"
                 android:textSize="@dimen/medium"
                 android:textStyle="bold"
                 />

@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -22,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 
 import com.example.yaencasa.Auxiliary.Constants;
+import com.example.yaencasa.Bradcasts.BatteryReceiver;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
@@ -44,12 +46,16 @@ public class Activity_Home extends AppCompatActivity {
     private NavigationView navigationView;
 
 
+    //Broadcast
+    private BatteryReceiver batteryReceiver;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(Constants.APP_MODE == Constants.ClientAdmin.ADMIN) {
+        if (Constants.APP_MODE == Constants.ClientAdmin.ADMIN) {
             setContentView(R.layout.activity_home_admin);
-        }else{
+        } else {
             setContentView(R.layout.activity_home);
         }
 
@@ -137,17 +143,21 @@ public class Activity_Home extends AppCompatActivity {
                 //Admin
 
 
-
                 return true;
             }
         });
 
 
-
         //Shared preferences
-        sharedPreferences=getSharedPreferences("YaEnCasa", 0);
-        sharedEditor= sharedPreferences.edit();
+        sharedPreferences = getSharedPreferences("YaEnCasa", 0);
+        sharedEditor = sharedPreferences.edit();
 
+
+        //Battery Receiver
+        batteryReceiver = new BatteryReceiver();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
+        this.registerReceiver(batteryReceiver, intentFilter);
 
     }
 
@@ -205,11 +215,11 @@ public class Activity_Home extends AppCompatActivity {
     }
 
     private void li_terminos() {
-        LayoutInflater layoutInflater = LayoutInflater.from(getApplicationContext());
+        LayoutInflater layoutInflater = LayoutInflater.from(Activity_Home.this);
         View view = layoutInflater.inflate(R.layout.li_terminos, null);
-        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+        androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(Activity_Home.this);
         builder.setView(view);
-        AlertDialog alertDialog = builder.create();
+        androidx.appcompat.app.AlertDialog alertDialog = builder.create();
 
         ImageView btnClose = (ImageView) view.findViewById(R.id.liT_IV_cerrar);
         btnClose.setOnClickListener(new View.OnClickListener() {

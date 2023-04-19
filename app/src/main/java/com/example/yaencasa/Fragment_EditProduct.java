@@ -40,6 +40,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.yaencasa.Adapters.AdapterR_EditProduct;
+import com.example.yaencasa.Auxiliary.CategoryState;
 import com.example.yaencasa.Auxiliary.Constants;
 import com.example.yaencasa.Auxiliary.IDCreater;
 import com.example.yaencasa.Auxiliary.ImageTools;
@@ -86,7 +87,6 @@ public class Fragment_EditProduct extends Fragment {
     //Internet
     private ProgressDialog progressDialogAdding, progressDialogCargando,
             progressDialogEliminado, progressDialogActualizando;
-    private Integer selected_category;
     private final int INTENT_RESULT_GALERIA = 5;
     private final int PERMISO_GALERIA = 3;
     private Uri uriLLegadaRecortada;
@@ -106,7 +106,6 @@ public class Fragment_EditProduct extends Fragment {
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment__edit_product, container, false);
 
-        selected_category = requireActivity().getIntent().getIntExtra("category", 1);
 
 
         //RecyclerView
@@ -299,7 +298,7 @@ public class Fragment_EditProduct extends Fragment {
         Call<String> call = retrofitProducts.addProduct(
                 Constants.PHP_TOKEN,
                 imageFile,
-                selected_category,
+                CategoryState.IdCategorySelected,
                 IDCreater.generate(),
                 et_nombre.getText().toString(),
                 Double.parseDouble(et_precioCUP.getText().toString()),
@@ -529,8 +528,8 @@ public class Fragment_EditProduct extends Fragment {
     private void deleteProduct(int position){
         Call<String> call = retrofitProducts.removeProduct(
                 Constants.PHP_TOKEN,
-                ((ModelProduct)array_content.get(position)).getIdProduct()
-                );
+                ((ModelProduct) array_content.get(position)).getIdProduct(), CategoryState.IdCategorySelected
+        );
 
         call.enqueue(new Callback<String>() {
             @Override
@@ -683,7 +682,7 @@ public class Fragment_EditProduct extends Fragment {
 
     //Auxiliares
     private void updateRecyclerAdapter() {
-
+        TV_filter_category.setText(CategoryState.nameCategorySelected);
 
         if (array_content.isEmpty()) {
             linearLayoutEmpty.setVisibility(View.VISIBLE);

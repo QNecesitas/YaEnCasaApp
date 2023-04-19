@@ -55,9 +55,7 @@ public class AdapterR_Shopping_cart extends RecyclerView.Adapter<AdapterR_Shoppi
         Glide.with(context)
                 .load(Constants.PHP_IMAGES+"P_"+element.getProduct().getIdProduct()+".jpg")
                 .error(ContextCompat.getDrawable(context,R.drawable.shopping_bag))
-                .skipMemoryCache(true)
                 .centerCrop()
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(holder.imageview);
 
         holder.name.setText(element.getProduct().getName());

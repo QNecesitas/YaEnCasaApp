@@ -39,6 +39,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.yaencasa.Adapters.AdapterR_Product;
+import com.example.yaencasa.Auxiliary.CategoryState;
 import com.example.yaencasa.Auxiliary.Constants;
 import com.example.yaencasa.Auxiliary.IDCreater;
 import com.example.yaencasa.Auxiliary.ImageTools;
@@ -75,15 +76,12 @@ public class Fragment_Product extends Fragment {
 
     //Categories
     private TextView TV_filter_category;
-    int selected_category;
-    LinearLayout linearLayoutEmpty;
+    private LinearLayout linearLayoutEmpty;
 
     //Internet
     private ProgressDialog progressDialogCargando;
     private ContentRepository contentRepository;
     private RetrofitProductsImpl retrofitProducts;
-
-
 
 
     public Fragment_Product() {
@@ -94,8 +92,6 @@ public class Fragment_Product extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_product, container, false);
-
-        selected_category = getActivity().getIntent().getIntExtra("category", 0);
 
 
         //RecyclerView
@@ -197,7 +193,7 @@ public class Fragment_Product extends Fragment {
 
     //Aux
     private void updateRecyclerAdapter() {
-
+        TV_filter_category.setText(CategoryState.nameCategorySelected);
 
         if (array_content.isEmpty()) {
             linearLayoutEmpty.setVisibility(View.VISIBLE);

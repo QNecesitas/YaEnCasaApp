@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">YaEnCasa</string>
+    <string name="app_name">Ya En Casa</string>
     <string name="find_product">Buscar producto</string>
     <string name="products">Productos</string>
     <string name="edit_products">Editar Productos</string>
@@ -10,10 +10,10 @@
     <string name="contact">Contacto</string>
     <string name="correo">Correo</string>
     <string name="numero_de_telefono">Numero de telefono</string>
-    <string name="phone_number_client">53720001</string>
+    <string name="phone_number_client">+53 53720001</string>
     <string name="about_us">Sobre nosotros</string>
     <string name="t_rmino_de_uso">Término de uso</string>
-    <string name="about_developer">Sobre los desarrolladores</string>
+    <string name="about_developer">Desarrolladores</string>
     <string name="open">Abierto</string>
     <string name="close">Cerrado</string>
     <string name="little_description">Descripción del producto....</string>
@@ -248,7 +248,7 @@ Licencia para grupo de terceros---Gson  Copyright 2008 Google Inc.
     <string name="la_direccion_es_ave_52_37_y_39_delante_de_un_edificio_rojo_que_tiene_un_elefante_pintado">La direccion es Ave 52//37 y 39. Delante de un edificio rojo que tiene un elefante pintado</string>
     <string name="date">Fecha:</string>
     <string name="zona">Zona</string>
-    <string name="ya_en_casa">YaEnCasa</string>
+    <string name="ya_en_casa">Ya En Casa</string>
     <string name="adicionar_una_zona_nueva">Adicionar una zona nueva</string>
     <string name="ciudad">Ciudad</string>
     <string name="quitar_zona">Quitar zona</string>
@@ -296,4 +296,8 @@ Licencia para grupo de terceros---Gson  Copyright 2008 Google Inc.
     <string name="zona_existente">Zona ya existente</string>
     <string name="no_zonas_mismo_nombre">No puede colocar dos zonas con el mismo nombre</string>
     <string name="Subiendo_zona">Subiendo zona</string>
+    <string name="logo_del_negocio">Logo del negocio</string>
+    <string name="admin_email">alexbrayanperezblanco@gmail.com</string>
+    <string name="sobre_nosotros_desc">Bienvenidos a nuestro negocio, líder en el servicio de delivery. Nos enorgullece ofrecer a nuestros clientes la mejor experiencia en compras online. Desde la comodidad de su hogar, puede navegar a través de nuestro amplio catálogo y recibir sus pedidos en menos de 1 hora. Nos enfocamos en ofrecer un servicio de calidad, rápido y confiable.</string>
+    <string name="direcc_admin">José Ramón Fuerte #47 (AyB), Cabaiguán, Sancti Spíritus</string>
 </resources>

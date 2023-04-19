@@ -67,9 +67,7 @@ public class AdapterR_Product extends RecyclerView.Adapter<AdapterR_Product.Prod
         Glide.with(context)
                 .load(Constants.PHP_IMAGES_AD+"Ad_"+ad.getId()+".jpg")
                 .error(ContextCompat.getDrawable(context,R.drawable.shopping_bag_white))
-                .skipMemoryCache(true)
                 .centerCrop()
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(holder.image);
 
         holder.name.setText(ad.getName());
@@ -85,9 +83,7 @@ public class AdapterR_Product extends RecyclerView.Adapter<AdapterR_Product.Prod
         Glide.with(context)
                 .load(Constants.PHP_IMAGES+"P_"+product.getIdProduct()+".jpg")
                 .error(ContextCompat.getDrawable(context,R.drawable.shopping_bag_white))
-                .skipMemoryCache(true)
                 .centerCrop()
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(holder.image);
 
         holder.name.setText(product.getName());

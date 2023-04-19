@@ -46,9 +46,7 @@ public class AdapterR_Categories extends RecyclerView.Adapter<AdapterR_Categorie
 
         Glide.with(context)
                 .load(Constants.PHP_IMAGES +"C_"+modelCategory.getName()+".jpg")
-                .skipMemoryCache(true)
                 .centerCrop()
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(holder.imagenview);
 
         holder.nombre_categoria.setText(modelCategory.getName());

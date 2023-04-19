@@ -12,7 +12,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0sp"
-            android:background="@color/blue_light"
+            android:background="@color/yellow_59"
             android:src="@drawable/category"
             app:layout_constraintDimensionRatio="3:1.4"
             app:layout_constraintStart_toStartOf="parent"

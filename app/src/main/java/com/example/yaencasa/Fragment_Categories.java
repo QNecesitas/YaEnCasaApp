@@ -90,6 +90,8 @@ public class Fragment_Categories extends Fragment {
                        }
                        if(!al_categories.isEmpty()) CategoryState.IdCategorySelected = al_categories.get(0).getIdCategory();
                        updateRecyclerAdapter();
+                       if (!al_categories.isEmpty())
+                           CategoryState.nameCategorySelected = al_categories.get(0).getName();
                     }else{
                         progressDialogCargando.dismiss();
                         NetworkTools.showAlertDialogNoInternet(requireContext());
@@ -143,7 +145,8 @@ public class Fragment_Categories extends Fragment {
         adapter.setClickListener(new AdapterR_Categories.RecyclerTouchListener() {
             @Override
             public void onClickItem(View v, int position) {
-               CategoryState.IdCategorySelected = al_categories.get(position).getIdCategory();
+                CategoryState.IdCategorySelected = al_categories.get(position).getIdCategory();
+                CategoryState.nameCategorySelected = al_categories.get(position).getName();
                if (recyclerTouchListener!=null)recyclerTouchListener.onClick();
             }
         });

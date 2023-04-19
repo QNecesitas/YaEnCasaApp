@@ -90,9 +90,7 @@ public class AdapterR_EditProduct extends RecyclerView.Adapter<AdapterR_EditProd
         Glide.with(context)
                 .load(Constants.PHP_IMAGES+"P_"+product.getIdProduct()+".jpg")
                 .error(ContextCompat.getDrawable(context,R.drawable.shopping_bag_white))
-                .skipMemoryCache(true)
                 .centerCrop()
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(holder.IV_image);
 
         holder.TV_name.setText(product.getName());
