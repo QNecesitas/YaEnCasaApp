@@ -300,4 +300,6 @@ Licencia para grupo de terceros---Gson  Copyright 2008 Google Inc.
     <string name="admin_email">alexbrayanperezblanco@gmail.com</string>
     <string name="sobre_nosotros_desc">Bienvenidos a nuestro negocio, líder en el servicio de delivery. Nos enorgullece ofrecer a nuestros clientes la mejor experiencia en compras online. Desde la comodidad de su hogar, puede navegar a través de nuestro amplio catálogo y recibir sus pedidos en menos de 1 hora. Nos enfocamos en ofrecer un servicio de calidad, rápido y confiable.</string>
     <string name="direcc_admin">José Ramón Fuerte #47 (AyB), Cabaiguán, Sancti Spíritus</string>
+    <string name="tiene_nuevos_pedidos">Tiene nuevos pedidos</string>
+    <string name="toque_para_ir_a_la_aplicaci_n">Toque para ir a la aplicación</string>
 </resources>

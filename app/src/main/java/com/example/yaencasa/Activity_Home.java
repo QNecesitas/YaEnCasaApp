@@ -4,10 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -23,7 +27,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 
 import com.example.yaencasa.Auxiliary.Constants;
-import com.example.yaencasa.Bradcasts.BatteryReceiver;
+import com.example.yaencasa.Data.Network.CheckOrdersService;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.navigation.NavigationView;
@@ -46,8 +50,7 @@ public class Activity_Home extends AppCompatActivity {
     private NavigationView navigationView;
 
 
-    //Broadcast
-    private BatteryReceiver batteryReceiver;
+
 
 
     @Override
@@ -55,9 +58,13 @@ public class Activity_Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         if (Constants.APP_MODE == Constants.ClientAdmin.ADMIN) {
             setContentView(R.layout.activity_home_admin);
+            //Service
+            Intent intentService = new Intent(this, CheckOrdersService.class);
+            startService(intentService);
         } else {
             setContentView(R.layout.activity_home);
         }
+
 
         //Toolbar
         Toolbar toolbar=(Toolbar) findViewById(R.id.AH_toolbar);
@@ -153,11 +160,6 @@ public class Activity_Home extends AppCompatActivity {
         sharedEditor = sharedPreferences.edit();
 
 
-        //Battery Receiver
-        batteryReceiver = new BatteryReceiver();
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
-        this.registerReceiver(batteryReceiver, intentFilter);
 
     }
 
@@ -247,6 +249,7 @@ public class Activity_Home extends AppCompatActivity {
         }
 
     }
+
 
     private void showAlertDialogExit() {
         //init alert dialog

@@ -14,8 +14,8 @@ public class Constants {
     public static final String PHP_IMAGES_AD="https://qnecesitas.nat.cu/QNecesitasAds/Images/";
 
     //Maps
-    public static final String SHOWMAP="https://www.google.com/maps/search/?api=1&query=";
-    public static final String PUTMAP="https://map.google.com/maps";
+    public static final String SHOWMAP = "https://www.google.com/maps/search/?api=1&query=";
+    public static final String PUTMAP = "https://map.google.com/maps/@22.0811773,-79.4986023,15z";
 
     //Client or Admin
     public enum ClientAdmin {CLIENT, ADMIN}
